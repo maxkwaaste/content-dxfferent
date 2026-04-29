@@ -1,0 +1,758 @@
+[
+  {
+    "title": "Hoe deze MSP met 80 FTE ontdekte dat 3 klanten 40% van de kosten veroorzaakten — en hoe ze dat oplosten met data",
+    "hook": "Case study: 1 probleem, 1 oplossing, 1 resultaat",
+    "category": "bewijs",
+    "domain": "Data Driven",
+    "subdomain": "Analyse",
+    "context": {
+      "problemen": ["Vastzitten in de rapportage-fase — Excel-exports, paar grafieken, geen analyse", "Geen vaste rapportage-cadans", "Effective Hourly Rate per contract wordt niet berekend"],
+      "frustraties": ["'We hebben 10.000 tickets in een tabel maar geen inzicht'", "Niet weten welke 5-10% van klanten structureel geld kost", "Dashboards gebouwd die niemand opent"],
+      "vragen": ["Welke drie dashboards moeten we als eerste bouwen?", "Hoe gaan we van descriptief naar diagnostisch?", "Welk BI-tool past bij onze stack en maturity?"]
+    }
+  },
+  {
+    "title": "Hoe een MSP in 6 maanden stopte met plannen op gevoel — en wat het verschil was in marge",
+    "hook": "Hoe [klant] [resultaat] bereikte met behulp van [aanpak]",
+    "category": "bewijs",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Ik analyseerde de Autotask-inrichting van 20 MSP's en vond dat 18 van de 20 hetzelfde cruciale onderdeel missen",
+    "hook": "Ik analyseerde [X] en vond [Y]",
+    "category": "bewijs",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Ik analyseerde de contractfacturatie van 30 MSP's — dit is wat er gemiddeld mis gaat (en wat het kost)",
+    "hook": "Audit / analyse van concurrent, autoriteit of klant",
+    "category": "bewijs",
+    "domain": "Technology",
+    "subdomain": "Contracten & Billing",
+    "context": {
+      "problemen": ["Contractaantallen handmatig bijgehouden via spreadsheets", "Aantallen op factuur kloppen niet met daadwerkelijk gebruik", "Geen koppeling tussen bronsystemen en facturatiesysteem"],
+      "frustraties": ["5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar", "2-3 werkdagen per maand kwijt aan handmatige controle", "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"],
+      "vragen": ["Hoeveel omzet lopen we mis door incorrecte contractaantallen?", "Welk bronsysteem is leidend per type item?", "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"]
+    }
+  },
+  {
+    "title": "Eigen experiment: we koppelden 5 databronnen in Proxuma — dit zagen we de eerste week",
+    "hook": "Eigen experiment: ik deed [X] en dit gebeurde er",
+    "category": "bewijs",
+    "domain": "Data Driven",
+    "subdomain": "Data Mining",
+    "context": {
+      "problemen": ["Vijf systemen, vijf datasilo's, nul overzicht — PSA, RMM, boekhouding, CRM, HR praten niet met elkaar", "Geen centraal dataplatform of data warehouse", "Geen monitoring op data-pipelines"],
+      "frustraties": ["'Elke maand dezelfde handmatige exercitie om managementcijfers samen te stellen'", "Data is er wel maar niet bruikbaar", "Tijd kwijt aan debuggen van extractie-flows"],
+      "vragen": ["Welke bronsystemen koppelen we als eerste?", "Hoe bouwen we een centraal database-platform?", "Kunnen we N8N of Claude Code gebruiken voor snelle prototyping?"]
+    }
+  },
+  {
+    "title": "Hoe Nederlandse MSP's omgaan met personeelsplanning in 2026 — onderzoek onder 50 bedrijven",
+    "hook": "Vertical onderzoek: zo werkt [sector] en dit betekent het",
+    "category": "bewijs",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Ik vroeg 10 MSP-directeuren: wat is de grootste operationele blinde vlek in jullie bedrijf?",
+    "hook": "Ik vroeg [X] experts over [onderwerp]",
+    "category": "bewijs",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Anonieme case study: een MSP verloor €120.000 per jaar aan niet-gefactureerde contractaantallen — zo kwamen ze erachter",
+    "hook": "Anonieme case study: herkenbaar zonder naam",
+    "category": "bewijs",
+    "domain": "Technology",
+    "subdomain": "Contracten & Billing",
+    "context": {
+      "problemen": ["Contractaantallen handmatig bijgehouden via spreadsheets", "Aantallen op factuur kloppen niet met daadwerkelijk gebruik", "Geen koppeling tussen bronsystemen en facturatiesysteem"],
+      "frustraties": ["5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar", "2-3 werkdagen per maand kwijt aan handmatige controle", "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"],
+      "vragen": ["Hoeveel omzet lopen we mis door incorrecte contractaantallen?", "Welk bronsysteem is leidend per type item?", "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"]
+    }
+  },
+  {
+    "title": "Nummer 1 reden dat MSP's nooit echt datagedreven worden — en hoe je het doorbreekt",
+    "hook": "Nummer 1 reden dat bedrijven [resultaat] niet bereiken",
+    "category": "bewijs",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Hoe een MSP van reactieve naar proactieve personeelsplanning ging — en wat dat opleverde in minder overuren",
+    "hook": "Hoe [klant] [resultaat] bereikte met behulp van [aanpak]",
+    "category": "bewijs",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Ik analyseerde RMM-alertdata van 15 MSP's — gemiddeld 73% van alle alerts leidt tot nul actie",
+    "hook": "Ik analyseerde [X] en vond [Y]",
+    "category": "bewijs",
+    "domain": "Technology",
+    "subdomain": "RMM",
+    "context": {
+      "problemen": ["RMM deels uitgerold — blinde vlekken in monitoring", "Alert fatigue — te veel alerts, groot deel is noise", "Geen geautomatiseerde patchmanagement-policies"],
+      "frustraties": ["Engineers negeren alerts omdat er te veel zijn", "Klant belt over probleem dat monitoring had moeten detecteren", "Onmogelijk hogere tarieven te rechtvaardigen zonder bewezen proactiviteit"],
+      "vragen": ["Welke alerts hebben het afgelopen kwartaal tot actie geleid?", "Welke 10 alerts kunnen we automatisch laten remediaren?", "Hoe bouwen we een testomgeving voor patches en scripts?"]
+    }
+  },
+  {
+    "title": "Hoe deze MSP zijn Autotask van 35% naar 90% benutting bracht — stap voor stap",
+    "hook": "Case study: 1 probleem, 1 oplossing, 1 resultaat",
+    "category": "bewijs",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Het Proxuma Datafundament: de 4 databronnen die elke MSP moet ontsluiten voordat hij kan groeien",
+    "hook": "Ontwikkel een eigen framework met een eigen naam",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "Data Mining",
+    "context": {
+      "problemen": ["Vijf systemen, vijf datasilo's, nul overzicht — PSA, RMM, boekhouding, CRM, HR praten niet met elkaar", "Geen centraal dataplatform of data warehouse", "Geen monitoring op data-pipelines"],
+      "frustraties": ["'Elke maand dezelfde handmatige exercitie om managementcijfers samen te stellen'", "Data is er wel maar niet bruikbaar", "Tijd kwijt aan debuggen van extractie-flows"],
+      "vragen": ["Welke bronsystemen koppelen we als eerste?", "Hoe bouwen we een centraal database-platform?", "Kunnen we N8N of Claude Code gebruiken voor snelle prototyping?"]
+    }
+  },
+  {
+    "title": "Datagedreven werken als MSP uitgelegd in 3 stappen — voor iedereen die er niks van snapt",
+    "hook": "Complex ding makkelijk gemaakt",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "MCP-toegang voor MSP's uitgelegd in 3 minuten — voor mensen die niks van AI weten",
+    "hook": "Complex ding makkelijk gemaakt",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "AI intern",
+    "context": {
+      "problemen": ["Team experimenteert ad hoc met AI zonder gedeeld plan", "Geen prompt-bibliotheek of best practices", "Geen richtlijnen voor verantwoord AI-gebruik"],
+      "frustraties": ["Gevoel achter te lopen terwijl concurrenten AI als verkoopargument gebruiken", "Engineers gebruiken AI individueel maar winst blijft op individueel niveau", "Repetitieve taken blijven handmatig terwijl het anders zou kunnen"],
+      "vragen": ["Welke processen lenen zich het beste voor AI?", "Hoe voorkomen we dat klantdata in publieke modellen verdwijnt?", "Hoe bouwen we een gedeelde prompt-bibliotheek?"]
+    }
+  },
+  {
+    "title": "Hoe je als MSP datagedreven gaat werken in 90 dagen zonder je Autotask-setup te verbouwen",
+    "hook": "Hoe je [resultaat] bereikt in [tijdsperiode] zonder [beperking]",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Hoe je personeelsplanning objectief maakt als MSP — zodat je nooit meer te laat werft",
+    "hook": "Hoe je [resultaat] bereikt in [tijdsperiode] zonder [beperking]",
+    "category": "educatie",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Dit zou ik doen als ik in 2026 mijn MSP wil laten draaien op data in plaats van gevoel",
+    "hook": "Dit zou ik doen als ik [resultaat] wil bereiken in [jaar]",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Als je vastzit met contractfacturatie als MSP — dit zijn de 3 meest voorkomende oorzaken",
+    "hook": "Probleem + oplossing: als je vastzit met [probleem]",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "Contracten & Billing",
+    "context": {
+      "problemen": ["Contractaantallen handmatig bijgehouden via spreadsheets", "Aantallen op factuur kloppen niet met daadwerkelijk gebruik", "Geen koppeling tussen bronsystemen en facturatiesysteem"],
+      "frustraties": ["5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar", "2-3 werkdagen per maand kwijt aan handmatige controle", "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"],
+      "vragen": ["Hoeveel omzet lopen we mis door incorrecte contractaantallen?", "Welk bronsysteem is leidend per type item?", "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"]
+    }
+  },
+  {
+    "title": "Als je vastzit met personeelsplanning als MSP — dit zijn de 3 meest voorkomende oorzaken",
+    "hook": "Probleem + oplossing: als je vastzit met [probleem]",
+    "category": "educatie",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Als je vastzit met datakwaliteit in Autotask — dit zijn de 3 meest voorkomende oorzaken",
+    "hook": "Probleem + oplossing: als je vastzit met [probleem]",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Gratis template: zo breng je als MSP je databronnen in kaart voordat je begint met automatiseren",
+    "hook": "Tool / template / stappenplan dat direct bruikbaar is",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "Data Mining",
+    "context": {
+      "problemen": ["Vijf systemen, vijf datasilo's, nul overzicht — PSA, RMM, boekhouding, CRM, HR praten niet met elkaar", "Geen centraal dataplatform of data warehouse", "Geen monitoring op data-pipelines"],
+      "frustraties": ["'Elke maand dezelfde handmatige exercitie om managementcijfers samen te stellen'", "Data is er wel maar niet bruikbaar", "Tijd kwijt aan debuggen van extractie-flows"],
+      "vragen": ["Welke bronsystemen koppelen we als eerste?", "Hoe bouwen we een centraal database-platform?", "Kunnen we N8N of Claude Code gebruiken voor snelle prototyping?"]
+    }
+  },
+  {
+    "title": "Gratis FTE-calculator: hoeveel engineers heb jij nodig bij jouw klantvolume?",
+    "hook": "Tool / template / stappenplan dat direct bruikbaar is",
+    "category": "educatie",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Kijk dit voordat je als MSP een nieuw BI-tool aanschaft",
+    "hook": "Kijk dit voordat je [actie] doet",
+    "category": "educatie",
+    "domain": "Data Driven",
+    "subdomain": "Analyse",
+    "context": {
+      "problemen": ["Vastzitten in de rapportage-fase — Excel-exports, paar grafieken, geen analyse", "Geen vaste rapportage-cadans", "Effective Hourly Rate per contract wordt niet berekend"],
+      "frustraties": ["'We hebben 10.000 tickets in een tabel maar geen inzicht'", "Niet weten welke 5-10% van klanten structureel geld kost", "Dashboards gebouwd die niemand opent"],
+      "vragen": ["Welke drie dashboards moeten we als eerste bouwen?", "Hoe gaan we van descriptief naar diagnostisch?", "Welk BI-tool past bij onze stack en maturity?"]
+    }
+  },
+  {
+    "title": "Kijk dit voordat je als MSP begint met automatiseren",
+    "hook": "Kijk dit voordat je [actie] doet",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "Automatisering",
+    "context": {
+      "problemen": ["Lappendeken van scripts zonder samenhang", "Scripts verspreid op laptops zonder centrale repository", "Geen gekozen primair workflow-platform — wildgroei aan tools"],
+      "frustraties": ["Personeel uitbreiden voelt als enige optie om te schalen", "Elke nieuwe klant = twee weken handmatig werk over drie teams", "Script dat ooit werkte breekt nu en niemand weet meer waarom"],
+      "vragen": ["Welk workflow-platform past het beste bij ons?", "Moeten we eerst interne processen of klantdienstverlening automatiseren?", "Wat is de juiste volgorde: documenteren, optimaliseren, dan pas automatiseren?"]
+    }
+  },
+  {
+    "title": "5 manieren om als MSP je Autotask-data te gebruiken voor betere beslissingen",
+    "hook": "[Aantal] manieren om [belofte] in [tijdsperiode]",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "De juiste volgorde voor MSP-automatisering: documenteren, optimaliseren, dan pas automatiseren",
+    "hook": "Complex ding makkelijk gemaakt",
+    "category": "educatie",
+    "domain": "Technology",
+    "subdomain": "Automatisering",
+    "context": {
+      "problemen": ["Lappendeken van scripts zonder samenhang", "Scripts verspreid op laptops zonder centrale repository", "Geen gekozen primair workflow-platform — wildgroei aan tools"],
+      "frustraties": ["Personeel uitbreiden voelt als enige optie om te schalen", "Elke nieuwe klant = twee weken handmatig werk over drie teams", "Script dat ooit werkte breekt nu en niemand weet meer waarom"],
+      "vragen": ["Welk workflow-platform past het beste bij ons?", "Moeten we eerst interne processen of klantdienstverlening automatiseren?", "Wat is de juiste volgorde: documenteren, optimaliseren, dan pas automatiseren?"]
+    }
+  },
+  {
+    "title": "Als we Proxuma vandaag opnieuw zouden bouwen — dit doen we anders",
+    "hook": "Start over: wat we zouden doen als we vandaag opnieuw beginnen",
+    "category": "markt",
+    "domain": "Algemeen",
+    "subdomain": "Proxuma",
+    "context": null
+  },
+  {
+    "title": "Mijn overtuiging: elke MSP die nog op gevoel plant, verliest binnen 3 jaar van degene die dat niet doet",
+    "hook": "Bespreek een overtuiging die je zelf hebt ontwikkeld",
+    "category": "markt",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Mijn overtuiging: de MSP-markt consolideert — en datagedreven MSP's zijn de enige die overblijven",
+    "hook": "Bespreek een overtuiging die je zelf hebt ontwikkeld",
+    "category": "markt",
+    "domain": "Markt",
+    "subdomain": "MSP",
+    "context": null
+  },
+  {
+    "title": "Waarom de meeste MSP-tools data verzamelen maar geen inzicht geven — en wat dat kost",
+    "hook": "Visie op markt / vertical / probleem / tool",
+    "category": "markt",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "De MSP-automatiseringsstrategie waar bijna niemand over praat — maar die consistent schaalbaarheid oplevert",
+    "hook": "[X] waar je nog nooit van gehoord hebt",
+    "category": "markt",
+    "domain": "Technology",
+    "subdomain": "Automatisering",
+    "context": {
+      "problemen": ["Lappendeken van scripts zonder samenhang", "Scripts verspreid op laptops zonder centrale repository", "Geen gekozen primair workflow-platform — wildgroei aan tools"],
+      "frustraties": ["Personeel uitbreiden voelt als enige optie om te schalen", "Elke nieuwe klant = twee weken handmatig werk over drie teams", "Script dat ooit werkte breekt nu en niemand weet meer waarom"],
+      "vragen": ["Welk workflow-platform past het beste bij ons?", "Moeten we eerst interne processen of klantdienstverlening automatiseren?", "Wat is de juiste volgorde: documenteren, optimaliseren, dan pas automatiseren?"]
+    }
+  },
+  {
+    "title": "Zo ziet de datagedreven MSP eruit in 2028 — en wie er nu mee begint heeft een voorsprong",
+    "hook": "Toekomst van [markt / tool / vertical]",
+    "category": "markt",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Stop met plannen op gevoel in 2026 — je Autotask-data vertelt je alles wat je nodig hebt",
+    "hook": "Stop met [onderwerp] in 2026",
+    "category": "markt",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Stop met handmatige contractcontrole in 2026 — dit is wat het je kost",
+    "hook": "Stop met [onderwerp] in 2026",
+    "category": "markt",
+    "domain": "Technology",
+    "subdomain": "Contracten & Billing",
+    "context": {
+      "problemen": ["Contractaantallen handmatig bijgehouden via spreadsheets", "Aantallen op factuur kloppen niet met daadwerkelijk gebruik", "Geen koppeling tussen bronsystemen en facturatiesysteem"],
+      "frustraties": ["5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar", "2-3 werkdagen per maand kwijt aan handmatige controle", "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"],
+      "vragen": ["Hoeveel omzet lopen we mis door incorrecte contractaantallen?", "Welk bronsysteem is leidend per type item?", "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"]
+    }
+  },
+  {
+    "title": "Waarom Autotask het krachtigste PSA-systeem op de markt is — en waarom 90% er maar 30% uit haalt",
+    "hook": "Visie op markt / vertical / probleem / tool",
+    "category": "markt",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Wat niemand MSP's vertelt: omzetgroei zonder datagedreven operatie maakt je bedrijf kwetsbaarder, niet sterker",
+    "hook": "Brutal truth: wat niemand je vertelt over [onderwerp]",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Onpopulair mening: de meeste MSP's zijn nog niet klaar voor AI — en dat is prima, mits je dit eerst doet",
+    "hook": "Onpopulair mening: [mening]",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "AI intern",
+    "context": {
+      "problemen": ["Team experimenteert ad hoc met AI zonder gedeeld plan", "Geen prompt-bibliotheek of best practices", "Geen richtlijnen voor verantwoord AI-gebruik"],
+      "frustraties": ["Gevoel achter te lopen terwijl concurrenten AI als verkoopargument gebruiken", "Engineers gebruiken AI individueel maar winst blijft op individueel niveau", "Repetitieve taken blijven handmatig terwijl het anders zou kunnen"],
+      "vragen": ["Welke processen lenen zich het beste voor AI?", "Hoe voorkomen we dat klantdata in publieke modellen verdwijnt?", "Hoe bouwen we een gedeelde prompt-bibliotheek?"]
+    }
+  },
+  {
+    "title": "Onpopulair mening: je Autotask-probleem is geen Autotask-probleem — het is een datakwaliteitsprobleem",
+    "hook": "Onpopulair mening: [mening]",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Waarom 'meer engineers aannemen' je planningsprobleem als MSP niet oplost",
+    "hook": "Waarom [mythe] niet klopt over [onderwerp]",
+    "category": "contrair",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Waarom 'we groeien dus het gaat goed' de gevaarlijkste uitspraak is die een MSP-directeur kan doen",
+    "hook": "Waarom [mythe] niet klopt over [onderwerp]",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Datagedreven werken als MSP gaat sneller dan je denkt — als je met de juiste databron begint",
+    "hook": "[X] dat sneller / beter / goedkoper werkt dan je denkt",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Personeelsplanning objectiveren is goedkoper dan je denkt — en je hebt het al in Autotask zitten",
+    "hook": "[X] dat sneller / beter / goedkoper werkt dan je denkt",
+    "category": "contrair",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Als je blijft werken met losse Excel-sheets, krijg je nooit grip op je marge per klant",
+    "hook": "Als je [X] doet, krijg je [Y] niet",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "Analyse",
+    "context": {
+      "problemen": ["Vastzitten in de rapportage-fase — Excel-exports, paar grafieken, geen analyse", "Geen vaste rapportage-cadans", "Effective Hourly Rate per contract wordt niet berekend"],
+      "frustraties": ["'We hebben 10.000 tickets in een tabel maar geen inzicht'", "Niet weten welke 5-10% van klanten structureel geld kost", "Dashboards gebouwd die niemand opent"],
+      "vragen": ["Welke drie dashboards moeten we als eerste bouwen?", "Hoe gaan we van descriptief naar diagnostisch?", "Welk BI-tool past bij onze stack en maturity?"]
+    }
+  },
+  {
+    "title": "Als je RMM-alerts niet opschoont, krijg je geen proactieve MSP — je krijgt alert-blinde engineers",
+    "hook": "Als je [X] doet, krijg je [Y] niet",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "RMM",
+    "context": {
+      "problemen": ["RMM deels uitgerold — blinde vlekken in monitoring", "Alert fatigue — te veel alerts, groot deel is noise", "Geen geautomatiseerde patchmanagement-policies"],
+      "frustraties": ["Engineers negeren alerts omdat er te veel zijn", "Klant belt over probleem dat monitoring had moeten detecteren", "Onmogelijk hogere tarieven te rechtvaardigen zonder bewezen proactiviteit"],
+      "vragen": ["Welke alerts hebben het afgelopen kwartaal tot actie geleid?", "Welke 10 alerts kunnen we automatisch laten remediaren?", "Hoe bouwen we een testomgeving voor patches en scripts?"]
+    }
+  },
+  {
+    "title": "Je denkt dat je te weinig mensen hebt — maar je databronnen zijn niet gekoppeld",
+    "hook": "[X] ontbreekt en je denkt dat [Y] de oorzaak is",
+    "category": "contrair",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "Je denkt dat je te weinig traffic hebt op je dashboard — maar je datakwaliteit ontbreekt",
+    "hook": "[X] ontbreekt en je denkt dat [Y] de oorzaak is",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "Datakwaliteit",
+    "context": {
+      "problemen": ["Garbage in, garbage out — ticketcategorieen kloppen niet, dubbele records", "Geen invoer-validatie in PSA en RMM", "Geen Master Data Management"],
+      "frustraties": ["'Onze dashboards zien er professioneel uit maar niemand vertrouwt ze'", "Tijd kwijt aan data repareren in plaats van data gebruiken", "Elke nieuwe rapportage wordt gebouwd op drijfzand"],
+      "vragen": ["Wat zijn onze top-5 datakwaliteitsproblemen met meeste impact?", "Welke validatieregels moeten we configureren in PSA?", "Hoe beginnen we met Shift-Left Data Quality?"]
+    }
+  },
+  {
+    "title": "Je hebt geen data engineer nodig om als MSP datagedreven te werken",
+    "hook": "Je hebt geen [X] nodig om [Y] te doen",
+    "category": "contrair",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Je hebt geen nieuw BI-tool nodig — je hebt betere Autotask-data nodig",
+    "hook": "Je hebt geen [X] nodig om [Y] te doen",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Kunnen we eindelijk toegeven dat handmatige contractcontrole bij MSP's gewoon niet werkt?",
+    "hook": "Kunnen we eindelijk toegeven dat [onderwerp] niet werkt",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "Contracten & Billing",
+    "context": {
+      "problemen": ["Contractaantallen handmatig bijgehouden via spreadsheets", "Aantallen op factuur kloppen niet met daadwerkelijk gebruik", "Geen koppeling tussen bronsystemen en facturatiesysteem"],
+      "frustraties": ["5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar", "2-3 werkdagen per maand kwijt aan handmatige controle", "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"],
+      "vragen": ["Hoeveel omzet lopen we mis door incorrecte contractaantallen?", "Welk bronsysteem is leidend per type item?", "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"]
+    }
+  },
+  {
+    "title": "Wat MSP-softwareleveranciers je niet vertellen over hoe hun data echt in elkaar zit",
+    "hook": "Throw stones: wat anderen doen maar niet durven toegeven",
+    "category": "contrair",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Ik sprak met de directeur van een van de snelstgroeiende MSP's van Nederland — dit leerde ik over data",
+    "hook": "Interview met een autoriteit (bedrijf of persoon)",
+    "category": "eigen",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Wat ik zou willen dat iemand mij had verteld voordat we Proxuma bouwden",
+    "hook": "Wat ik zou willen dat iemand mij had verteld over [onderwerp]",
+    "category": "eigen",
+    "domain": "Algemeen",
+    "subdomain": "Proxuma",
+    "context": null
+  },
+  {
+    "title": "Waarom Autotask de krachtigste PSA op de markt is — en wat wij ervan leerden bij het bouwen van Proxuma",
+    "hook": "Associatie: wat [bekende naam / klant] goed of fout doet",
+    "category": "eigen",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Als ik jouw Head of Operations was voor 90 dagen — dit zijn de eerste 3 dingen die ik zou doen",
+    "hook": "Als ik jouw [rol] was voor 90 dagen",
+    "category": "eigen",
+    "domain": "Organisation",
+    "subdomain": "Strategisch Plan",
+    "context": {
+      "problemen": ["Basisplan bestaat maar wordt zelden geraadpleegd", "Geen vertaling van visie naar meetbare doelen", "KPI's niet beschikbaar of niet gevolgd", "Dagelijkse operatie slokt alle tijd op"],
+      "frustraties": ["Strategische doelen blijven vaag en onbereikt", "Urgentie van vandaag wint altijd van plannen voor morgen", "Directeur wil groeien maar heeft geen helder kompas", "Prioriteiten wisselen constant"],
+      "vragen": ["Hoe zorg ik dat ons plan geen document in een la wordt?", "Welke KPI's moet ik bijhouden zonder extra overhead?", "Hoe creeer ik tijd voor strategie naast de dagelijkse operatie?"]
+    }
+  },
+  {
+    "title": "Als ik jouw Operations Director was voor 90 dagen — zo zou ik personeelsplanning aanpakken",
+    "hook": "Als ik jouw [rol] was voor 90 dagen",
+    "category": "eigen",
+    "domain": "Organisation",
+    "subdomain": "Personeelsplanning",
+    "context": {
+      "problemen": ["Werving reactief — pas als tekorten al zichtbaar zijn", "Geen koppeling tussen klantgroei en benodigde capaciteit", "Personeelsbeslissingen worden op gevoel genomen"],
+      "frustraties": ["Altijd te laat werven, altijd brandjes blussen", "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk", "Subjectieve discussies over 'hebben we iemand nodig'"],
+      "vragen": ["Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?", "Wanneer moet ik werven — hoe definieer ik dat objectief?", "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"]
+    }
+  },
+  {
+    "title": "De 3 aannames over MSP-data die we nooit meer maken na 50 implementaties",
+    "hook": "Wat ik nooit meer zou doen",
+    "category": "eigen",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "De fouten die we maakten bij onze eerste PSA-data-koppelingen — en wat we ervan leerden",
+    "hook": "Wat ik nooit meer zou doen",
+    "category": "eigen",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  },
+  {
+    "title": "Wat kost datagedreven werken als MSP echt — eerlijk overzicht van tools, tijd en implementatie",
+    "hook": "Prijzen / kosten / eerlijk prijsoverzicht in jouw markt",
+    "category": "tools",
+    "domain": "Data Driven",
+    "subdomain": "overkoepelend",
+    "context": {
+      "problemen": ["Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt", "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag", "Cultuur is het grootste obstakel, niet technologie"],
+      "frustraties": ["'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'", "MT-overleg gaat over meningen in plaats van feiten", "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"],
+      "vragen": ["Welke 5 KPIs moeten centraal staan in onze sturing?", "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?", "Welke KPIs gebruiken Best-in-Class MSPs?"]
+    }
+  },
+  {
+    "title": "Power BI vs Proxuma voor MSP's: wanneer gebruik je wat?",
+    "hook": "Vergelijking: [X] vs [Y] — wat is beter voor [doelgroep]",
+    "category": "tools",
+    "domain": "Data Driven",
+    "subdomain": "Analyse",
+    "context": {
+      "problemen": ["Vastzitten in de rapportage-fase — Excel-exports, paar grafieken, geen analyse", "Geen vaste rapportage-cadans", "Effective Hourly Rate per contract wordt niet berekend"],
+      "frustraties": ["'We hebben 10.000 tickets in een tabel maar geen inzicht'", "Niet weten welke 5-10% van klanten structureel geld kost", "Dashboards gebouwd die niemand opent"],
+      "vragen": ["Welke drie dashboards moeten we als eerste bouwen?", "Hoe gaan we van descriptief naar diagnostisch?", "Welk BI-tool past bij onze stack en maturity?"]
+    }
+  },
+  {
+    "title": "N8N vs Rewst vs Power Automate voor MSP's: welk workflow-platform past bij jouw fase?",
+    "hook": "Vergelijking: [X] vs [Y] — wat is beter voor [doelgroep]",
+    "category": "tools",
+    "domain": "Technology",
+    "subdomain": "Automatisering",
+    "context": {
+      "problemen": ["Lappendeken van scripts zonder samenhang", "Scripts verspreid op laptops zonder centrale repository", "Geen gekozen primair workflow-platform — wildgroei aan tools"],
+      "frustraties": ["Personeel uitbreiden voelt als enige optie om te schalen", "Elke nieuwe klant = twee weken handmatig werk over drie teams", "Script dat ooit werkte breekt nu en niemand weet meer waarom"],
+      "vragen": ["Welk workflow-platform past het beste bij ons?", "Moeten we eerst interne processen of klantdienstverlening automatiseren?", "Wat is de juiste volgorde: documenteren, optimaliseren, dan pas automatiseren?"]
+    }
+  },
+  {
+    "title": "6 databronnen die elke MSP zou moeten koppelen — en waarom de meeste er maar 2 van gebruiken",
+    "hook": "Overzicht / lijst: [aantal] [onderwerpen]",
+    "category": "tools",
+    "domain": "Data Driven",
+    "subdomain": "Data Mining",
+    "context": {
+      "problemen": ["Vijf systemen, vijf datasilo's, nul overzicht — PSA, RMM, boekhouding, CRM, HR praten niet met elkaar", "Geen centraal dataplatform of data warehouse", "Geen monitoring op data-pipelines"],
+      "frustraties": ["'Elke maand dezelfde handmatige exercitie om managementcijfers samen te stellen'", "Data is er wel maar niet bruikbaar", "Tijd kwijt aan debuggen van extractie-flows"],
+      "vragen": ["Welke bronsystemen koppelen we als eerste?", "Hoe bouwen we een centraal database-platform?", "Kunnen we N8N of Claude Code gebruiken voor snelle prototyping?"]
+    }
+  },
+  {
+    "title": "5 signalen dat jouw MSP-data niet klopt — en hoe je het repareert",
+    "hook": "Overzicht / lijst: [aantal] [onderwerpen]",
+    "category": "tools",
+    "domain": "Data Driven",
+    "subdomain": "Datakwaliteit",
+    "context": {
+      "problemen": ["Garbage in, garbage out — ticketcategorieen kloppen niet, dubbele records", "Geen invoer-validatie in PSA en RMM", "Geen Master Data Management"],
+      "frustraties": ["'Onze dashboards zien er professioneel uit maar niemand vertrouwt ze'", "Tijd kwijt aan data repareren in plaats van data gebruiken", "Elke nieuwe rapportage wordt gebouwd op drijfzand"],
+      "vragen": ["Wat zijn onze top-5 datakwaliteitsproblemen met meeste impact?", "Welke validatieregels moeten we configureren in PSA?", "Hoe beginnen we met Shift-Left Data Quality?"]
+    }
+  },
+  {
+    "title": "7 Autotask-velden die verplicht moeten zijn — maar bij de meeste MSP's nog steeds optioneel zijn",
+    "hook": "Overzicht / lijst: [aantal] [onderwerpen]",
+    "category": "tools",
+    "domain": "Technology",
+    "subdomain": "PSA",
+    "context": {
+      "problemen": ["Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet", "Workarounds zijn de norm — mensen werken om het systeem heen", "Geen consistente categorisering, dashboards niet ingericht per rol"],
+      "frustraties": ["Rapportages zijn nietszeggend door slechte datakwaliteit", "Half-ingerichte PSA kost meer dan het oplevert", "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"],
+      "vragen": ["In welke volgorde rollen we de modules uit?", "Welke velden moeten verplicht worden om datakwaliteit te garanderen?", "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"]
+    }
+  }
+]
