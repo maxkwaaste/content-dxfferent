@@ -8,8 +8,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^api/(.*)$ api.php/$1 [QSA,L]
 
-# Cache-busting for API responses (SiteGround aggressive caching)
-<FilesMatch "api\.php">
+# Disable SiteGround aggressive caching for all dynamic content
+<FilesMatch "\.(html|php)$">
     Header set Cache-Control "no-store, no-cache, must-revalidate"
     Header set Pragma "no-cache"
 </FilesMatch>

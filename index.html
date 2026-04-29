@@ -352,14 +352,28 @@ let currentTab = 'board';
 let calWeekStart = getMonday(new Date());
 let calEntries = [];
 let editingCalId = null;
+let topicsLoadedAt = 0;
+let isSaving = false;
+let autoSaveInputHandler = null;
 
 async function apiCall(path, opts = {}) {
-  const res = await fetch(API + path, {
-    headers: { 'Content-Type': 'application/json' },
-    ...opts,
-    body: opts.body ? JSON.stringify(opts.body) : undefined,
-  });
-  return res.json();
+  let res;
+  try {
+    res = await fetch(API + path, {
+      headers: { 'Content-Type': 'application/json' },
+      ...opts,
+      body: opts.body ? JSON.stringify(opts.body) : undefined,
+    });
+  } catch (e) {
+    toast('Netwerkfout — probeer opnieuw');
+    throw e;
+  }
+  const data = await res.json();
+  if (!res.ok) {
+    toast(data.error || 'Er ging iets mis');
+    throw new Error(data.error || res.statusText);
+  }
+  return data;
 }
 
 function toast(msg) {
@@ -386,7 +400,10 @@ function getMonday(d) {
 }
 
 function fmtDate(d) {
-  return d.toISOString().slice(0, 10);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
 }
 
 function fmtDateNL(d) {
@@ -396,6 +413,7 @@ function fmtDateNL(d) {
 // ============ TAB SWITCHING ============
 
 function switchTab(tab) {
+  stopAutoSave();
   currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
     btn.classList.toggle('active', ['board', 'dashboard', 'calendar'][i] === tab);
@@ -418,8 +436,12 @@ function switchTab(tab) {
 
 // ============ BOARD ============
 
-async function loadTopics() {
+async function loadTopics(force = false) {
+  if (!force && topics.length && Date.now() - topicsLoadedAt < 10000) {
+    renderCards(); renderStats(); renderFilters(); return;
+  }
   topics = await apiCall('/topics');
+  topicsLoadedAt = Date.now();
   renderFilters();
   renderCards();
   renderStats();
@@ -442,13 +464,13 @@ function renderFilters() {
   let domainHtml = `<span class="pill ${activeDomain === 'all' ? 'active' : ''}" onclick="setDomain('all')">Alles</span>`;
   domains.forEach(d => {
     const count = topics.filter(t => t.domain === d).length;
-    domainHtml += `<span class="pill ${activeDomain === d ? 'active' : ''}" onclick="setDomain('${d}')">${d} (${count})</span>`;
+    domainHtml += `<span class="pill ${activeDomain === d ? 'active' : ''}" data-val="${esc(d)}" onclick="setDomain(this.dataset.val)">${esc(d)} (${count})</span>`;
   });
   document.getElementById('domainFilters').innerHTML = domainHtml;
   let catHtml = `<span class="pill ${activeCat === 'all' ? 'active' : ''}" onclick="setCat('all')">Alles</span>`;
   Object.entries(CAT_LABELS).forEach(([key, label]) => {
     const count = topics.filter(t => t.category === key).length;
-    catHtml += `<span class="pill pill-${key} ${activeCat === key ? 'active' : ''}" onclick="setCat('${key}')">${label} (${count})</span>`;
+    catHtml += `<span class="pill pill-${key} ${activeCat === key ? 'active' : ''}" data-val="${esc(key)}" onclick="setCat(this.dataset.val)">${label} (${count})</span>`;
   });
   document.getElementById('catFilters').innerHTML = catHtml;
 }
@@ -544,6 +566,7 @@ function updateDoneBtn() {
 }
 
 async function saveSubmission() {
+  if (isSaving) return;
   const author = document.getElementById('authorInput').value.trim();
   const content = document.getElementById('contentArea').value.trim();
   if (!author) { toast('Vul je naam in'); return; }
@@ -551,19 +574,27 @@ async function saveSubmission() {
   localStorage.setItem('author', author);
   const btn = document.getElementById('saveBtn');
   btn.disabled = true; btn.textContent = 'Opslaan...';
-  if (currentSubmission) {
-    await apiCall('/submissions/' + currentSubmission.id, { method: 'PATCH', body: { raw_content: content } });
-  } else {
-    const res = await apiCall('/submissions', { method: 'POST', body: { topic_id: currentTopic ? currentTopic.id : null, author, raw_content: content } });
-    currentSubmission = res;
+  isSaving = true;
+  try {
+    if (currentSubmission) {
+      await apiCall('/submissions/' + currentSubmission.id, { method: 'PATCH', body: { raw_content: content } });
+    } else {
+      const res = await apiCall('/submissions', { method: 'POST', body: { topic_id: currentTopic ? currentTopic.id : null, author, raw_content: content } });
+      currentSubmission = res;
+    }
+    if (currentTopic && currentTopic.status === 'open') {
+      await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: 'claimed', claimed_by: author } });
+      currentTopic.status = 'claimed'; currentTopic.claimed_by = author;
+    }
+    isDirty = false;
+    document.getElementById('saveStatus').textContent = 'Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+    toast('Opgeslagen');
+  } catch (e) {
+    document.getElementById('saveStatus').textContent = 'Opslaan mislukt';
+  } finally {
+    isSaving = false;
+    btn.disabled = false; btn.textContent = 'Opslaan';
   }
-  if (currentTopic && currentTopic.status === 'open') {
-    await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: 'claimed', claimed_by: author } });
-    currentTopic.status = 'claimed'; currentTopic.claimed_by = author;
-  }
-  isDirty = false; btn.disabled = false; btn.textContent = 'Opslaan';
-  document.getElementById('saveStatus').textContent = 'Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
-  toast('Opgeslagen');
 }
 
 async function toggleDone() {
@@ -574,28 +605,32 @@ async function toggleDone() {
   if (!content && currentTopic.status !== 'written') { toast('Schrijf eerst iets voordat je markeert als geschreven'); return; }
   if (content && isDirty) await saveSubmission();
   const newStatus = currentTopic.status === 'written' ? 'open' : 'written';
-  await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: newStatus, claimed_by: newStatus === 'written' ? author : null } });
-  currentTopic.status = newStatus; currentTopic.claimed_by = newStatus === 'written' ? author : null;
-  updateDoneBtn();
-  toast(newStatus === 'written' ? 'Gemarkeerd als geschreven' : 'Status teruggezet naar open');
+  try {
+    await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: newStatus, claimed_by: newStatus === 'written' ? author : null } });
+    currentTopic.status = newStatus; currentTopic.claimed_by = newStatus === 'written' ? author : null;
+    updateDoneBtn();
+    toast(newStatus === 'written' ? 'Gemarkeerd als geschreven' : 'Status teruggezet naar open');
+  } catch (e) {}
 }
 
-function closeEditor() {
+async function closeEditor() {
   stopAutoSave();
   if (isDirty) {
     const author = document.getElementById('authorInput').value.trim();
     const content = document.getElementById('contentArea').value.trim();
-    if (author && content) saveSubmission();
+    if (author && content) await saveSubmission();
   }
   switchTab('board');
 }
 
 function startAutoSave() {
   const area = document.getElementById('contentArea');
-  area.addEventListener('input', () => { isDirty = true; });
+  if (autoSaveInputHandler) area.removeEventListener('input', autoSaveInputHandler);
+  autoSaveInputHandler = () => { isDirty = true; };
+  area.addEventListener('input', autoSaveInputHandler);
   stopAutoSave();
   autoSaveTimer = setInterval(() => {
-    if (isDirty) {
+    if (isDirty && !isSaving) {
       const author = document.getElementById('authorInput').value.trim();
       const content = document.getElementById('contentArea').value.trim();
       if (author && content) saveSubmission();
@@ -745,6 +780,8 @@ function openCalModal(date, entryId) {
     document.getElementById('calModalTitle').textContent = 'Nieuwe post plannen';
     document.getElementById('calDate').value = date;
     document.getElementById('calTitle').value = '';
+    document.getElementById('calTitle').dataset.topicId = '';
+    document.getElementById('topicSearch').value = '';
     document.getElementById('calPlatform').value = 'linkedin';
     document.getElementById('calAccount').value = localStorage.getItem('author') || '';
     document.getElementById('calContentType').value = 'post';
@@ -799,32 +836,36 @@ async function saveCalEntry() {
     return;
   }
 
-  if (editingCalId) {
-    await apiCall('/calendar/' + editingCalId, { method: 'PATCH', body: data });
-    toast('Bijgewerkt');
-  } else {
-    await apiCall('/calendar', { method: 'POST', body: data });
-    toast('Gepland');
-  }
-
-  document.getElementById('calTitle').dataset.topicId = '';
-  closeCalModal();
-  loadCalendar();
+  try {
+    if (editingCalId) {
+      await apiCall('/calendar/' + editingCalId, { method: 'PATCH', body: data });
+      toast('Bijgewerkt');
+    } else {
+      await apiCall('/calendar', { method: 'POST', body: data });
+      toast('Gepland');
+    }
+    document.getElementById('calTitle').dataset.topicId = '';
+    closeCalModal();
+    loadCalendar();
+  } catch (e) {}
 }
 
 async function deleteCalEntry() {
   if (!editingCalId) return;
-  await apiCall('/calendar/' + editingCalId, { method: 'DELETE' });
-  toast('Verwijderd');
-  closeCalModal();
-  loadCalendar();
+  try {
+    await apiCall('/calendar/' + editingCalId, { method: 'DELETE' });
+    toast('Verwijderd');
+    closeCalModal();
+    loadCalendar();
+  } catch (e) {}
 }
 
 async function autoPlan() {
-  const res = await apiCall('/calendar/auto-plan?weeks=2', { method: 'GET' });
-  if (res.error) { toast(res.error); return; }
-  toast(`${res.created} posts gepland`);
-  loadCalendar();
+  try {
+    const res = await apiCall('/calendar/auto-plan?weeks=2', { method: 'POST' });
+    toast(`${res.created} posts gepland`);
+    loadCalendar();
+  } catch (e) {}
 }
 
 document.getElementById('calModal').addEventListener('click', (e) => {

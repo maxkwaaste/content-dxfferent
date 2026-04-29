@@ -1,7 +1,12 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, no-cache, must-revalidate');
-header('Access-Control-Allow-Origin: *');
+$allowedOrigin = 'https://content.dxfferent.com';
+if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] === $allowedOrigin) {
+    header('Access-Control-Allow-Origin: ' . $allowedOrigin);
+} else {
+    header('Access-Control-Allow-Origin: ' . $allowedOrigin);
+}
 header('Access-Control-Allow-Methods: GET, POST, PATCH, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -69,22 +74,38 @@ if ($needsSeed) {
             isset($t['context']) ? json_encode($t['context'], JSON_UNESCAPED_UNICODE) : null,
         ]);
     }
+
+    $db->exec('
+        CREATE TABLE calendar (
+            id INTEGER PRIMARY KEY,
+            scheduled_date TEXT NOT NULL,
+            topic_id INTEGER,
+            title TEXT NOT NULL,
+            platform TEXT NOT NULL DEFAULT "linkedin",
+            account TEXT NOT NULL,
+            content_type TEXT NOT NULL DEFAULT "post",
+            status TEXT NOT NULL DEFAULT "planned",
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (topic_id) REFERENCES topics(id)
+        )
+    ');
 }
 
-$db->exec('
-    CREATE TABLE IF NOT EXISTS calendar (
-        id INTEGER PRIMARY KEY,
-        scheduled_date TEXT NOT NULL,
-        topic_id INTEGER,
-        title TEXT NOT NULL,
-        platform TEXT NOT NULL DEFAULT "linkedin",
-        account TEXT NOT NULL,
-        content_type TEXT NOT NULL DEFAULT "post",
-        status TEXT NOT NULL DEFAULT "planned",
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (topic_id) REFERENCES topics(id)
-    )
-');
+$db->exec('CREATE TABLE IF NOT EXISTS calendar (
+    id INTEGER PRIMARY KEY,
+    scheduled_date TEXT NOT NULL,
+    topic_id INTEGER,
+    title TEXT NOT NULL,
+    platform TEXT NOT NULL DEFAULT "linkedin",
+    account TEXT NOT NULL,
+    content_type TEXT NOT NULL DEFAULT "post",
+    status TEXT NOT NULL DEFAULT "planned",
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (topic_id) REFERENCES topics(id)
+)');
+$db->exec('CREATE INDEX IF NOT EXISTS idx_calendar_date ON calendar(scheduled_date)');
+$db->exec('CREATE INDEX IF NOT EXISTS idx_submissions_topic ON submissions(topic_id)');
+$db->exec('CREATE INDEX IF NOT EXISTS idx_submissions_author ON submissions(author)');
 
 $method = $_SERVER['REQUEST_METHOD'];
 $pathInfo = $_SERVER['PATH_INFO'] ?? $_SERVER['ORIG_PATH_INFO'] ?? '';
@@ -105,6 +126,28 @@ function respondError($msg, $code = 400) {
 
 $resource = $parts[0] ?? '';
 $id = $parts[1] ?? null;
+
+function patchRecord($db, $table, $id, $input, $allowedFields, $validators = []) {
+    $fields = [];
+    $params = [];
+    foreach ($allowedFields as $field) {
+        if (array_key_exists($field, $input)) {
+            if (isset($validators[$field]) && !in_array($input[$field], $validators[$field])) {
+                respondError("Invalid value for $field. Allowed: " . implode(', ', $validators[$field]));
+            }
+            $fields[] = "$field = ?";
+            $params[] = $input[$field];
+        }
+    }
+    if (!$fields) respondError('No fields to update');
+    $params[] = $id;
+    $stmt = $db->prepare("UPDATE $table SET " . implode(', ', $fields) . " WHERE id = ?");
+    $stmt->execute($params);
+    if ($stmt->rowCount() === 0) respondError(ucfirst($table) . ' not found', 404);
+    $stmt = $db->prepare("SELECT * FROM $table WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch();
+}
 
 switch ($resource) {
     case 'topics':
@@ -146,22 +189,10 @@ switch ($resource) {
             respond($topic);
 
         } elseif ($method === 'PATCH' && $id !== null) {
-            $fields = [];
-            $params = [];
-            foreach (['status', 'claimed_by', 'title', 'hook'] as $field) {
-                if (array_key_exists($field, $input)) {
-                    $fields[] = "$field = ?";
-                    $params[] = $input[$field];
-                }
-            }
-            if (!$fields) respondError('No fields to update');
-            $params[] = $id;
-            $stmt = $db->prepare('UPDATE topics SET ' . implode(', ', $fields) . ' WHERE id = ?');
-            $stmt->execute($params);
-            if ($stmt->rowCount() === 0) respondError('Topic not found', 404);
-            $stmt = $db->prepare('SELECT * FROM topics WHERE id = ?');
-            $stmt->execute([$id]);
-            $topic = $stmt->fetch();
+            $topic = patchRecord($db, 'topics', $id, $input,
+                ['status', 'claimed_by', 'title', 'hook'],
+                ['status' => ['open', 'claimed', 'written']]
+            );
             if ($topic['context']) {
                 $topic['context'] = json_decode($topic['context'], true);
             }
@@ -221,23 +252,11 @@ switch ($resource) {
             respond($stmt->fetch(), 201);
 
         } elseif ($method === 'PATCH' && $id !== null) {
-            $fields = [];
-            $params = [];
-            foreach (['raw_content', 'category', 'domain'] as $field) {
-                if (array_key_exists($field, $input)) {
-                    $fields[] = "$field = ?";
-                    $params[] = $input[$field];
-                }
-            }
-            if (!$fields) respondError('No fields to update');
-            $fields[] = "updated_at = datetime('now')";
-            $params[] = $id;
-            $stmt = $db->prepare('UPDATE submissions SET ' . implode(', ', $fields) . ' WHERE id = ?');
-            $stmt->execute($params);
-            if ($stmt->rowCount() === 0) respondError('Submission not found', 404);
-            $stmt = $db->prepare('SELECT * FROM submissions WHERE id = ?');
-            $stmt->execute([$id]);
-            respond($stmt->fetch());
+            $input['updated_at'] = date('Y-m-d H:i:s');
+            $sub = patchRecord($db, 'submissions', $id, $input,
+                ['raw_content', 'category', 'domain', 'updated_at']
+            );
+            respond($sub);
 
         } elseif ($method === 'DELETE' && $id !== null) {
             $stmt = $db->prepare('DELETE FROM submissions WHERE id = ?');
@@ -259,7 +278,10 @@ switch ($resource) {
             if (empty($input['name'])) respondError('name required');
             $stmt = $db->prepare('INSERT OR IGNORE INTO authors (name) VALUES (?)');
             $stmt->execute([$input['name']]);
-            respond(['id' => $db->lastInsertId(), 'name' => $input['name']], 201);
+            $isNew = (bool)$db->lastInsertId();
+            $stmt = $db->prepare('SELECT * FROM authors WHERE name = ?');
+            $stmt->execute([$input['name']]);
+            respond($stmt->fetch(), $isNew ? 201 : 200);
 
         } else {
             respondError('Method not allowed', 405);
@@ -287,7 +309,7 @@ switch ($resource) {
     case 'calendar':
         $action = $parts[1] ?? null;
 
-        if ($method === 'GET' && $action === 'auto-plan') {
+        if ($method === 'POST' && $action === 'auto-plan') {
             $weeks = (int)($_GET['weeks'] ?? 2);
             $accounts = $_GET['accounts'] ?? null;
             $accountList = $accounts ? explode(',', $accounts) : [];
@@ -408,22 +430,11 @@ switch ($resource) {
 
         } elseif ($method === 'PATCH' && $action !== null) {
             $calId = $action;
-            $fields = [];
-            $params = [];
-            foreach (['scheduled_date', 'title', 'platform', 'account', 'content_type', 'status', 'topic_id'] as $field) {
-                if (array_key_exists($field, $input)) {
-                    $fields[] = "$field = ?";
-                    $params[] = $input[$field];
-                }
-            }
-            if (!$fields) respondError('No fields to update');
-            $params[] = $calId;
-            $stmt = $db->prepare('UPDATE calendar SET ' . implode(', ', $fields) . ' WHERE id = ?');
-            $stmt->execute($params);
-            if ($stmt->rowCount() === 0) respondError('Calendar entry not found', 404);
-            $stmt = $db->prepare('SELECT * FROM calendar WHERE id = ?');
-            $stmt->execute([$calId]);
-            respond($stmt->fetch());
+            $entry = patchRecord($db, 'calendar', $calId, $input,
+                ['scheduled_date', 'title', 'platform', 'account', 'content_type', 'status', 'topic_id'],
+                ['status' => ['planned', 'posted', 'skipped']]
+            );
+            respond($entry);
 
         } elseif ($method === 'DELETE' && $action !== null) {
             $calId = $action;

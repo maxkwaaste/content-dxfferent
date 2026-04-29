@@ -1,0 +1,4 @@
+How is the calendar planning currently designed? we want an interface wherein we ourselves could plan, perhaps pairing the calendar with kanban board. 
+Also we want to already see (for now fake) the performance of the posts.
+We also want to see what forms of content were generated from the source content, and we'd like that visually. Maybe integrate into calendar?
+Also a nice connection to google sheets, or export to, would be great.
