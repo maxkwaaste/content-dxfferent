@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Proxuma Contentbibliotheek</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; }
+
+  /* Layout */
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Header */
+  .header { margin-bottom: 8px; }
+  .header h1 { font-size: 22px; font-weight: 600; }
+  .header-sub { font-size: 13px; color: #666; margin-top: 2px; }
+
+  /* Stats bar */
+  .stats { display: flex; gap: 16px; font-size: 13px; color: #888; margin: 12px 0 20px; }
+  .stats .stat-num { font-weight: 600; color: #1a1a1a; }
+
+  /* Filter rows */
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .filter-row-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .pill { padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid #d0cfc7; color: #555; background: #fff; transition: all .15s; user-select: none; }
+  .pill:hover { border-color: #999; color: #1a1a1a; }
+  .pill.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+
+  /* Category pills with color */
+  .pill-bewijs.active { background: #E6F1FB; color: #0C447C; border-color: #bdd7f0; }
+  .pill-educatie.active { background: #EEEDFE; color: #3C3489; border-color: #c9c7f0; }
+  .pill-markt.active { background: #E1F5EE; color: #085041; border-color: #a8dcc8; }
+  .pill-contrair.active { background: #FAECE7; color: #712B13; border-color: #ecc8bc; }
+  .pill-eigen.active { background: #FBEAF0; color: #72243E; border-color: #edbfce; }
+  .pill-tools.active { background: #FAEEDA; color: #633806; border-color: #e8d4a8; }
+
+  /* Separator */
+  .filter-sep { height: 1px; background: #e8e7e0; margin: 12px 0 16px; }
+
+  /* Free-form button */
+  .free-form-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; margin-bottom: 16px; }
+  .free-form-btn:hover { background: #333; }
+
+  /* Cards */
+  .card-count { font-size: 12px; color: #888; margin-bottom: 10px; }
+  .card { border: 1px solid #e0dfd7; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; background: #fff; cursor: pointer; transition: border-color .15s; }
+  .card:hover { border-color: #bbb; }
+  .card-written { background: #f0faf5; border-color: #a8dcc8; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .card-title { font-size: 13px; font-weight: 500; color: #1a1a1a; line-height: 1.45; flex: 1; }
+  .cat-badge { font-size: 10px; font-weight: 500; border-radius: 99px; padding: 2px 9px; white-space: nowrap; flex-shrink: 0; }
+  .cat-bewijs { background: #E6F1FB; color: #0C447C; }
+  .cat-educatie { background: #EEEDFE; color: #3C3489; }
+  .cat-markt { background: #E1F5EE; color: #085041; }
+  .cat-contrair { background: #FAECE7; color: #712B13; }
+  .cat-eigen { background: #FBEAF0; color: #72243E; }
+  .cat-tools { background: #FAEEDA; color: #633806; }
+  .card-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  .hook-tag { font-size: 11px; color: #666; font-style: italic; }
+  .source-tag { font-size: 11px; color: #aaa; }
+  .sep { font-size: 11px; color: #ccc; }
+  .status-tag { font-size: 10px; font-weight: 600; color: #2b8a3e; }
+
+  /* Editor view */
+  .editor-view { display: none; }
+  .editor-view.active { display: block; }
+  .board-view.active { display: block; }
+  .board-view { display: none; }
+
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font-size: 14px; color: #555; cursor: pointer; padding: 8px 0; margin-bottom: 16px; }
+  .back-btn:hover { color: #1a1a1a; }
+
+  .editor-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+  @media (max-width: 768px) { .editor-layout { grid-template-columns: 1fr; } }
+
+  .editor-main { }
+  .editor-sidebar { }
+
+  .field-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+
+  .author-input { width: 100%; padding: 10px 12px; border: 1px solid #d0cfc7; border-radius: 8px; font-size: 14px; font-family: inherit; margin-bottom: 16px; }
+  .author-input:focus { outline: none; border-color: #1a1a1a; }
+
+  .content-area { width: 100%; min-height: 400px; padding: 14px 16px; border: 1px solid #d0cfc7; border-radius: 12px; font-size: 14px; font-family: inherit; line-height: 1.6; resize: vertical; margin-bottom: 12px; }
+  .content-area:focus { outline: none; border-color: #1a1a1a; }
+
+  .editor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-save { padding: 10px 24px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .btn-save:hover { background: #333; }
+  .btn-save:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-done { padding: 10px 24px; background: #fff; color: #2b8a3e; border: 2px solid #2b8a3e; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .btn-done:hover { background: #f0faf5; }
+  .btn-done.is-done { background: #2b8a3e; color: #fff; }
+
+  .save-status { font-size: 12px; color: #888; margin-top: 8px; }
+
+  /* Sidebar */
+  .sidebar-card { background: #f9f9f7; border: 1px solid #e8e7e0; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .sidebar-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .sidebar-hook { font-size: 13px; font-style: italic; color: #555; line-height: 1.5; }
+  .sidebar-domain { font-size: 12px; color: #888; margin-top: 8px; }
+
+  .context-section { margin-top: 12px; }
+  .context-section h4 { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .context-list { list-style: none; padding: 0; }
+  .context-list li { font-size: 12px; color: #555; line-height: 1.5; padding: 3px 0; padding-left: 12px; position: relative; }
+  .context-list li::before { content: "\2022"; position: absolute; left: 0; color: #ccc; }
+
+  .free-form-notice { font-size: 13px; color: #888; font-style: italic; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- BOARD VIEW -->
+  <div class="board-view active" id="boardView">
+    <div class="header">
+      <h1>Proxuma Contentbibliotheek</h1>
+      <div class="header-sub">Content-idee&#235;n op basis van MSP Journey L2-L3 problemen, frustraties en vragen</div>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="filter-row-label">Domein</div>
+    <div class="filter-row" id="domainFilters"></div>
+
+    <div style="height: 8px"></div>
+
+    <div class="filter-row-label">Type</div>
+    <div class="filter-row" id="catFilters"></div>
+
+    <div class="filter-sep"></div>
+
+    <button class="free-form-btn" onclick="openFreeForm()">+ Vrije tekst schrijven</button>
+
+    <div class="card-count" id="cardCount"></div>
+    <div id="cards"></div>
+  </div>
+
+  <!-- EDITOR VIEW -->
+  <div class="editor-view" id="editorView">
+    <button class="back-btn" onclick="closeEditor()">&#8592; Terug naar overzicht</button>
+
+    <div class="editor-layout">
+      <div class="editor-main">
+        <div class="field-label">Jouw naam</div>
+        <input class="author-input" id="authorInput" type="text" placeholder="Bijv. Joshua, Tom, ..." />
+
+        <div class="field-label">Inhoud</div>
+        <textarea class="content-area" id="contentArea" placeholder="Schrijf hier je ruwe content. Denk niet te lang na over structuur &#8212; dat komt later."></textarea>
+
+        <div class="editor-actions">
+          <button class="btn-save" id="saveBtn" onclick="saveSubmission()">Opslaan</button>
+          <button class="btn-done" id="doneBtn" onclick="toggleDone()">Markeer als geschreven</button>
+        </div>
+        <div class="save-status" id="saveStatus"></div>
+      </div>
+
+      <div class="editor-sidebar" id="editorSidebar"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '/api';
+const CAT_LABELS = {
+  bewijs: 'Bewijs & resultaat',
+  educatie: 'Educatie & uitleg',
+  markt: 'Markt & visie',
+  contrair: 'Contrair & polariserend',
+  eigen: 'Eigen verhaal',
+  tools: 'Tools & resources'
+};
+
+let topics = [];
+let activeDomain = 'all';
+let activeCat = 'all';
+let currentTopic = null;
+let currentSubmission = null;
+let autoSaveTimer = null;
+let isDirty = false;
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, {
+    headers: { 'Content-Type': 'application/json' },
+    ...opts,
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+  });
+  return res.json();
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+async function loadTopics() {
+  topics = await api('/topics');
+  renderFilters();
+  renderCards();
+  renderStats();
+}
+
+function renderStats() {
+  const total = topics.length;
+  const written = topics.filter(t => t.status === 'written').length;
+  const open = topics.filter(t => t.status === 'open').length;
+  const claimed = topics.filter(t => t.status === 'claimed').length;
+  document.getElementById('stats').innerHTML =
+    `<span><span class="stat-num">${total}</span> topics</span>` +
+    `<span><span class="stat-num">${written}</span> geschreven</span>` +
+    `<span><span class="stat-num">${open}</span> open</span>` +
+    (claimed ? `<span><span class="stat-num">${claimed}</span> geclaimd</span>` : '');
+}
+
+function renderFilters() {
+  const domains = [...new Set(topics.map(t => t.domain))].sort();
+
+  let domainHtml = `<span class="pill ${activeDomain === 'all' ? 'active' : ''}" onclick="setDomain('all')">Alles</span>`;
+  domains.forEach(d => {
+    const count = topics.filter(t => t.domain === d).length;
+    domainHtml += `<span class="pill ${activeDomain === d ? 'active' : ''}" onclick="setDomain('${d}')">${d} (${count})</span>`;
+  });
+  document.getElementById('domainFilters').innerHTML = domainHtml;
+
+  let catHtml = `<span class="pill ${activeCat === 'all' ? 'active' : ''}" onclick="setCat('all')">Alles</span>`;
+  Object.entries(CAT_LABELS).forEach(([key, label]) => {
+    const count = topics.filter(t => t.category === key).length;
+    catHtml += `<span class="pill pill-${key} ${activeCat === key ? 'active' : ''}" onclick="setCat('${key}')">${label} (${count})</span>`;
+  });
+  document.getElementById('catFilters').innerHTML = catHtml;
+}
+
+function setDomain(d) { activeDomain = d; renderFilters(); renderCards(); }
+function setCat(c) { activeCat = c; renderFilters(); renderCards(); }
+
+function renderCards() {
+  let filtered = topics;
+  if (activeDomain !== 'all') filtered = filtered.filter(t => t.domain === activeDomain);
+  if (activeCat !== 'all') filtered = filtered.filter(t => t.category === activeCat);
+
+  document.getElementById('cardCount').textContent = filtered.length + ' content-ideeën';
+  document.getElementById('cards').innerHTML = filtered.map(t => `
+    <div class="card ${t.status === 'written' ? 'card-written' : ''}" onclick="openEditor(${t.id})">
+      <div class="card-top">
+        <div class="card-title">${esc(t.title)}</div>
+        <span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category]}</span>
+      </div>
+      <div class="card-meta">
+        <span class="hook-tag">${esc(t.hook)}</span>
+        <span class="sep">&middot;</span>
+        <span class="source-tag">${esc(t.domain)}${t.subdomain ? ' / ' + esc(t.subdomain) : ''}</span>
+        ${t.status === 'written' ? '<span class="sep">&middot;</span><span class="status-tag">&#10003; geschreven' + (t.claimed_by ? ' door ' + esc(t.claimed_by) : '') + '</span>' : ''}
+        ${t.status === 'claimed' && t.claimed_by ? '<span class="sep">&middot;</span><span style="font-size:10px;color:#c27803">geclaimd door ' + esc(t.claimed_by) + '</span>' : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function openEditor(topicId) {
+  currentTopic = await api('/topics/' + topicId);
+  currentSubmission = null;
+
+  const author = localStorage.getItem('author') || '';
+  document.getElementById('authorInput').value = author;
+
+  if (currentTopic.submissions && currentTopic.submissions.length > 0) {
+    const mine = author ? currentTopic.submissions.find(s => s.author === author) : null;
+    currentSubmission = mine || currentTopic.submissions[0];
+    document.getElementById('contentArea').value = currentSubmission.raw_content;
+    if (!author && currentSubmission.author) {
+      document.getElementById('authorInput').value = currentSubmission.author;
+    }
+  } else {
+    document.getElementById('contentArea').value = '';
+  }
+
+  renderSidebar();
+  updateDoneBtn();
+  showView('editor');
+  startAutoSave();
+}
+
+function openFreeForm() {
+  currentTopic = null;
+  currentSubmission = null;
+
+  const author = localStorage.getItem('author') || '';
+  document.getElementById('authorInput').value = author;
+  document.getElementById('contentArea').value = '';
+
+  renderSidebar();
+  updateDoneBtn();
+  showView('editor');
+  startAutoSave();
+}
+
+function renderSidebar() {
+  const sidebar = document.getElementById('editorSidebar');
+
+  if (!currentTopic) {
+    sidebar.innerHTML = `
+      <div class="sidebar-card">
+        <h3>Vrije tekst</h3>
+        <p class="free-form-notice">Schrijf wat je wilt. Claude categoriseert dit later automatisch op basis van de inhoud.</p>
+      </div>`;
+    return;
+  }
+
+  const t = currentTopic;
+  let contextHtml = '';
+
+  if (t.context) {
+    const sections = [
+      { key: 'problemen', label: 'Problemen' },
+      { key: 'frustraties', label: 'Frustraties' },
+      { key: 'vragen', label: 'Vragen' },
+    ];
+    sections.forEach(s => {
+      if (t.context[s.key] && t.context[s.key].length) {
+        contextHtml += `
+          <div class="context-section">
+            <h4>${s.label}</h4>
+            <ul class="context-list">
+              ${t.context[s.key].map(item => `<li>${esc(item)}</li>`).join('')}
+            </ul>
+          </div>`;
+      }
+    });
+  }
+
+  sidebar.innerHTML = `
+    <div class="sidebar-card">
+      <h3>Hook template</h3>
+      <div class="sidebar-hook">${esc(t.hook)}</div>
+      <div class="sidebar-domain">
+        <span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category]}</span>
+        <span style="margin-left:8px; font-size:12px; color:#888;">${esc(t.domain)}${t.subdomain ? ' / ' + esc(t.subdomain) : ''}</span>
+      </div>
+    </div>
+    ${contextHtml ? `<div class="sidebar-card"><h3>MSP Journey context</h3>${contextHtml}</div>` : ''}
+  `;
+}
+
+function updateDoneBtn() {
+  const btn = document.getElementById('doneBtn');
+  if (!currentTopic) {
+    btn.style.display = 'none';
+    return;
+  }
+  btn.style.display = '';
+  if (currentTopic.status === 'written') {
+    btn.classList.add('is-done');
+    btn.textContent = 'Geschreven';
+  } else {
+    btn.classList.remove('is-done');
+    btn.textContent = 'Markeer als geschreven';
+  }
+}
+
+async function saveSubmission() {
+  const author = document.getElementById('authorInput').value.trim();
+  const content = document.getElementById('contentArea').value.trim();
+
+  if (!author) { toast('Vul je naam in'); return; }
+  if (!content) { toast('Schrijf eerst iets'); return; }
+
+  localStorage.setItem('author', author);
+
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  btn.textContent = 'Opslaan...';
+
+  if (currentSubmission) {
+    await api('/submissions/' + currentSubmission.id, {
+      method: 'PATCH',
+      body: { raw_content: content },
+    });
+  } else {
+    const res = await api('/submissions', {
+      method: 'POST',
+      body: {
+        topic_id: currentTopic ? currentTopic.id : null,
+        author: author,
+        raw_content: content,
+      },
+    });
+    currentSubmission = res;
+  }
+
+  if (currentTopic && currentTopic.status === 'open') {
+    await api('/topics/' + currentTopic.id, {
+      method: 'PATCH',
+      body: { status: 'claimed', claimed_by: author },
+    });
+    currentTopic.status = 'claimed';
+    currentTopic.claimed_by = author;
+  }
+
+  isDirty = false;
+  btn.disabled = false;
+  btn.textContent = 'Opslaan';
+  document.getElementById('saveStatus').textContent = 'Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+  toast('Opgeslagen');
+}
+
+async function toggleDone() {
+  if (!currentTopic) return;
+
+  const author = document.getElementById('authorInput').value.trim();
+  if (!author) { toast('Vul je naam in'); return; }
+
+  const content = document.getElementById('contentArea').value.trim();
+  if (!content && currentTopic.status !== 'written') {
+    toast('Schrijf eerst iets voordat je markeert als geschreven');
+    return;
+  }
+
+  if (content && isDirty) {
+    await saveSubmission();
+  }
+
+  const newStatus = currentTopic.status === 'written' ? 'open' : 'written';
+  await api('/topics/' + currentTopic.id, {
+    method: 'PATCH',
+    body: { status: newStatus, claimed_by: newStatus === 'written' ? author : null },
+  });
+  currentTopic.status = newStatus;
+  currentTopic.claimed_by = newStatus === 'written' ? author : null;
+  updateDoneBtn();
+  toast(newStatus === 'written' ? 'Gemarkeerd als geschreven' : 'Status teruggezet naar open');
+}
+
+function closeEditor() {
+  stopAutoSave();
+  if (isDirty) {
+    const author = document.getElementById('authorInput').value.trim();
+    const content = document.getElementById('contentArea').value.trim();
+    if (author && content) saveSubmission();
+  }
+  showView('board');
+  loadTopics();
+}
+
+function showView(view) {
+  document.getElementById('boardView').className = view === 'board' ? 'board-view active' : 'board-view';
+  document.getElementById('editorView').className = view === 'editor' ? 'editor-view active' : 'editor-view';
+  window.scrollTo(0, 0);
+}
+
+function startAutoSave() {
+  const area = document.getElementById('contentArea');
+  area.addEventListener('input', () => { isDirty = true; });
+  stopAutoSave();
+  autoSaveTimer = setInterval(() => {
+    if (isDirty) {
+      const author = document.getElementById('authorInput').value.trim();
+      const content = document.getElementById('contentArea').value.trim();
+      if (author && content) saveSubmission();
+    }
+  }, 30000);
+}
+
+function stopAutoSave() {
+  if (autoSaveTimer) { clearInterval(autoSaveTimer); autoSaveTimer = null; }
+}
+
+document.getElementById('contentArea').addEventListener('blur', () => {
+  if (isDirty) {
+    const author = document.getElementById('authorInput').value.trim();
+    const content = document.getElementById('contentArea').value.trim();
+    if (author && content) saveSubmission();
+  }
+});
+
+loadTopics();
+</script>
+</body>
+</html>
