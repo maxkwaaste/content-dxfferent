@@ -1,0 +1,7 @@
+data/
+.claude/worktrees/
+.claude-flow/
+*.db
+*.db-wal
+*.db-shm
+docs/superpowers/
