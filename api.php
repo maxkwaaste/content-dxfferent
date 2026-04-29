@@ -71,6 +71,21 @@ if ($needsSeed) {
     }
 }
 
+$db->exec('
+    CREATE TABLE IF NOT EXISTS calendar (
+        id INTEGER PRIMARY KEY,
+        scheduled_date TEXT NOT NULL,
+        topic_id INTEGER,
+        title TEXT NOT NULL,
+        platform TEXT NOT NULL DEFAULT "linkedin",
+        account TEXT NOT NULL,
+        content_type TEXT NOT NULL DEFAULT "post",
+        status TEXT NOT NULL DEFAULT "planned",
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (topic_id) REFERENCES topics(id)
+    )
+');
+
 $method = $_SERVER['REQUEST_METHOD'];
 $pathInfo = $_SERVER['PATH_INFO'] ?? $_SERVER['ORIG_PATH_INFO'] ?? '';
 $pathInfo = trim($pathInfo, '/');
@@ -264,6 +279,207 @@ switch ($resource) {
                 'total_submissions' => (int)$totalSubs['count'],
             ]);
 
+        } else {
+            respondError('Method not allowed', 405);
+        }
+        break;
+
+    case 'calendar':
+        $action = $parts[1] ?? null;
+
+        if ($method === 'GET' && $action === 'auto-plan') {
+            $weeks = (int)($_GET['weeks'] ?? 2);
+            $accounts = $_GET['accounts'] ?? null;
+            $accountList = $accounts ? explode(',', $accounts) : [];
+            if (!$accountList) {
+                $authorRows = $db->query('SELECT name FROM authors ORDER BY name')->fetchAll();
+                $accountList = array_column($authorRows, 'name');
+            }
+            if (!$accountList) respondError('No accounts available. Add at least one author first.');
+
+            $platforms = ['linkedin', 'dxfferent'];
+            $startDate = new DateTime('tomorrow');
+            while ((int)$startDate->format('N') > 5) {
+                $startDate->modify('+1 day');
+            }
+            $endDate = clone $startDate;
+            $endDate->modify('+' . ($weeks * 7) . ' days');
+
+            $existingStmt = $db->prepare('SELECT scheduled_date FROM calendar WHERE scheduled_date BETWEEN ? AND ?');
+            $existingStmt->execute([$startDate->format('Y-m-d'), $endDate->format('Y-m-d')]);
+            $existingDates = array_column($existingStmt->fetchAll(), 'scheduled_date');
+
+            $scheduledTopicIds = array_column(
+                $db->query('SELECT DISTINCT topic_id FROM calendar WHERE topic_id IS NOT NULL')->fetchAll(),
+                'topic_id'
+            );
+            $placeholders = $scheduledTopicIds ? implode(',', array_fill(0, count($scheduledTopicIds), '?')) : '0';
+            $topicStmt = $db->prepare("SELECT id, title, category, domain FROM topics WHERE id NOT IN ($placeholders) ORDER BY id");
+            $topicStmt->execute($scheduledTopicIds ?: []);
+            $availableTopics = $topicStmt->fetchAll();
+
+            if (!$availableTopics) respondError('No unscheduled topics available.');
+
+            $catGroups = [];
+            foreach ($availableTopics as $t) {
+                $catGroups[$t['category']][] = $t;
+            }
+            $catKeys = array_keys($catGroups);
+            $catIdx = 0;
+
+            $created = [];
+            $accountIdx = 0;
+            $platformIdx = 0;
+            $current = clone $startDate;
+
+            while ($current < $endDate) {
+                $dow = (int)$current->format('N');
+                if ($dow > 5) { $current->modify('+1 day'); continue; }
+                $dateStr = $current->format('Y-m-d');
+                if (in_array($dateStr, $existingDates)) { $current->modify('+1 day'); continue; }
+
+                $topic = null;
+                $tried = 0;
+                while ($tried < count($catKeys)) {
+                    $cat = $catKeys[$catIdx % count($catKeys)];
+                    $catIdx++;
+                    if (!empty($catGroups[$cat])) {
+                        $topic = array_shift($catGroups[$cat]);
+                        break;
+                    }
+                    $tried++;
+                }
+                if (!$topic && $availableTopics) {
+                    foreach ($catGroups as &$group) {
+                        if (!empty($group)) { $topic = array_shift($group); break; }
+                    }
+                    unset($group);
+                }
+                if (!$topic) break;
+
+                $account = $accountList[$accountIdx % count($accountList)];
+                $platform = $platforms[$platformIdx % count($platforms)];
+                $accountIdx++;
+                $platformIdx++;
+
+                $stmt = $db->prepare('INSERT INTO calendar (scheduled_date, topic_id, title, platform, account, content_type) VALUES (?, ?, ?, ?, ?, ?)');
+                $stmt->execute([$dateStr, $topic['id'], $topic['title'], $platform, $account, 'post']);
+                $created[] = [
+                    'id' => (int)$db->lastInsertId(),
+                    'scheduled_date' => $dateStr,
+                    'topic_id' => (int)$topic['id'],
+                    'title' => $topic['title'],
+                    'platform' => $platform,
+                    'account' => $account,
+                    'content_type' => 'post',
+                    'status' => 'planned',
+                ];
+
+                $current->modify('+1 day');
+            }
+
+            respond(['created' => count($created), 'entries' => $created]);
+
+        } elseif ($method === 'GET' && $action === null) {
+            $from = $_GET['from'] ?? date('Y-m-d', strtotime('monday this week'));
+            $to = $_GET['to'] ?? date('Y-m-d', strtotime($from . ' +4 weeks'));
+            $stmt = $db->prepare('SELECT c.*, t.category as topic_category, t.domain as topic_domain FROM calendar c LEFT JOIN topics t ON c.topic_id = t.id WHERE c.scheduled_date BETWEEN ? AND ? ORDER BY c.scheduled_date, c.id');
+            $stmt->execute([$from, $to]);
+            respond($stmt->fetchAll());
+
+        } elseif ($method === 'POST' && $action === null) {
+            if (empty($input['scheduled_date']) || empty($input['title']) || empty($input['account'])) {
+                respondError('scheduled_date, title, and account required');
+            }
+            $stmt = $db->prepare('INSERT INTO calendar (scheduled_date, topic_id, title, platform, account, content_type, status) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            $stmt->execute([
+                $input['scheduled_date'],
+                $input['topic_id'] ?? null,
+                $input['title'],
+                $input['platform'] ?? 'linkedin',
+                $input['account'],
+                $input['content_type'] ?? 'post',
+                $input['status'] ?? 'planned',
+            ]);
+            $newId = $db->lastInsertId();
+            $stmt = $db->prepare('SELECT * FROM calendar WHERE id = ?');
+            $stmt->execute([$newId]);
+            respond($stmt->fetch(), 201);
+
+        } elseif ($method === 'PATCH' && $action !== null) {
+            $calId = $action;
+            $fields = [];
+            $params = [];
+            foreach (['scheduled_date', 'title', 'platform', 'account', 'content_type', 'status', 'topic_id'] as $field) {
+                if (array_key_exists($field, $input)) {
+                    $fields[] = "$field = ?";
+                    $params[] = $input[$field];
+                }
+            }
+            if (!$fields) respondError('No fields to update');
+            $params[] = $calId;
+            $stmt = $db->prepare('UPDATE calendar SET ' . implode(', ', $fields) . ' WHERE id = ?');
+            $stmt->execute($params);
+            if ($stmt->rowCount() === 0) respondError('Calendar entry not found', 404);
+            $stmt = $db->prepare('SELECT * FROM calendar WHERE id = ?');
+            $stmt->execute([$calId]);
+            respond($stmt->fetch());
+
+        } elseif ($method === 'DELETE' && $action !== null) {
+            $calId = $action;
+            $stmt = $db->prepare('DELETE FROM calendar WHERE id = ?');
+            $stmt->execute([$calId]);
+            if ($stmt->rowCount() === 0) respondError('Calendar entry not found', 404);
+            respond(['deleted' => true]);
+
+        } else {
+            respondError('Method not allowed', 405);
+        }
+        break;
+
+    case 'dashboard':
+        if ($method === 'GET') {
+            $byDomain = $db->query("
+                SELECT domain,
+                    COUNT(*) as total,
+                    SUM(CASE WHEN status = 'written' THEN 1 ELSE 0 END) as written
+                FROM topics GROUP BY domain ORDER BY total DESC
+            ")->fetchAll();
+
+            $byCat = $db->query("
+                SELECT category,
+                    COUNT(*) as total,
+                    SUM(CASE WHEN status = 'written' THEN 1 ELSE 0 END) as written
+                FROM topics GROUP BY category ORDER BY total DESC
+            ")->fetchAll();
+
+            $leaderboard = $db->query("
+                SELECT author, COUNT(*) as submissions,
+                    COUNT(DISTINCT topic_id) as topics_touched
+                FROM submissions WHERE author != '' GROUP BY author ORDER BY submissions DESC
+            ")->fetchAll();
+
+            $recentActivity = $db->query("
+                SELECT s.id, s.author, s.created_at, s.topic_id, t.title as topic_title, t.category
+                FROM submissions s LEFT JOIN topics t ON s.topic_id = t.id
+                ORDER BY s.created_at DESC LIMIT 10
+            ")->fetchAll();
+
+            $calendarStats = $db->query("
+                SELECT
+                    COUNT(*) as total_planned,
+                    SUM(CASE WHEN status = 'posted' THEN 1 ELSE 0 END) as posted,
+                    SUM(CASE WHEN status = 'planned' AND scheduled_date >= date('now') THEN 1 ELSE 0 END) as upcoming
+                FROM calendar
+            ")->fetch();
+
+            respond([
+                'by_domain' => $byDomain,
+                'by_category' => $byCat,
+                'leaderboard' => $leaderboard,
+                'recent_activity' => $recentActivity,
+                'calendar_stats' => $calendarStats,
+            ]);
         } else {
             respondError('Method not allowed', 405);
         }

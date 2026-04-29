@@ -9,8 +9,13 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; }
 
-  /* Layout */
-  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Tab navigation */
+  .tab-nav { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 2px solid #e8e7e0; }
+  .tab-btn { padding: 10px 20px; font-size: 13px; font-weight: 600; color: #888; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; transition: all .15s; }
+  .tab-btn:hover { color: #1a1a1a; }
+  .tab-btn.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
 
   /* Header */
   .header { margin-bottom: 8px; }
@@ -27,19 +32,14 @@
   .pill { padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid #d0cfc7; color: #555; background: #fff; transition: all .15s; user-select: none; }
   .pill:hover { border-color: #999; color: #1a1a1a; }
   .pill.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-
-  /* Category pills with color */
   .pill-bewijs.active { background: #E6F1FB; color: #0C447C; border-color: #bdd7f0; }
   .pill-educatie.active { background: #EEEDFE; color: #3C3489; border-color: #c9c7f0; }
   .pill-markt.active { background: #E1F5EE; color: #085041; border-color: #a8dcc8; }
   .pill-contrair.active { background: #FAECE7; color: #712B13; border-color: #ecc8bc; }
   .pill-eigen.active { background: #FBEAF0; color: #72243E; border-color: #edbfce; }
   .pill-tools.active { background: #FAEEDA; color: #633806; border-color: #e8d4a8; }
-
-  /* Separator */
   .filter-sep { height: 1px; background: #e8e7e0; margin: 12px 0 16px; }
 
-  /* Free-form button */
   .free-form-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; margin-bottom: 16px; }
   .free-form-btn:hover { background: #333; }
 
@@ -63,29 +63,20 @@
   .sep { font-size: 11px; color: #ccc; }
   .status-tag { font-size: 10px; font-weight: 600; color: #2b8a3e; }
 
-  /* Editor view */
-  .editor-view { display: none; }
-  .editor-view.active { display: block; }
-  .board-view.active { display: block; }
-  .board-view { display: none; }
+  /* Views */
+  .view { display: none; }
+  .view.active { display: block; }
 
   .back-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font-size: 14px; color: #555; cursor: pointer; padding: 8px 0; margin-bottom: 16px; }
   .back-btn:hover { color: #1a1a1a; }
 
   .editor-layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
   @media (max-width: 768px) { .editor-layout { grid-template-columns: 1fr; } }
-
-  .editor-main { }
-  .editor-sidebar { }
-
   .field-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-
   .author-input { width: 100%; padding: 10px 12px; border: 1px solid #d0cfc7; border-radius: 8px; font-size: 14px; font-family: inherit; margin-bottom: 16px; }
   .author-input:focus { outline: none; border-color: #1a1a1a; }
-
   .content-area { width: 100%; min-height: 400px; padding: 14px 16px; border: 1px solid #d0cfc7; border-radius: 12px; font-size: 14px; font-family: inherit; line-height: 1.6; resize: vertical; margin-bottom: 12px; }
   .content-area:focus { outline: none; border-color: #1a1a1a; }
-
   .editor-actions { display: flex; gap: 10px; flex-wrap: wrap; }
   .btn-save { padding: 10px 24px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
   .btn-save:hover { background: #333; }
@@ -93,76 +84,245 @@
   .btn-done { padding: 10px 24px; background: #fff; color: #2b8a3e; border: 2px solid #2b8a3e; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
   .btn-done:hover { background: #f0faf5; }
   .btn-done.is-done { background: #2b8a3e; color: #fff; }
-
   .save-status { font-size: 12px; color: #888; margin-top: 8px; }
 
-  /* Sidebar */
   .sidebar-card { background: #f9f9f7; border: 1px solid #e8e7e0; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
   .sidebar-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
   .sidebar-hook { font-size: 13px; font-style: italic; color: #555; line-height: 1.5; }
   .sidebar-domain { font-size: 12px; color: #888; margin-top: 8px; }
-
   .context-section { margin-top: 12px; }
   .context-section h4 { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
   .context-list { list-style: none; padding: 0; }
   .context-list li { font-size: 12px; color: #555; line-height: 1.5; padding: 3px 0; padding-left: 12px; position: relative; }
   .context-list li::before { content: "\2022"; position: absolute; left: 0; color: #ccc; }
-
   .free-form-notice { font-size: 13px; color: #888; font-style: italic; }
 
-  /* Toast */
-  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100; }
+  /* Dashboard */
+  .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 768px) { .dash-grid { grid-template-columns: 1fr; } }
+  .dash-card { background: #fff; border: 1px solid #e0dfd7; border-radius: 12px; padding: 20px; }
+  .dash-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 12px; color: #1a1a1a; }
+  .progress-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .progress-label { font-size: 12px; color: #555; width: 100px; flex-shrink: 0; }
+  .progress-bar { flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width .3s; }
+  .progress-num { font-size: 11px; color: #888; width: 40px; text-align: right; flex-shrink: 0; }
+  .leader-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f0f0ec; }
+  .leader-row:last-child { border-bottom: none; }
+  .leader-rank { width: 24px; height: 24px; border-radius: 50%; background: #f0f0ec; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #888; flex-shrink: 0; }
+  .leader-rank.top { background: #1a1a1a; color: #fff; }
+  .leader-name { font-size: 13px; font-weight: 500; flex: 1; }
+  .leader-count { font-size: 12px; color: #888; }
+  .activity-item { padding: 8px 0; border-bottom: 1px solid #f0f0ec; }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-author { font-size: 12px; font-weight: 600; }
+  .activity-topic { font-size: 12px; color: #555; }
+  .activity-time { font-size: 11px; color: #aaa; }
+  .dash-stat-row { display: flex; gap: 16px; margin-bottom: 24px; }
+  .dash-stat { background: #fff; border: 1px solid #e0dfd7; border-radius: 12px; padding: 16px 20px; flex: 1; text-align: center; }
+  .dash-stat-num { font-size: 28px; font-weight: 700; color: #1a1a1a; }
+  .dash-stat-label { font-size: 11px; color: #888; margin-top: 2px; }
+
+  /* Calendar */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
+  .cal-nav { display: flex; align-items: center; gap: 12px; }
+  .cal-nav-btn { background: none; border: 1px solid #d0cfc7; border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; color: #555; }
+  .cal-nav-btn:hover { border-color: #999; color: #1a1a1a; }
+  .cal-week-label { font-size: 14px; font-weight: 600; min-width: 180px; text-align: center; }
+  .cal-actions { display: flex; gap: 8px; }
+  .cal-auto-btn { padding: 8px 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; }
+  .cal-auto-btn:hover { background: #333; }
+  .cal-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .cal-day { background: #fff; border: 1px solid #e0dfd7; border-radius: 10px; min-height: 140px; padding: 10px; }
+  .cal-day.today { border-color: #1a1a1a; border-width: 2px; }
+  .cal-day.past { opacity: 0.6; }
+  .cal-day-header { font-size: 11px; font-weight: 600; color: #888; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+  .cal-day-date { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .cal-day-name { text-transform: uppercase; letter-spacing: 0.5px; }
+  .cal-add-btn { width: 20px; height: 20px; border-radius: 50%; border: 1px solid #d0cfc7; background: none; font-size: 14px; color: #aaa; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+  .cal-add-btn:hover { border-color: #999; color: #1a1a1a; }
+  .cal-entry { background: #f9f9f7; border: 1px solid #e8e7e0; border-radius: 8px; padding: 8px; margin-bottom: 6px; cursor: pointer; font-size: 11px; transition: border-color .15s; }
+  .cal-entry:hover { border-color: #bbb; }
+  .cal-entry-title { font-weight: 500; color: #1a1a1a; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cal-entry-meta { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+  .cal-platform { font-size: 9px; font-weight: 600; padding: 1px 6px; border-radius: 4px; text-transform: uppercase; }
+  .cal-platform.linkedin { background: #E6F1FB; color: #0C447C; }
+  .cal-platform.dxfferent { background: #FAEEDA; color: #633806; }
+  .cal-account { font-size: 10px; color: #888; }
+  .cal-type { font-size: 10px; color: #aaa; }
+  .cal-status-posted { position: relative; }
+  .cal-status-posted::after { content: "\\2713"; position: absolute; top: 4px; right: 6px; font-size: 10px; color: #2b8a3e; font-weight: 700; }
+
+  /* Calendar modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 200; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: #fff; border-radius: 16px; padding: 24px; width: 420px; max-width: 90vw; max-height: 90vh; overflow-y: auto; }
+  .modal h2 { font-size: 16px; font-weight: 600; margin-bottom: 16px; }
+  .modal-field { margin-bottom: 12px; }
+  .modal-field label { display: block; font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .modal-field input, .modal-field select, .modal-field textarea { width: 100%; padding: 8px 10px; border: 1px solid #d0cfc7; border-radius: 8px; font-size: 13px; font-family: inherit; }
+  .modal-field input:focus, .modal-field select:focus { outline: none; border-color: #1a1a1a; }
+  .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
+  .modal-actions button { padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .modal-save { background: #1a1a1a; color: #fff; border: none; }
+  .modal-save:hover { background: #333; }
+  .modal-cancel { background: #fff; color: #555; border: 1px solid #d0cfc7; }
+  .modal-cancel:hover { border-color: #999; }
+  .modal-delete { background: #fff; color: #c0392b; border: 1px solid #e6b3ad; margin-left: auto; }
+  .modal-delete:hover { background: #fdf2f0; }
+
+  /* Topic picker in modal */
+  .topic-picker { max-height: 200px; overflow-y: auto; border: 1px solid #e8e7e0; border-radius: 8px; margin-top: 8px; }
+  .topic-pick-item { padding: 8px 10px; font-size: 12px; cursor: pointer; border-bottom: 1px solid #f5f5f3; }
+  .topic-pick-item:hover { background: #f5f5f3; }
+  .topic-pick-item:last-child { border-bottom: none; }
+  .topic-pick-search { width: 100%; padding: 8px 10px; border: 1px solid #d0cfc7; border-radius: 8px; font-size: 12px; margin-bottom: 0; font-family: inherit; }
+
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 300; }
   .toast.show { opacity: 1; }
 </style>
 </head>
 <body>
 
 <div class="container">
+  <!-- TAB NAVIGATION -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('board')">Board</button>
+    <button class="tab-btn" onclick="switchTab('dashboard')">Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('calendar')">Kalender</button>
+  </div>
+
   <!-- BOARD VIEW -->
-  <div class="board-view active" id="boardView">
+  <div class="view active" id="boardView">
     <div class="header">
-      <h1>Proxuma Contentbibliotheek</h1>
+      <h1>Contentbibliotheek</h1>
       <div class="header-sub">Content-idee&#235;n op basis van MSP Journey L2-L3 problemen, frustraties en vragen</div>
     </div>
-
     <div class="stats" id="stats"></div>
-
     <div class="filter-row-label">Domein</div>
     <div class="filter-row" id="domainFilters"></div>
-
     <div style="height: 8px"></div>
-
     <div class="filter-row-label">Type</div>
     <div class="filter-row" id="catFilters"></div>
-
     <div class="filter-sep"></div>
-
     <button class="free-form-btn" onclick="openFreeForm()">+ Vrije tekst schrijven</button>
-
     <div class="card-count" id="cardCount"></div>
     <div id="cards"></div>
   </div>
 
   <!-- EDITOR VIEW -->
-  <div class="editor-view" id="editorView">
+  <div class="view" id="editorView">
     <button class="back-btn" onclick="closeEditor()">&#8592; Terug naar overzicht</button>
-
     <div class="editor-layout">
       <div class="editor-main">
         <div class="field-label">Jouw naam</div>
         <input class="author-input" id="authorInput" type="text" placeholder="Bijv. Joshua, Tom, ..." />
-
         <div class="field-label">Inhoud</div>
         <textarea class="content-area" id="contentArea" placeholder="Schrijf hier je ruwe content. Denk niet te lang na over structuur &#8212; dat komt later."></textarea>
-
         <div class="editor-actions">
           <button class="btn-save" id="saveBtn" onclick="saveSubmission()">Opslaan</button>
           <button class="btn-done" id="doneBtn" onclick="toggleDone()">Markeer als geschreven</button>
         </div>
         <div class="save-status" id="saveStatus"></div>
       </div>
-
       <div class="editor-sidebar" id="editorSidebar"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div class="view" id="dashboardView">
+    <div class="header">
+      <h1>Dashboard</h1>
+      <div class="header-sub">Voortgang en activiteit van het contentteam</div>
+    </div>
+    <div class="dash-stat-row" id="dashStats"></div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <h3>Voortgang per domein</h3>
+        <div id="dashDomain"></div>
+      </div>
+      <div class="dash-card">
+        <h3>Voortgang per categorie</h3>
+        <div id="dashCategory"></div>
+      </div>
+      <div class="dash-card">
+        <h3>Leaderboard</h3>
+        <div id="dashLeaderboard"></div>
+      </div>
+      <div class="dash-card">
+        <h3>Recente activiteit</h3>
+        <div id="dashActivity"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR VIEW -->
+  <div class="view" id="calendarView">
+    <div class="cal-header">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calNavWeek(-1)">&#8592; Vorige</button>
+        <div class="cal-week-label" id="calWeekLabel"></div>
+        <button class="cal-nav-btn" onclick="calNavWeek(1)">Volgende &#8594;</button>
+      </div>
+      <div class="cal-actions">
+        <button class="cal-auto-btn" onclick="autoPlan()">Auto-plan 2 weken</button>
+      </div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+</div>
+
+<!-- CALENDAR ENTRY MODAL -->
+<div class="modal-overlay" id="calModal">
+  <div class="modal">
+    <h2 id="calModalTitle">Nieuwe post plannen</h2>
+    <div class="modal-field">
+      <label>Datum</label>
+      <input type="date" id="calDate" />
+    </div>
+    <div class="modal-field">
+      <label>Topic (optioneel)</label>
+      <input type="text" class="topic-pick-search" id="topicSearch" placeholder="Zoek een topic..." oninput="filterTopicPicker()" />
+      <div class="topic-picker" id="topicPicker"></div>
+    </div>
+    <div class="modal-field">
+      <label>Titel</label>
+      <input type="text" id="calTitle" placeholder="Titel van de post" />
+    </div>
+    <div class="modal-field">
+      <label>Platform</label>
+      <select id="calPlatform">
+        <option value="linkedin">LinkedIn</option>
+        <option value="dxfferent">Dxfferent</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>Account</label>
+      <input type="text" id="calAccount" placeholder="Bijv. Joshua, Dxfferent, ..." />
+    </div>
+    <div class="modal-field">
+      <label>Type content</label>
+      <select id="calContentType">
+        <option value="post">Post</option>
+        <option value="article">Artikel</option>
+        <option value="blog">Blog</option>
+        <option value="video">Video</option>
+        <option value="case-study">Case Study</option>
+        <option value="poll">Poll</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label>Status</label>
+      <select id="calStatus">
+        <option value="planned">Gepland</option>
+        <option value="posted">Gepost</option>
+        <option value="skipped">Overgeslagen</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-save" onclick="saveCalEntry()">Opslaan</button>
+      <button class="modal-cancel" onclick="closeCalModal()">Annuleren</button>
+      <button class="modal-delete" id="calDeleteBtn" onclick="deleteCalEntry()" style="display:none">Verwijderen</button>
     </div>
   </div>
 </div>
@@ -172,13 +332,14 @@
 <script>
 const API = '/api';
 const CAT_LABELS = {
-  bewijs: 'Bewijs & resultaat',
-  educatie: 'Educatie & uitleg',
-  markt: 'Markt & visie',
-  contrair: 'Contrair & polariserend',
-  eigen: 'Eigen verhaal',
-  tools: 'Tools & resources'
+  bewijs: 'Bewijs & resultaat', educatie: 'Educatie & uitleg', markt: 'Markt & visie',
+  contrair: 'Contrair & polariserend', eigen: 'Eigen verhaal', tools: 'Tools & resources'
 };
+const CAT_COLORS = {
+  bewijs: '#0C447C', educatie: '#3C3489', markt: '#085041',
+  contrair: '#712B13', eigen: '#72243E', tools: '#633806'
+};
+const DAY_NAMES = ['', 'ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'];
 
 let topics = [];
 let activeDomain = 'all';
@@ -187,8 +348,12 @@ let currentTopic = null;
 let currentSubmission = null;
 let autoSaveTimer = null;
 let isDirty = false;
+let currentTab = 'board';
+let calWeekStart = getMonday(new Date());
+let calEntries = [];
+let editingCalId = null;
 
-async function api(path, opts = {}) {
+async function apiCall(path, opts = {}) {
   const res = await fetch(API + path, {
     headers: { 'Content-Type': 'application/json' },
     ...opts,
@@ -204,8 +369,57 @@ function toast(msg) {
   setTimeout(() => el.classList.remove('show'), 2000);
 }
 
+function esc(s) {
+  if (!s) return '';
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function getMonday(d) {
+  const dt = new Date(d);
+  const day = dt.getDay();
+  const diff = dt.getDate() - day + (day === 0 ? -6 : 1);
+  dt.setDate(diff);
+  dt.setHours(0, 0, 0, 0);
+  return dt;
+}
+
+function fmtDate(d) {
+  return d.toISOString().slice(0, 10);
+}
+
+function fmtDateNL(d) {
+  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+}
+
+// ============ TAB SWITCHING ============
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', ['board', 'dashboard', 'calendar'][i] === tab);
+  });
+  ['boardView', 'editorView', 'dashboardView', 'calendarView'].forEach(id => {
+    document.getElementById(id).classList.remove('active');
+  });
+  if (tab === 'board') {
+    document.getElementById('boardView').classList.add('active');
+    loadTopics();
+  } else if (tab === 'dashboard') {
+    document.getElementById('dashboardView').classList.add('active');
+    loadDashboard();
+  } else if (tab === 'calendar') {
+    document.getElementById('calendarView').classList.add('active');
+    loadCalendar();
+  }
+  window.scrollTo(0, 0);
+}
+
+// ============ BOARD ============
+
 async function loadTopics() {
-  topics = await api('/topics');
+  topics = await apiCall('/topics');
   renderFilters();
   renderCards();
   renderStats();
@@ -225,14 +439,12 @@ function renderStats() {
 
 function renderFilters() {
   const domains = [...new Set(topics.map(t => t.domain))].sort();
-
   let domainHtml = `<span class="pill ${activeDomain === 'all' ? 'active' : ''}" onclick="setDomain('all')">Alles</span>`;
   domains.forEach(d => {
     const count = topics.filter(t => t.domain === d).length;
     domainHtml += `<span class="pill ${activeDomain === d ? 'active' : ''}" onclick="setDomain('${d}')">${d} (${count})</span>`;
   });
   document.getElementById('domainFilters').innerHTML = domainHtml;
-
   let catHtml = `<span class="pill ${activeCat === 'all' ? 'active' : ''}" onclick="setCat('all')">Alles</span>`;
   Object.entries(CAT_LABELS).forEach(([key, label]) => {
     const count = topics.filter(t => t.category === key).length;
@@ -248,7 +460,6 @@ function renderCards() {
   let filtered = topics;
   if (activeDomain !== 'all') filtered = filtered.filter(t => t.domain === activeDomain);
   if (activeCat !== 'all') filtered = filtered.filter(t => t.category === activeCat);
-
   document.getElementById('cardCount').textContent = filtered.length + ' content-ideeën';
   document.getElementById('cards').innerHTML = filtered.map(t => `
     <div class="card ${t.status === 'written' ? 'card-written' : ''}" onclick="openEditor(${t.id})">
@@ -267,183 +478,104 @@ function renderCards() {
   `).join('');
 }
 
-function esc(s) {
-  if (!s) return '';
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
-}
+// ============ EDITOR ============
 
 async function openEditor(topicId) {
-  currentTopic = await api('/topics/' + topicId);
+  currentTopic = await apiCall('/topics/' + topicId);
   currentSubmission = null;
-
   const author = localStorage.getItem('author') || '';
   document.getElementById('authorInput').value = author;
-
   if (currentTopic.submissions && currentTopic.submissions.length > 0) {
     const mine = author ? currentTopic.submissions.find(s => s.author === author) : null;
     currentSubmission = mine || currentTopic.submissions[0];
     document.getElementById('contentArea').value = currentSubmission.raw_content;
-    if (!author && currentSubmission.author) {
-      document.getElementById('authorInput').value = currentSubmission.author;
-    }
+    if (!author && currentSubmission.author) document.getElementById('authorInput').value = currentSubmission.author;
   } else {
     document.getElementById('contentArea').value = '';
   }
-
   renderSidebar();
   updateDoneBtn();
-  showView('editor');
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('editorView').classList.add('active');
   startAutoSave();
 }
 
 function openFreeForm() {
   currentTopic = null;
   currentSubmission = null;
-
   const author = localStorage.getItem('author') || '';
   document.getElementById('authorInput').value = author;
   document.getElementById('contentArea').value = '';
-
   renderSidebar();
   updateDoneBtn();
-  showView('editor');
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('editorView').classList.add('active');
   startAutoSave();
 }
 
 function renderSidebar() {
   const sidebar = document.getElementById('editorSidebar');
-
   if (!currentTopic) {
-    sidebar.innerHTML = `
-      <div class="sidebar-card">
-        <h3>Vrije tekst</h3>
-        <p class="free-form-notice">Schrijf wat je wilt. Claude categoriseert dit later automatisch op basis van de inhoud.</p>
-      </div>`;
+    sidebar.innerHTML = `<div class="sidebar-card"><h3>Vrije tekst</h3><p class="free-form-notice">Schrijf wat je wilt. Claude categoriseert dit later automatisch op basis van de inhoud.</p></div>`;
     return;
   }
-
   const t = currentTopic;
   let contextHtml = '';
-
   if (t.context) {
-    const sections = [
-      { key: 'problemen', label: 'Problemen' },
-      { key: 'frustraties', label: 'Frustraties' },
-      { key: 'vragen', label: 'Vragen' },
-    ];
-    sections.forEach(s => {
+    [{ key: 'problemen', label: 'Problemen' }, { key: 'frustraties', label: 'Frustraties' }, { key: 'vragen', label: 'Vragen' }].forEach(s => {
       if (t.context[s.key] && t.context[s.key].length) {
-        contextHtml += `
-          <div class="context-section">
-            <h4>${s.label}</h4>
-            <ul class="context-list">
-              ${t.context[s.key].map(item => `<li>${esc(item)}</li>`).join('')}
-            </ul>
-          </div>`;
+        contextHtml += `<div class="context-section"><h4>${s.label}</h4><ul class="context-list">${t.context[s.key].map(item => `<li>${esc(item)}</li>`).join('')}</ul></div>`;
       }
     });
   }
-
   sidebar.innerHTML = `
-    <div class="sidebar-card">
-      <h3>Hook template</h3>
-      <div class="sidebar-hook">${esc(t.hook)}</div>
-      <div class="sidebar-domain">
-        <span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category]}</span>
-        <span style="margin-left:8px; font-size:12px; color:#888;">${esc(t.domain)}${t.subdomain ? ' / ' + esc(t.subdomain) : ''}</span>
-      </div>
-    </div>
-    ${contextHtml ? `<div class="sidebar-card"><h3>MSP Journey context</h3>${contextHtml}</div>` : ''}
-  `;
+    <div class="sidebar-card"><h3>Hook template</h3><div class="sidebar-hook">${esc(t.hook)}</div>
+      <div class="sidebar-domain"><span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category]}</span>
+      <span style="margin-left:8px;font-size:12px;color:#888;">${esc(t.domain)}${t.subdomain ? ' / ' + esc(t.subdomain) : ''}</span></div></div>
+    ${contextHtml ? `<div class="sidebar-card"><h3>MSP Journey context</h3>${contextHtml}</div>` : ''}`;
 }
 
 function updateDoneBtn() {
   const btn = document.getElementById('doneBtn');
-  if (!currentTopic) {
-    btn.style.display = 'none';
-    return;
-  }
+  if (!currentTopic) { btn.style.display = 'none'; return; }
   btn.style.display = '';
-  if (currentTopic.status === 'written') {
-    btn.classList.add('is-done');
-    btn.textContent = 'Geschreven';
-  } else {
-    btn.classList.remove('is-done');
-    btn.textContent = 'Markeer als geschreven';
-  }
+  if (currentTopic.status === 'written') { btn.classList.add('is-done'); btn.textContent = 'Geschreven'; }
+  else { btn.classList.remove('is-done'); btn.textContent = 'Markeer als geschreven'; }
 }
 
 async function saveSubmission() {
   const author = document.getElementById('authorInput').value.trim();
   const content = document.getElementById('contentArea').value.trim();
-
   if (!author) { toast('Vul je naam in'); return; }
   if (!content) { toast('Schrijf eerst iets'); return; }
-
   localStorage.setItem('author', author);
-
   const btn = document.getElementById('saveBtn');
-  btn.disabled = true;
-  btn.textContent = 'Opslaan...';
-
+  btn.disabled = true; btn.textContent = 'Opslaan...';
   if (currentSubmission) {
-    await api('/submissions/' + currentSubmission.id, {
-      method: 'PATCH',
-      body: { raw_content: content },
-    });
+    await apiCall('/submissions/' + currentSubmission.id, { method: 'PATCH', body: { raw_content: content } });
   } else {
-    const res = await api('/submissions', {
-      method: 'POST',
-      body: {
-        topic_id: currentTopic ? currentTopic.id : null,
-        author: author,
-        raw_content: content,
-      },
-    });
+    const res = await apiCall('/submissions', { method: 'POST', body: { topic_id: currentTopic ? currentTopic.id : null, author, raw_content: content } });
     currentSubmission = res;
   }
-
   if (currentTopic && currentTopic.status === 'open') {
-    await api('/topics/' + currentTopic.id, {
-      method: 'PATCH',
-      body: { status: 'claimed', claimed_by: author },
-    });
-    currentTopic.status = 'claimed';
-    currentTopic.claimed_by = author;
+    await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: 'claimed', claimed_by: author } });
+    currentTopic.status = 'claimed'; currentTopic.claimed_by = author;
   }
-
-  isDirty = false;
-  btn.disabled = false;
-  btn.textContent = 'Opslaan';
+  isDirty = false; btn.disabled = false; btn.textContent = 'Opslaan';
   document.getElementById('saveStatus').textContent = 'Opgeslagen om ' + new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
   toast('Opgeslagen');
 }
 
 async function toggleDone() {
   if (!currentTopic) return;
-
   const author = document.getElementById('authorInput').value.trim();
   if (!author) { toast('Vul je naam in'); return; }
-
   const content = document.getElementById('contentArea').value.trim();
-  if (!content && currentTopic.status !== 'written') {
-    toast('Schrijf eerst iets voordat je markeert als geschreven');
-    return;
-  }
-
-  if (content && isDirty) {
-    await saveSubmission();
-  }
-
+  if (!content && currentTopic.status !== 'written') { toast('Schrijf eerst iets voordat je markeert als geschreven'); return; }
+  if (content && isDirty) await saveSubmission();
   const newStatus = currentTopic.status === 'written' ? 'open' : 'written';
-  await api('/topics/' + currentTopic.id, {
-    method: 'PATCH',
-    body: { status: newStatus, claimed_by: newStatus === 'written' ? author : null },
-  });
-  currentTopic.status = newStatus;
-  currentTopic.claimed_by = newStatus === 'written' ? author : null;
+  await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: newStatus, claimed_by: newStatus === 'written' ? author : null } });
+  currentTopic.status = newStatus; currentTopic.claimed_by = newStatus === 'written' ? author : null;
   updateDoneBtn();
   toast(newStatus === 'written' ? 'Gemarkeerd als geschreven' : 'Status teruggezet naar open');
 }
@@ -455,14 +587,7 @@ function closeEditor() {
     const content = document.getElementById('contentArea').value.trim();
     if (author && content) saveSubmission();
   }
-  showView('board');
-  loadTopics();
-}
-
-function showView(view) {
-  document.getElementById('boardView').className = view === 'board' ? 'board-view active' : 'board-view';
-  document.getElementById('editorView').className = view === 'editor' ? 'editor-view active' : 'editor-view';
-  window.scrollTo(0, 0);
+  switchTab('board');
 }
 
 function startAutoSave() {
@@ -478,9 +603,7 @@ function startAutoSave() {
   }, 30000);
 }
 
-function stopAutoSave() {
-  if (autoSaveTimer) { clearInterval(autoSaveTimer); autoSaveTimer = null; }
-}
+function stopAutoSave() { if (autoSaveTimer) { clearInterval(autoSaveTimer); autoSaveTimer = null; } }
 
 document.getElementById('contentArea').addEventListener('blur', () => {
   if (isDirty) {
@@ -490,6 +613,225 @@ document.getElementById('contentArea').addEventListener('blur', () => {
   }
 });
 
+// ============ DASHBOARD ============
+
+async function loadDashboard() {
+  const d = await apiCall('/dashboard');
+  const totalTopics = d.by_domain.reduce((s, r) => s + r.total, 0);
+  const totalWritten = d.by_domain.reduce((s, r) => s + r.written, 0);
+  const totalSubs = d.leaderboard.reduce((s, r) => s + r.submissions, 0);
+
+  document.getElementById('dashStats').innerHTML = `
+    <div class="dash-stat"><div class="dash-stat-num">${totalTopics}</div><div class="dash-stat-label">Topics</div></div>
+    <div class="dash-stat"><div class="dash-stat-num">${totalWritten}</div><div class="dash-stat-label">Geschreven</div></div>
+    <div class="dash-stat"><div class="dash-stat-num">${totalSubs}</div><div class="dash-stat-label">Submissions</div></div>
+    <div class="dash-stat"><div class="dash-stat-num">${d.calendar_stats.upcoming || 0}</div><div class="dash-stat-label">Gepland</div></div>
+  `;
+
+  document.getElementById('dashDomain').innerHTML = d.by_domain.map(r => {
+    const pct = r.total ? Math.round(r.written / r.total * 100) : 0;
+    return `<div class="progress-row">
+      <div class="progress-label">${esc(r.domain)}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:#2b8a3e"></div></div>
+      <div class="progress-num">${r.written}/${r.total}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('dashCategory').innerHTML = d.by_category.map(r => {
+    const pct = r.total ? Math.round(r.written / r.total * 100) : 0;
+    const color = CAT_COLORS[r.category] || '#888';
+    return `<div class="progress-row">
+      <div class="progress-label">${CAT_LABELS[r.category] || r.category}</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="progress-num">${r.written}/${r.total}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('dashLeaderboard').innerHTML = d.leaderboard.length
+    ? d.leaderboard.map((r, i) => `
+      <div class="leader-row">
+        <div class="leader-rank ${i === 0 ? 'top' : ''}">${i + 1}</div>
+        <div class="leader-name">${esc(r.author)}</div>
+        <div class="leader-count">${r.submissions} bijdrage${r.submissions !== 1 ? 'n' : ''}</div>
+      </div>`).join('')
+    : '<div style="font-size:13px;color:#888;padding:8px 0">Nog geen bijdragen</div>';
+
+  document.getElementById('dashActivity').innerHTML = d.recent_activity.length
+    ? d.recent_activity.map(a => `
+      <div class="activity-item">
+        <span class="activity-author">${esc(a.author)}</span>
+        <span class="activity-topic"> ${a.topic_title ? 'schreef aan: ' + esc(a.topic_title).slice(0, 60) : 'vrije tekst'}</span>
+        <div class="activity-time">${new Date(a.created_at + 'Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</div>
+      </div>`).join('')
+    : '<div style="font-size:13px;color:#888;padding:8px 0">Nog geen activiteit</div>';
+}
+
+// ============ CALENDAR ============
+
+async function loadCalendar() {
+  const from = fmtDate(calWeekStart);
+  const endDate = new Date(calWeekStart);
+  endDate.setDate(endDate.getDate() + 27);
+  const to = fmtDate(endDate);
+
+  calEntries = await apiCall(`/calendar?from=${from}&to=${to}`);
+  if (!topics.length) topics = await apiCall('/topics');
+  renderCalendar();
+}
+
+function calNavWeek(dir) {
+  calWeekStart.setDate(calWeekStart.getDate() + dir * 7);
+  loadCalendar();
+}
+
+function renderCalendar() {
+  const today = fmtDate(new Date());
+  const weekEnd = new Date(calWeekStart);
+  weekEnd.setDate(weekEnd.getDate() + 4);
+
+  const monthNames = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+  const startMonth = monthNames[calWeekStart.getMonth()];
+  const endMonth = monthNames[weekEnd.getMonth()];
+  const label = calWeekStart.getDate() + (startMonth !== endMonth ? ' ' + startMonth : '') + ' - ' + weekEnd.getDate() + ' ' + endMonth + ' ' + weekEnd.getFullYear();
+  document.getElementById('calWeekLabel').textContent = label;
+
+  let html = '';
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(calWeekStart);
+    d.setDate(d.getDate() + i);
+    const dateStr = fmtDate(d);
+    const isToday = dateStr === today;
+    const isPast = dateStr < today;
+    const dayEntries = calEntries.filter(e => e.scheduled_date === dateStr);
+
+    html += `<div class="cal-day ${isToday ? 'today' : ''} ${isPast ? 'past' : ''}">
+      <div class="cal-day-header">
+        <div><span class="cal-day-name">${DAY_NAMES[(d.getDay() || 7)]}</span> <span class="cal-day-date">${d.getDate()} ${monthNames[d.getMonth()]}</span></div>
+        <button class="cal-add-btn" onclick="openCalModal('${dateStr}')">+</button>
+      </div>`;
+
+    dayEntries.forEach(e => {
+      html += `<div class="cal-entry ${e.status === 'posted' ? 'cal-status-posted' : ''}" onclick="openCalModal(null, ${e.id})">
+        <div class="cal-entry-title">${esc(e.title)}</div>
+        <div class="cal-entry-meta">
+          <span class="cal-platform ${e.platform}">${e.platform === 'linkedin' ? 'LI' : 'DXF'}</span>
+          <span class="cal-account">${esc(e.account)}</span>
+          <span class="cal-type">${esc(e.content_type)}</span>
+        </div>
+      </div>`;
+    });
+
+    html += `</div>`;
+  }
+  document.getElementById('calGrid').innerHTML = html;
+}
+
+function openCalModal(date, entryId) {
+  editingCalId = entryId || null;
+  const modal = document.getElementById('calModal');
+
+  if (entryId) {
+    const entry = calEntries.find(e => e.id == entryId);
+    if (!entry) return;
+    document.getElementById('calModalTitle').textContent = 'Post bewerken';
+    document.getElementById('calDate').value = entry.scheduled_date;
+    document.getElementById('calTitle').value = entry.title;
+    document.getElementById('calPlatform').value = entry.platform;
+    document.getElementById('calAccount').value = entry.account;
+    document.getElementById('calContentType').value = entry.content_type;
+    document.getElementById('calStatus').value = entry.status;
+    document.getElementById('calDeleteBtn').style.display = '';
+  } else {
+    document.getElementById('calModalTitle').textContent = 'Nieuwe post plannen';
+    document.getElementById('calDate').value = date;
+    document.getElementById('calTitle').value = '';
+    document.getElementById('calPlatform').value = 'linkedin';
+    document.getElementById('calAccount').value = localStorage.getItem('author') || '';
+    document.getElementById('calContentType').value = 'post';
+    document.getElementById('calStatus').value = 'planned';
+    document.getElementById('calDeleteBtn').style.display = 'none';
+  }
+
+  renderTopicPicker();
+  modal.classList.add('open');
+}
+
+function closeCalModal() {
+  document.getElementById('calModal').classList.remove('open');
+  editingCalId = null;
+}
+
+function renderTopicPicker() {
+  const search = (document.getElementById('topicSearch').value || '').toLowerCase();
+  const picker = document.getElementById('topicPicker');
+  const filtered = topics.filter(t => !search || t.title.toLowerCase().includes(search)).slice(0, 15);
+  picker.innerHTML = filtered.map(t =>
+    `<div class="topic-pick-item" onclick="pickTopic(${t.id})">${esc(t.title)}</div>`
+  ).join('');
+}
+
+function filterTopicPicker() { renderTopicPicker(); }
+
+function pickTopic(id) {
+  const t = topics.find(x => x.id === id);
+  if (t) {
+    document.getElementById('calTitle').value = t.title;
+    document.getElementById('topicSearch').value = '';
+    document.getElementById('topicPicker').innerHTML = '';
+    document.getElementById('calTitle').dataset.topicId = id;
+  }
+}
+
+async function saveCalEntry() {
+  const data = {
+    scheduled_date: document.getElementById('calDate').value,
+    title: document.getElementById('calTitle').value.trim(),
+    platform: document.getElementById('calPlatform').value,
+    account: document.getElementById('calAccount').value.trim(),
+    content_type: document.getElementById('calContentType').value,
+    status: document.getElementById('calStatus').value,
+  };
+  const topicId = document.getElementById('calTitle').dataset.topicId;
+  if (topicId) data.topic_id = parseInt(topicId);
+
+  if (!data.title || !data.account || !data.scheduled_date) {
+    toast('Vul titel, account en datum in');
+    return;
+  }
+
+  if (editingCalId) {
+    await apiCall('/calendar/' + editingCalId, { method: 'PATCH', body: data });
+    toast('Bijgewerkt');
+  } else {
+    await apiCall('/calendar', { method: 'POST', body: data });
+    toast('Gepland');
+  }
+
+  document.getElementById('calTitle').dataset.topicId = '';
+  closeCalModal();
+  loadCalendar();
+}
+
+async function deleteCalEntry() {
+  if (!editingCalId) return;
+  await apiCall('/calendar/' + editingCalId, { method: 'DELETE' });
+  toast('Verwijderd');
+  closeCalModal();
+  loadCalendar();
+}
+
+async function autoPlan() {
+  const res = await apiCall('/calendar/auto-plan?weeks=2', { method: 'GET' });
+  if (res.error) { toast(res.error); return; }
+  toast(`${res.created} posts gepland`);
+  loadCalendar();
+}
+
+document.getElementById('calModal').addEventListener('click', (e) => {
+  if (e.target.id === 'calModal') closeCalModal();
+});
+
+// ============ INIT ============
 loadTopics();
 </script>
 </body>
