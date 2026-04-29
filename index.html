@@ -1003,9 +1003,64 @@
   }
   .toast.show { opacity: 1; }
 
+  /* ---------- Kanban Board ---------- */
+  .board-view-toggle { display:inline-flex; gap:0; margin:12px 0 16px; border:1px solid var(--line); border-radius:var(--r-sm); overflow:hidden; }
+  .toggle-btn { appearance:none; border:0; background:var(--surface-2); padding:8px 18px; font-family:var(--font-display); font-weight:900; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); cursor:pointer; transition:all var(--t-quick); border-bottom:2px solid transparent; }
+  .toggle-btn:hover { color:var(--white); }
+  .toggle-btn.active { background:var(--surface); color:var(--white); border-bottom:2px solid var(--orange); }
+  .kanban-board { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:24px; }
+  .kanban-col { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:12px; min-height:300px; }
+  .kanban-col-header { font-family:var(--font-display); font-size:11px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+  .kanban-col-count { font-size:10px; color:var(--ink-4); font-family:var(--font-body); font-weight:400; }
+  .kanban-col-cards { display:flex; flex-direction:column; gap:8px; min-height:40px; }
+  .kanban-col.drag-over { background:var(--surface-2); border-color:var(--orange); }
+  .kanban-card { background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-sm); padding:10px 12px; cursor:grab; transition:all var(--t-quick); font-size:12px; }
+  .kanban-card:hover { border-color:var(--orange); }
+  .kanban-card.dragging { opacity:0.5; }
+  .kanban-card-title { font-size:12px; font-weight:500; color:var(--white); line-height:1.4; margin-bottom:6px; }
+  .kanban-card-meta { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+  .kanban-card .cat-badge { font-size:9px; padding:2px 8px; }
+  .kanban-move-select { width:100%; margin-top:6px; padding:4px 8px; font-size:11px; background:var(--surface); color:var(--ink-3); border:1px solid var(--line); border-radius:var(--r-xs); font-family:var(--font-body); cursor:pointer; }
+
+  /* ---------- Export Panel ---------- */
+  .export-panel { background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-md); padding:16px 20px; margin-bottom:16px; }
+  .export-panel-inner { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .export-panel label { font-family:var(--font-display); font-size:10px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+  .export-panel input[type="date"] { padding:8px 12px; border:1px solid var(--grey-1); border-radius:var(--r-xs); font-size:13px; background:var(--black-2); color:var(--white); font-family:var(--font-body); }
+  .export-panel input[type="date"]:focus { outline:none; border-color:var(--orange); }
+  .export-panel button { padding:8px 18px; background:var(--gradient); color:var(--white); border:none; border-radius:var(--r-xs); font-family:var(--font-display); font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; transition:opacity var(--t-quick); }
+  .export-panel button:hover { opacity:0.85; }
+  .export-panel button:disabled { opacity:0.4; cursor:not-allowed; }
+  .export-settings-link { font-size:11px; color:var(--ink-4); text-decoration:underline; cursor:pointer; }
+
+  /* ---------- Metrics / Performance ---------- */
+  .cal-entry-metrics { font-size:10px; color:var(--ink-4); margin-top:3px; }
+  .perf-stat { font-size:24px; font-family:var(--font-display); font-weight:900; color:var(--white); }
+  .perf-label { font-size:10px; color:var(--ink-4); font-family:var(--font-display); text-transform:uppercase; letter-spacing:.1em; font-weight:900; }
+  .perf-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--line); font-size:12px; }
+  .perf-row:last-child { border-bottom:none; }
+  .perf-row-title { color:var(--ink-2); flex:1; }
+  .perf-row-val { color:var(--white); font-weight:600; }
+
+  /* Derivative tree */
+  .deriv-tree { margin-top:8px; padding:8px 12px; background:var(--surface-2); border-radius:var(--r-sm); border:1px solid var(--line); }
+  .deriv-tree-item { font-size:11px; color:var(--ink-3); padding:2px 0 2px 12px; }
+  .deriv-tree-format { color:var(--ink-4); font-size:10px; font-family:var(--font-display); text-transform:uppercase; letter-spacing:.08em; }
+
+  /* Webhook modal */
+  .webhook-overlay { display:none; position:fixed; inset:0; background:rgba(3,3,3,0.85); z-index:200; align-items:center; justify-content:center; }
+  .webhook-overlay.open { display:flex; }
+  .webhook-modal { background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md); padding:24px; width:560px; max-width:90vw; position:relative; }
+  .webhook-modal::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--gradient); }
+  .webhook-modal h2 { font-family:var(--font-display); font-size:16px; font-weight:900; text-transform:uppercase; letter-spacing:.02em; margin-bottom:16px; }
+  .webhook-modal pre { background:var(--black-2); border:1px solid var(--line); border-radius:var(--r-xs); padding:12px; font-size:11px; color:var(--ink-2); overflow-x:auto; margin:12px 0; white-space:pre-wrap; }
+  .webhook-modal input { width:100%; padding:11px 14px; border:1px solid var(--grey-1); border-radius:var(--r-xs); font-size:14px; font-family:var(--font-body); background:var(--black-2); color:var(--white); margin:8px 0; }
+  .webhook-modal input:focus { outline:none; border-color:var(--orange); }
+
   /* ---------- Mobile ---------- */
   @media (max-width: 760px) {
     .cal-grid { grid-template-columns: 1fr; }
+    .kanban-board { grid-template-columns: 1fr; }
     .cal-day { min-height: auto; }
     .tab-nav {
       width: 100%;
@@ -1047,9 +1102,14 @@
     <div class="filter-row-label">Type</div>
     <div class="filter-row" id="catFilters"></div>
     <div class="filter-sep"></div>
+    <div class="board-view-toggle">
+      <button class="toggle-btn active" onclick="setBoardView('list')">Lijst</button>
+      <button class="toggle-btn" onclick="setBoardView('kanban')">Kanban</button>
+    </div>
     <button class="free-form-btn" onclick="openFreeForm()">+ Vrije tekst schrijven</button>
     <div class="card-count" id="cardCount"></div>
     <div id="cards"></div>
+    <div class="kanban-board" id="kanbanBoard" style="display:none"></div>
   </div>
 
   <!-- EDITOR VIEW -->
@@ -1064,6 +1124,7 @@
         <div class="editor-actions">
           <button class="btn-save" id="saveBtn" onclick="saveSubmission()">Opslaan</button>
           <button class="btn-done" id="doneBtn" onclick="toggleDone()">Markeer als geschreven</button>
+          <button class="btn-done" id="reviewBtn" onclick="setReview()" style="display:none;color:var(--tools-ink);border-color:var(--tools)">Naar review</button>
         </div>
         <div class="save-status" id="saveStatus"></div>
       </div>
@@ -1095,6 +1156,14 @@
         <h3>Recente activiteit</h3>
         <div id="dashActivity"></div>
       </div>
+      <div class="dash-card" id="dashPerfCard" style="display:none">
+        <h3>Performance</h3>
+        <div id="dashPerformance"></div>
+      </div>
+      <div class="dash-card" id="dashDerivCard" style="display:none">
+        <h3>Afgeleide content</h3>
+        <div id="dashDerivatives"></div>
+      </div>
     </div>
   </div>
 
@@ -1108,6 +1177,18 @@
       </div>
       <div class="cal-actions">
         <button class="cal-auto-btn" onclick="autoPlan()">Auto-plan 2 weken</button>
+        <button class="cal-auto-btn" onclick="toggleExportPanel()" style="background:transparent;border:2px solid var(--orange)">Export</button>
+      </div>
+    </div>
+    <div class="export-panel" id="exportPanel" style="display:none">
+      <div class="export-panel-inner">
+        <label>Van</label>
+        <input type="date" id="exportFrom" />
+        <label>Tot</label>
+        <input type="date" id="exportTo" />
+        <button onclick="downloadCSV()">Download CSV</button>
+        <button onclick="syncSheets()" id="sheetsBtn">Sync naar Sheets</button>
+        <span class="export-settings-link" onclick="showWebhookSettings()">Webhook instellen</span>
       </div>
     </div>
     <div class="cal-grid" id="calGrid"></div>
@@ -1169,6 +1250,25 @@
   </div>
 </div>
 
+<div class="webhook-overlay" id="webhookOverlay" onclick="if(event.target===this)closeWebhookModal()">
+  <div class="webhook-modal">
+    <h2>Google Sheets Webhook</h2>
+    <p style="font-size:13px;color:var(--ink-3);margin-bottom:12px">Configureer een webhook URL (bijv. Google Apps Script of Make/Zapier) om kalenderdata automatisch naar Google Sheets te synchroniseren.</p>
+    <pre>POST payload:
+{
+  "rows": [{ "scheduled_date", "title", "platform", ... }],
+  "from": "2024-01-01",
+  "to": "2024-01-31"
+}</pre>
+    <label style="font-family:var(--font-display);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)">Webhook URL</label>
+    <input type="url" id="webhookUrlInput" placeholder="https://script.google.com/macros/s/..." />
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn-save" onclick="saveWebhookUrl()">Opslaan</button>
+      <button class="btn-done" onclick="closeWebhookModal()">Sluiten</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1197,6 +1297,8 @@ let editingCalId = null;
 let topicsLoadedAt = 0;
 let isSaving = false;
 let autoSaveInputHandler = null;
+let boardViewMode = 'list';
+let kanbanTopics = [];
 
 async function apiCall(path, opts = {}) {
   let res;
@@ -1265,7 +1367,7 @@ function switchTab(tab) {
   });
   if (tab === 'board') {
     document.getElementById('boardView').classList.add('active');
-    loadTopics();
+    if (boardViewMode === 'kanban') { loadKanban(); } else { loadTopics(); }
   } else if (tab === 'dashboard') {
     document.getElementById('dashboardView').classList.add('active');
     loadDashboard();
@@ -1280,12 +1382,13 @@ function switchTab(tab) {
 
 async function loadTopics(force = false) {
   if (!force && topics.length && Date.now() - topicsLoadedAt < 10000) {
+    if (boardViewMode === 'kanban') { loadKanban(); return; }
     renderCards(); renderStats(); renderFilters(); return;
   }
   topics = await apiCall('/topics');
   topicsLoadedAt = Date.now();
   renderFilters();
-  renderCards();
+  if (boardViewMode === 'kanban') { loadKanban(); } else { renderCards(); }
   renderStats();
 }
 
@@ -1294,11 +1397,13 @@ function renderStats() {
   const written = topics.filter(t => t.status === 'written').length;
   const open = topics.filter(t => t.status === 'open').length;
   const claimed = topics.filter(t => t.status === 'claimed').length;
+  const review = topics.filter(t => t.status === 'review').length;
   document.getElementById('stats').innerHTML =
     `<span><span class="stat-num">${total}</span> topics</span>` +
     `<span><span class="stat-num">${written}</span> geschreven</span>` +
     `<span><span class="stat-num">${open}</span> open</span>` +
-    (claimed ? `<span><span class="stat-num">${claimed}</span> geclaimd</span>` : '');
+    (claimed ? `<span><span class="stat-num">${claimed}</span> geclaimd</span>` : '') +
+    (review ? `<span><span class="stat-num">${review}</span> in review</span>` : '');
 }
 
 function renderFilters() {
@@ -1336,6 +1441,7 @@ function renderCards() {
         <span class="sep">&middot;</span>
         <span class="source-tag">${esc(t.domain)}${t.subdomain ? ' / ' + esc(t.subdomain) : ''}</span>
         ${t.status === 'written' ? '<span class="sep">&middot;</span><span class="status-tag">&#10003; geschreven' + (t.claimed_by ? ' door ' + esc(t.claimed_by) : '') + '</span>' : ''}
+        ${t.status === 'review' ? '<span class="sep">&middot;</span><span style="font-size:10px;color:var(--tools-ink)">in review' + (t.claimed_by ? ' door ' + esc(t.claimed_by) : '') + '</span>' : ''}
         ${t.status === 'claimed' && t.claimed_by ? '<span class="sep">&middot;</span><span style="font-size:10px;color:#c27803">geclaimd door ' + esc(t.claimed_by) + '</span>' : ''}
       </div>
     </div>
@@ -1401,10 +1507,17 @@ function renderSidebar() {
 
 function updateDoneBtn() {
   const btn = document.getElementById('doneBtn');
-  if (!currentTopic) { btn.style.display = 'none'; return; }
+  const reviewBtn = document.getElementById('reviewBtn');
+  if (!currentTopic) { btn.style.display = 'none'; reviewBtn.style.display = 'none'; return; }
   btn.style.display = '';
   if (currentTopic.status === 'written') { btn.classList.add('is-done'); btn.textContent = 'Geschreven'; }
   else { btn.classList.remove('is-done'); btn.textContent = 'Markeer als geschreven'; }
+  // Show review button when topic is claimed or open (not already in review or written)
+  if (currentTopic.status === 'claimed' || currentTopic.status === 'open') {
+    reviewBtn.style.display = '';
+  } else {
+    reviewBtn.style.display = 'none';
+  }
 }
 
 async function saveSubmission() {
@@ -1541,6 +1654,45 @@ async function loadDashboard() {
         <div class="activity-time">${new Date(a.created_at + 'Z').toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</div>
       </div>`).join('')
     : '<div style="font-size:13px;color:#888;padding:8px 0">Nog geen activiteit</div>';
+
+  // Performance card
+  if (d.performance && d.performance.total_posted > 0) {
+    document.getElementById('dashPerfCard').style.display = '';
+    let perfHtml = `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+      <div><div class="perf-stat">${Math.round(d.performance.avg_impressions)}</div><div class="perf-label">Gem. impressies</div></div>
+      <div><div class="perf-stat">${Math.round(d.performance.avg_clicks)}</div><div class="perf-label">Gem. clicks</div></div>
+      <div><div class="perf-stat">${Number(d.performance.avg_engagement).toFixed(1)}%</div><div class="perf-label">Gem. engagement</div></div>
+    </div>`;
+    if (d.top_performing && d.top_performing.length) {
+      perfHtml += '<div style="margin-top:8px">';
+      d.top_performing.forEach(tp => {
+        perfHtml += `<div class="perf-row">
+          <span class="perf-row-title">${esc(tp.title).slice(0, 50)}</span>
+          <span class="perf-row-val">${tp.impressions} impr</span>
+        </div>`;
+      });
+      perfHtml += '</div>';
+    }
+    document.getElementById('dashPerformance').innerHTML = perfHtml;
+  } else {
+    document.getElementById('dashPerfCard').style.display = 'none';
+  }
+
+  // Derivative stats card
+  if (d.derivative_stats && d.derivative_stats.length) {
+    document.getElementById('dashDerivCard').style.display = '';
+    const totalDerivs = d.derivative_stats.reduce((s, r) => s + r.count, 0);
+    let derivHtml = `<div style="margin-bottom:12px"><span class="perf-stat">${totalDerivs}</span> <span class="perf-label">totaal</span></div>`;
+    d.derivative_stats.forEach(ds => {
+      derivHtml += `<div class="perf-row">
+        <span class="perf-row-title">${esc(ds.format)}</span>
+        <span class="perf-row-val">${ds.count}</span>
+      </div>`;
+    });
+    document.getElementById('dashDerivatives').innerHTML = derivHtml;
+  } else {
+    document.getElementById('dashDerivCard').style.display = 'none';
+  }
 }
 
 // ============ CALENDAR ============
@@ -1588,6 +1740,9 @@ function renderCalendar() {
       </div>`;
 
     dayEntries.forEach(e => {
+      const metricsHtml = (e.status === 'posted' && e.impressions != null)
+        ? `<div class="cal-entry-metrics">${e.impressions} impr &middot; ${e.clicks} clicks &middot; ${e.engagement_rate}% eng</div>`
+        : '';
       html += `<div class="cal-entry ${e.status === 'posted' ? 'cal-status-posted' : ''}" onclick="openCalModal(null, ${e.id})">
         <div class="cal-entry-title">${esc(e.title)}</div>
         <div class="cal-entry-meta">
@@ -1595,6 +1750,7 @@ function renderCalendar() {
           <span class="cal-account">${esc(e.account)}</span>
           <span class="cal-type">${esc(e.content_type)}</span>
         </div>
+        ${metricsHtml}
       </div>`;
     });
 
@@ -1713,6 +1869,219 @@ async function autoPlan() {
 document.getElementById('calModal').addEventListener('click', (e) => {
   if (e.target.id === 'calModal') closeCalModal();
 });
+
+// ============ KANBAN ============
+
+function setBoardView(mode) {
+  boardViewMode = mode;
+  document.querySelectorAll('.board-view-toggle .toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(mode === 'list' ? 'lijst' : 'kanban'));
+  });
+  if (mode === 'kanban') {
+    document.getElementById('cards').style.display = 'none';
+    document.getElementById('cardCount').style.display = 'none';
+    document.getElementById('kanbanBoard').style.display = '';
+    loadKanban();
+  } else {
+    document.getElementById('cards').style.display = '';
+    document.getElementById('cardCount').style.display = '';
+    document.getElementById('kanbanBoard').style.display = 'none';
+    renderCards();
+  }
+}
+
+async function loadKanban() {
+  kanbanTopics = await apiCall('/topics?view=kanban');
+  renderKanban();
+}
+
+function getKanbanStage(t) {
+  // Determine column from status and calendar_statuses
+  if (t.status === 'open') return 'idee';
+  if (t.status === 'claimed') return 'schrijven';
+  if (t.status === 'review') return 'review';
+  if (t.status === 'written') {
+    const calStats = (t.calendar_statuses || '').split(',').filter(Boolean);
+    if (calStats.includes('posted')) return 'gepost';
+    if (calStats.includes('planned')) return 'gepland';
+    return 'gepland';
+  }
+  return 'idee';
+}
+
+const KANBAN_STAGES = [
+  { key: 'idee', label: 'Idee' },
+  { key: 'schrijven', label: 'Schrijven' },
+  { key: 'review', label: 'Review' },
+  { key: 'gepland', label: 'Gepland' },
+  { key: 'gepost', label: 'Gepost' },
+];
+
+function renderKanban() {
+  let filtered = kanbanTopics;
+  if (activeDomain !== 'all') filtered = filtered.filter(t => t.domain === activeDomain);
+  if (activeCat !== 'all') filtered = filtered.filter(t => t.category === activeCat);
+
+  const columns = {};
+  KANBAN_STAGES.forEach(s => columns[s.key] = []);
+  filtered.forEach(t => {
+    const stage = getKanbanStage(t);
+    if (columns[stage]) columns[stage].push(t);
+  });
+
+  let html = '';
+  KANBAN_STAGES.forEach(stage => {
+    const items = columns[stage.key];
+    html += `<div class="kanban-col" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="kanbanDrop(event,'${stage.key}');this.classList.remove('drag-over')">
+      <div class="kanban-col-header">${stage.label} <span class="kanban-col-count">${items.length}</span></div>
+      <div class="kanban-col-cards">`;
+    items.forEach(t => {
+      html += `<div class="kanban-card" draggable="true" ondragstart="kanbanDragStart(event,${t.id})" ondragend="this.classList.remove('dragging')" onclick="openEditor(${t.id})">
+        <div class="kanban-card-title">${esc(t.title).slice(0, 60)}</div>
+        <div class="kanban-card-meta">
+          <span class="cat-badge cat-${t.category}">${(CAT_LABELS[t.category] || t.category).split(' ')[0]}</span>
+          ${t.claimed_by ? '<span style="font-size:10px;color:var(--ink-4)">' + esc(t.claimed_by) + '</span>' : ''}
+        </div>
+        <select class="kanban-move-select" onclick="event.stopPropagation()" onchange="kanbanMoveSelect(${t.id}, this.value)">
+          ${KANBAN_STAGES.map(s => `<option value="${s.key}" ${s.key === stage.key ? 'selected' : ''}>${s.label}</option>`).join('')}
+        </select>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  document.getElementById('kanbanBoard').innerHTML = html;
+}
+
+let draggedTopicId = null;
+function kanbanDragStart(e, id) {
+  draggedTopicId = id;
+  e.target.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+async function kanbanDrop(e, stage) {
+  e.preventDefault();
+  if (!draggedTopicId) return;
+  await kanbanMoveSelect(draggedTopicId, stage);
+  draggedTopicId = null;
+}
+
+async function kanbanMoveSelect(id, stage) {
+  const author = localStorage.getItem('author') || '';
+  let newStatus = 'open';
+  if (stage === 'idee') newStatus = 'open';
+  else if (stage === 'schrijven') newStatus = 'claimed';
+  else if (stage === 'review') newStatus = 'review';
+  else if (stage === 'gepland' || stage === 'gepost') newStatus = 'written';
+
+  try {
+    await apiCall('/topics/' + id, { method: 'PATCH', body: { status: newStatus, claimed_by: newStatus !== 'open' ? author || null : null } });
+    toast('Status bijgewerkt');
+    loadKanban();
+  } catch (e) {}
+}
+
+// ============ REVIEW ============
+
+async function setReview() {
+  if (!currentTopic) return;
+  const author = document.getElementById('authorInput').value.trim();
+  if (!author) { toast('Vul je naam in'); return; }
+  const content = document.getElementById('contentArea').value.trim();
+  if (content && isDirty) await saveSubmission();
+  try {
+    await apiCall('/topics/' + currentTopic.id, { method: 'PATCH', body: { status: 'review', claimed_by: author } });
+    currentTopic.status = 'review';
+    currentTopic.claimed_by = author;
+    updateDoneBtn();
+    toast('Naar review gestuurd');
+  } catch (e) {}
+}
+
+// ============ EXPORT ============
+
+function toggleExportPanel() {
+  const panel = document.getElementById('exportPanel');
+  const isHidden = panel.style.display === 'none';
+  panel.style.display = isHidden ? '' : 'none';
+  if (isHidden) {
+    // Set default dates to current month
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    document.getElementById('exportFrom').value = `${y}-${m}-01`;
+    const lastDay = new Date(y, now.getMonth() + 1, 0).getDate();
+    document.getElementById('exportTo').value = `${y}-${m}-${String(lastDay).padStart(2, '0')}`;
+    loadWebhookStatus();
+  }
+}
+
+function downloadCSV() {
+  const from = document.getElementById('exportFrom').value;
+  const to = document.getElementById('exportTo').value;
+  if (!from || !to) { toast('Selecteer een periode'); return; }
+  window.open(`${API}/export/csv?from=${from}&to=${to}`, '_blank');
+}
+
+async function syncSheets() {
+  const from = document.getElementById('exportFrom').value;
+  const to = document.getElementById('exportTo').value;
+  if (!from || !to) { toast('Selecteer een periode'); return; }
+  const btn = document.getElementById('sheetsBtn');
+  btn.disabled = true; btn.textContent = 'Syncing...';
+  try {
+    const res = await apiCall(`/export/sheets?from=${from}&to=${to}`, { method: 'POST' });
+    toast(`${res.rows} rijen gesynchroniseerd`);
+  } catch (e) {} finally {
+    btn.disabled = false; btn.textContent = 'Sync naar Sheets';
+  }
+}
+
+async function loadWebhookStatus() {
+  try {
+    const res = await apiCall('/settings/sheets_webhook_url');
+    const btn = document.getElementById('sheetsBtn');
+    if (!res.value) {
+      btn.disabled = true;
+      btn.title = 'Configureer eerst een webhook URL';
+    } else {
+      btn.disabled = false;
+      btn.title = '';
+    }
+  } catch (e) {}
+}
+
+function showWebhookSettings() {
+  document.getElementById('webhookOverlay').classList.add('open');
+  apiCall('/settings/sheets_webhook_url').then(res => {
+    document.getElementById('webhookUrlInput').value = res.value || '';
+  }).catch(() => {});
+}
+
+function closeWebhookModal() {
+  document.getElementById('webhookOverlay').classList.remove('open');
+}
+
+async function saveWebhookUrl() {
+  const url = document.getElementById('webhookUrlInput').value.trim();
+  try {
+    await apiCall('/settings', { method: 'POST', body: { key: 'sheets_webhook_url', value: url || null } });
+    toast('Webhook URL opgeslagen');
+    closeWebhookModal();
+    loadWebhookStatus();
+  } catch (e) {}
+}
+
+// ============ DEMO DATA ============
+
+async function generateDemoData() {
+  try {
+    const res = await apiCall('/demo-data/generate', { method: 'POST' });
+    toast(`${res.generated} entries bijgewerkt met demo data`);
+    if (currentTab === 'calendar') loadCalendar();
+    if (currentTab === 'dashboard') loadDashboard();
+  } catch (e) {}
+}
 
 // ============ INIT ============
 loadTopics();
