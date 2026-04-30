@@ -67,6 +67,13 @@
     /* Motion */
     --t-quick: 0.15s ease-in-out;
     --t-base: 0.3s ease;
+
+    /* Matrix interestingness scale */
+    --i5: #ED4C35;
+    --i4: #FF6927;
+    --i3: #FF8B40;
+    --i2: #FFB07A;
+    --i1: #FFD4B3;
   }
 
   /* ---------- Base ---------- */
@@ -1070,7 +1077,310 @@
     .dash-stat-num { font-size: 36px; }
     .dash-stat-row { flex-wrap: wrap; }
     .header h1 { font-size: 26px; }
+    .matrix-grid { grid-template-columns: 80px repeat(8, 1fr); grid-template-rows: 40px repeat(5, 80px); gap: 2px; }
+    .matrix-count { font-size: 28px; }
+    .matrix-col-head { font-size: 9px; padding: 0 4px; }
+    .matrix-row-head .lvlnum { font-size: 18px; }
+    .matrix-row-head .lvlname { font-size: 8px; }
+    .matrix-titlestrip { padding: 16px 16px 12px; }
+    .matrix-wrap { padding: 4px 16px 8px; }
+    .matrix-legend { padding: 0 16px; }
   }
+
+  /* ---------- Matrix ---------- */
+  .matrix-titlestrip {
+    padding: 32px 32px 24px;
+    max-width: 1440px; margin: 0 auto;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+  }
+  .matrix-titlewrap h1 {
+    font-family: var(--font-display);
+    font-size: 32px; letter-spacing: 0.5px; color: var(--white);
+    line-height: 1; margin-bottom: 10px;
+  }
+  .matrix-titlewrap .subtitle {
+    font-size: 13px; color: var(--ink-3); letter-spacing: 0.2px;
+  }
+  .matrix-statrow { display: flex; gap: 8px; }
+  .matrix-statcard {
+    background: var(--surface);
+    padding: 10px 22px 10px 14px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+    min-width: 120px;
+  }
+  .matrix-statcard .label {
+    font-family: var(--font-display);
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 4px;
+  }
+  .matrix-statcard .val {
+    font-family: var(--font-display);
+    font-size: 20px; color: var(--white);
+  }
+  .matrix-statcard.accent { background: var(--gradient); }
+  .matrix-statcard.accent .label, .matrix-statcard.accent .val { color: var(--white); }
+
+  .matrix-wrap {
+    max-width: 1440px; margin: 0 auto;
+    padding: 8px 32px 16px;
+  }
+  .matrix-grid {
+    display: grid;
+    grid-template-columns: 140px repeat(8, 1fr);
+    grid-template-rows: 56px repeat(5, 140px);
+    gap: 4px;
+    width: 100%;
+  }
+  .matrix-grid > * { min-width: 0; overflow: hidden; }
+  .matrix-col-head {
+    display: flex; align-items: center;
+    justify-content: flex-start; padding: 0 12px;
+    border-bottom: 1px solid var(--surface);
+    font-family: var(--font-display);
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .matrix-corner {
+    border-bottom: 1px solid var(--surface);
+    border-right: 1px solid var(--surface);
+    display: flex; align-items: flex-end;
+    padding: 0 0 8px 0;
+    font-family: var(--font-display);
+    font-size: 9px; letter-spacing: 1px;
+    color: var(--ink-4); text-transform: uppercase;
+  }
+  .matrix-row-head {
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 0 12px;
+    border-right: 1px solid var(--surface);
+  }
+  .matrix-row-head .lvlnum {
+    font-family: var(--font-display);
+    font-size: 28px; color: var(--white); line-height: 1;
+  }
+  .matrix-row-head .lvlname {
+    font-size: 10px; color: var(--ink-3); margin-top: 6px; letter-spacing: 1px;
+    font-family: var(--font-display); text-transform: uppercase;
+  }
+  .matrix-cell {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter .12s ease, border-color .12s ease;
+    min-width: 0;
+  }
+  .matrix-cell.i5 { background: var(--i5); }
+  .matrix-cell.i4 { background: var(--i4); }
+  .matrix-cell.i3 { background: var(--i3); }
+  .matrix-cell.i2 { background: var(--i2); }
+  .matrix-cell.i1 { background: var(--i1); }
+  .matrix-count {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--white);
+  }
+  .matrix-cell.i2 .matrix-count, .matrix-cell.i1 .matrix-count { color: #1F1F1F; }
+  .matrix-cell:hover {
+    border: 1px solid var(--red);
+    filter: brightness(1.08);
+  }
+  .matrix-cell.i5:hover {
+    border: 1px solid #FFFFFF;
+    filter: brightness(1.08);
+  }
+
+  .matrix-legend {
+    max-width: 1440px; margin: 18px auto 48px; padding: 0 32px;
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 14px; flex-wrap: wrap;
+  }
+  .matrix-legend .lbl {
+    font-family: var(--font-display);
+    font-size: 10px; letter-spacing: 1px; color: var(--ink-3);
+    text-transform: uppercase; margin-right: 6px;
+  }
+  .matrix-legend .item {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-display);
+    font-size: 10px; letter-spacing: 1px; color: var(--ink-3);
+    text-transform: uppercase;
+  }
+  .matrix-legend .sw {
+    width: 14px; height: 14px; border-radius: 2px; display: inline-block;
+  }
+  .sw-i5 { background: var(--i5); }
+  .sw-i4 { background: var(--i4); }
+  .sw-i3 { background: var(--i3); }
+  .sw-i2 { background: var(--i2); }
+  .sw-i1 { background: var(--i1); }
+
+  /* ---------- Editor Type Tabs + Hook Picker ---------- */
+  .type-tabs {
+    display: flex; gap: 4px; margin-bottom: 16px;
+    border-bottom: 1px solid var(--line); padding-bottom: 8px;
+  }
+  .type-tab {
+    font-family: var(--font-display);
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--ink-4); background: transparent; border: none;
+    padding: 6px 14px; cursor: pointer;
+    border-bottom: 2px solid transparent; transition: color var(--t-quick);
+  }
+  .type-tab:hover { color: var(--white); }
+  .type-tab.active { color: var(--white); border-bottom: 2px solid var(--red); }
+  .opener-field { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .opener-input {
+    flex: 1; padding: 8px 12px;
+    background: var(--surface); border: 1px solid var(--line);
+    color: var(--ink); font-family: var(--font-body); font-size: 14px;
+    border-radius: var(--r-sm);
+  }
+  .opener-input:focus { outline: none; border-color: var(--red); }
+  .hook-picker-btn {
+    font-family: var(--font-display);
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 14px; background: var(--surface-2); border: 1px solid var(--line);
+    color: var(--ink-3); cursor: pointer; white-space: nowrap; border-radius: var(--r-sm);
+  }
+  .hook-picker-btn:hover { border-color: var(--red); color: var(--white); }
+  .hook-dropdown {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--surface); border: 1px solid var(--line);
+    max-height: 300px; overflow-y: auto; z-index: 100;
+    display: none; border-radius: var(--r-sm);
+  }
+  .hook-dropdown.open { display: block; }
+  .hook-option {
+    padding: 10px 14px; cursor: pointer;
+    font-size: 13px; color: var(--ink-2);
+    border-bottom: 1px solid var(--line);
+  }
+  .hook-option:hover { background: var(--surface-2); color: var(--white); }
+  .hook-option:last-child { border-bottom: none; }
+  .editor-context-strip {
+    display: flex; gap: 12px; align-items: center;
+    font-size: 12px; color: var(--ink-4);
+    margin-bottom: 12px; padding: 6px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .editor-context-strip .domain-label {
+    font-family: var(--font-display);
+    font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  /* ---------- Bibliotheek ---------- */
+  .lib-filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .lib-filter-chip {
+    font-family: var(--font-display); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 12px; background: var(--surface); border: 1px solid var(--line);
+    color: var(--ink-4); cursor: pointer; border-radius: var(--r-sm);
+  }
+  .lib-filter-chip:hover { border-color: var(--red); color: var(--white); }
+  .lib-filter-chip.active { background: var(--red); border-color: var(--red); color: var(--white); }
+  .lib-topic-row {
+    background: var(--surface); padding: 14px 16px; margin-bottom: 2px;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  }
+  .lib-topic-row:hover { background: var(--surface-2); }
+  .lib-topic-title { font-weight: 500; font-size: 14px; }
+  .lib-topic-meta { font-size: 11px; color: var(--ink-4); display: flex; gap: 12px; align-items: center; }
+  .lib-sub-row { padding: 8px 16px 8px 40px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-3); }
+  .lib-der-row {
+    padding: 8px 16px 8px 64px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .lib-der-row:hover { background: rgba(255,255,255,0.02); }
+  .lib-der-type {
+    font-family: var(--font-display); font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 2px 8px; background: var(--surface-2); color: var(--ink-3); border-radius: var(--r-sm);
+    white-space: nowrap;
+  }
+  .lib-der-title { flex: 1; font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lib-status-pill {
+    font-size: 10px; padding: 2px 8px; border-radius: 2px; text-transform: uppercase;
+    font-family: var(--font-display); letter-spacing: 0.5px;
+  }
+  .lib-status-generated { background: var(--surface-2); color: var(--ink-4); }
+  .lib-status-scheduled { background: var(--tools-bg); color: var(--tools-ink); }
+  .lib-status-posted { background: var(--markt-bg); color: var(--markt-ink); }
+  .lib-status-archived { background: var(--surface-2); color: var(--ink-4); opacity: 0.6; }
+  .lib-perf-inputs { display: flex; gap: 6px; align-items: center; }
+  .lib-perf-input {
+    width: 60px; padding: 3px 6px; font-size: 12px; text-align: right;
+    background: var(--bg); border: 1px solid var(--line); color: var(--ink);
+    border-radius: var(--r-sm);
+  }
+  .lib-perf-input:focus { outline: none; border-color: var(--red); }
+  .lib-perf-label { font-size: 10px; color: var(--ink-4); }
+  .lib-expanded { display: none; }
+  .lib-expanded.open { display: block; }
+
+  /* ---------- MSP Journey ---------- */
+  .journey-grid-wrap { max-width: 1440px; margin: 0 auto; padding: 0 0 24px; overflow-x: auto; }
+  .journey-grid {
+    display: grid; grid-template-columns: 120px repeat(8, 1fr);
+    grid-template-rows: 40px repeat(5, auto); gap: 2px; min-width: 900px;
+  }
+  .journey-grid > * { min-width: 0; overflow: hidden; }
+  .journey-col-head {
+    display: flex; align-items: center; padding: 0 8px;
+    font-family: var(--font-display); font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--ink-4); border-bottom: 1px solid var(--line);
+  }
+  .journey-row-head {
+    display: flex; flex-direction: column; justify-content: flex-start; padding: 8px;
+    border-right: 1px solid var(--line); min-height: 80px;
+  }
+  .journey-row-head .lvlnum { font-family: var(--font-display); font-size: 20px; color: var(--white); }
+  .journey-row-head .lvlname { font-size: 9px; color: var(--ink-4); text-transform: uppercase; font-family: var(--font-display); letter-spacing: 1px; }
+  .journey-corner { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 8px; font-size: 9px; color: var(--ink-4); }
+  .journey-cell {
+    background: var(--surface); padding: 8px; min-height: 80px;
+    border: 1px solid transparent; font-size: 12px;
+  }
+  .journey-cell:hover { border-color: var(--line); }
+  .journey-topic-item {
+    padding: 3px 0; display: flex; justify-content: space-between; align-items: center;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .journey-topic-item span { overflow: hidden; text-overflow: ellipsis; }
+  .journey-edit-btn {
+    background: none; border: none; color: var(--ink-4); cursor: pointer;
+    font-size: 12px; padding: 2px 4px; flex-shrink: 0;
+  }
+  .journey-edit-btn:hover { color: var(--white); }
+  .journey-audit { max-width: 1440px; margin: 0 auto; padding: 24px 0; }
+  .journey-audit h3 { font-size: 14px; margin-bottom: 12px; }
+  .audit-entry {
+    padding: 10px 0; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    font-size: 13px;
+  }
+  .audit-entry-info { flex: 1; color: var(--ink-2); }
+  .audit-entry-time { font-size: 11px; color: var(--ink-4); white-space: nowrap; }
+  .audit-undo-btn {
+    font-family: var(--font-display); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 10px; background: transparent; border: 1px solid var(--line);
+    color: var(--ink-3); cursor: pointer; border-radius: var(--r-sm);
+  }
+  .audit-undo-btn:hover { border-color: var(--red); color: var(--white); }
+  .journey-edit-popover {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--surface); border: 1px solid var(--line); padding: 24px;
+    z-index: 200; min-width: 400px; border-radius: var(--r-md);
+  }
+  .journey-edit-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6); z-index: 199; display: none;
+  }
+  .journey-edit-overlay.open { display: block; }
 
   /* ---------- Print ---------- */
   @media print {
@@ -1084,13 +1394,38 @@
 <div class="container">
   <!-- TAB NAVIGATION -->
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('board')">Board</button>
+    <button class="tab-btn active" onclick="switchTab('matrix')">Matrix</button>
+    <button class="tab-btn" onclick="switchTab('board')">Board</button>
+    <button class="tab-btn" onclick="switchTab('library')">Bibliotheek</button>
     <button class="tab-btn" onclick="switchTab('dashboard')">Dashboard</button>
     <button class="tab-btn" onclick="switchTab('calendar')">Kalender</button>
+    <button class="tab-btn" onclick="switchTab('journey')">MSP Journey</button>
+  </div>
+
+  <!-- MATRIX VIEW -->
+  <div class="view active" id="matrixView">
+    <section class="matrix-titlestrip">
+      <div class="matrix-titlewrap">
+        <h1>MSP Journey Matrix</h1>
+        <div class="subtitle">8 domeinen x 5 levels — kleur = interestingness, getal = aantal topics</div>
+      </div>
+      <div class="matrix-statrow" id="matrixStats"></div>
+    </section>
+    <section class="matrix-wrap">
+      <div class="matrix-grid" role="grid" aria-label="MSP Journey Matrix" id="matrixGrid"></div>
+    </section>
+    <section class="matrix-legend">
+      <span class="lbl">Interestingness</span>
+      <span class="item"><span class="sw sw-i5"></span>Hoog (5)</span>
+      <span class="item"><span class="sw sw-i4"></span>(4)</span>
+      <span class="item"><span class="sw sw-i3"></span>(3)</span>
+      <span class="item"><span class="sw sw-i2"></span>(2)</span>
+      <span class="item"><span class="sw sw-i1"></span>Laag (1)</span>
+    </section>
   </div>
 
   <!-- BOARD VIEW -->
-  <div class="view active" id="boardView">
+  <div class="view" id="boardView">
     <div class="header">
       <h1>Contentbibliotheek</h1>
       <div class="header-sub">Content-idee&#235;n op basis van MSP Journey L2-L3 problemen, frustraties en vragen</div>
@@ -1115,12 +1450,20 @@
   <!-- EDITOR VIEW -->
   <div class="view" id="editorView">
     <button class="back-btn" onclick="closeEditor()">&#8592; Terug naar overzicht</button>
+    <div class="editor-context-strip" id="editorContext"></div>
+    <div class="type-tabs" id="typeTabs"></div>
     <div class="editor-layout">
       <div class="editor-main">
+        <div class="field-label">Opener</div>
+        <div class="opener-field" style="position:relative">
+          <input class="opener-input" id="openerInput" type="text" placeholder="Hook of opening zin..." />
+          <button class="hook-picker-btn" onclick="toggleHookPicker()">Gebruik template</button>
+          <div class="hook-dropdown" id="hookDropdown"></div>
+        </div>
         <div class="field-label">Jouw naam</div>
         <input class="author-input" id="authorInput" type="text" placeholder="Bijv. Joshua, Tom, ..." />
         <div class="field-label">Inhoud</div>
-        <textarea class="content-area" id="contentArea" placeholder="Schrijf hier je ruwe content. Denk niet te lang na over structuur &#8212; dat komt later."></textarea>
+        <textarea class="content-area" id="contentArea" placeholder="Schrijf hier je ruwe content. Denk niet te lang na over structuur, dat komt later."></textarea>
         <div class="editor-actions">
           <button class="btn-save" id="saveBtn" onclick="saveSubmission()">Opslaan</button>
           <button class="btn-done" id="doneBtn" onclick="toggleDone()">Markeer als geschreven</button>
@@ -1130,6 +1473,16 @@
       </div>
       <div class="editor-sidebar" id="editorSidebar"></div>
     </div>
+  </div>
+
+  <!-- LIBRARY VIEW -->
+  <div class="view" id="libraryView">
+    <div class="header">
+        <h1>Bibliotheek</h1>
+        <div class="header-sub">Bronposts, afgeleide content en performance per topic</div>
+    </div>
+    <div class="lib-filters" id="libFilters"></div>
+    <div class="lib-tree" id="libTree"></div>
   </div>
 
   <!-- DASHBOARD VIEW -->
@@ -1192,6 +1545,21 @@
       </div>
     </div>
     <div class="cal-grid" id="calGrid"></div>
+  </div>
+
+  <!-- JOURNEY VIEW -->
+  <div class="view" id="journeyView">
+    <div class="header">
+        <h1>MSP Journey</h1>
+        <div class="header-sub">Topics per cel bewerken en wijzigingen volgen</div>
+    </div>
+    <div class="journey-grid-wrap">
+        <div class="journey-grid" id="journeyGrid"></div>
+    </div>
+    <div class="journey-audit">
+        <h3>Wijzigingslog</h3>
+        <div id="auditFeed"></div>
+    </div>
   </div>
 </div>
 
@@ -1286,6 +1654,7 @@ const DAY_NAMES = ['', 'ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'];
 let topics = [];
 let activeDomain = 'all';
 let activeCat = 'all';
+let activeLevel = null;
 let currentTopic = null;
 let currentSubmission = null;
 let autoSaveTimer = null;
@@ -1299,6 +1668,69 @@ let isSaving = false;
 let autoSaveInputHandler = null;
 let boardViewMode = 'list';
 let kanbanTopics = [];
+let editorContentType = 'post';
+let hookTemplates = [];
+
+const JOURNEY_DOMAINS = ['Identity','Organisation','GRC','Positioning','Portfolio','Technology','Blueprint','Data driven'];
+const JOURNEY_LEVELS = {5:'Success',4:'Partner',3:'Managed',2:'Proactive',1:'Reactive'};
+const MATRIX_INTENSITY = {
+  5: [2, 2, 1, 3, 2, 3, 1, 3],
+  4: [3, 3, 2, 3, 3, 4, 2, 4],
+  3: [4, 3, 2, 4, 3, 5, 3, 5],
+  2: [5, 4, 3, 5, 3, 5, 3, 5],
+  1: [5, 4, 4, 5, 4, 5, 4, 5],
+};
+
+async function loadMatrix() {
+  const data = await apiCall('/topics/matrix');
+  const grid = document.getElementById('matrixGrid');
+  const statsEl = document.getElementById('matrixStats');
+
+  let html = '<div class="matrix-corner">Level / Domain</div>';
+  JOURNEY_DOMAINS.forEach(d => {
+    html += `<div class="matrix-col-head">${d}</div>`;
+  });
+
+  for (let level = 5; level >= 1; level--) {
+    html += `<div class="matrix-row-head"><div class="lvlnum">${level}</div><div class="lvlname">${JOURNEY_LEVELS[level]}</div></div>`;
+    JOURNEY_DOMAINS.forEach((domain, di) => {
+      const cell = data.find(c => c.domain === domain && c.level === level) || {count:0, topic_ids:[]};
+      const intensity = MATRIX_INTENSITY[level][di];
+      html += `<div class="matrix-cell i${intensity}" onclick="matrixCellClick('${domain}',${level})" title="${domain} × ${JOURNEY_LEVELS[level]}"><div class="matrix-count">${cell.count}</div></div>`;
+    });
+  }
+  grid.innerHTML = html;
+
+  const totalTopics = data.reduce((s,c) => s + c.count, 0);
+  const cellsCovered = data.filter(c => c.count > 0).length;
+
+  let hottestGap = null;
+  let maxIntensity = 0;
+  for (let level = 5; level >= 1; level--) {
+    JOURNEY_DOMAINS.forEach((domain, di) => {
+      const cell = data.find(c => c.domain === domain && c.level === level) || {count:0};
+      const intensity = MATRIX_INTENSITY[level][di];
+      if (cell.count === 0 && intensity > maxIntensity) {
+        maxIntensity = intensity;
+        hottestGap = {domain, level, intensity};
+      }
+    });
+  }
+
+  let statsHtml = `
+    <div class="matrix-statcard"><div class="label">Topics</div><div class="val">${totalTopics}</div></div>
+    <div class="matrix-statcard"><div class="label">Cells covered</div><div class="val">${cellsCovered} / 40</div></div>
+  `;
+  if (hottestGap) {
+    statsHtml += `<div class="matrix-statcard accent"><div class="label">Hottest gap</div><div class="val">${hottestGap.domain} × ${JOURNEY_LEVELS[hottestGap.level]}</div></div>`;
+  }
+  statsEl.innerHTML = statsHtml;
+}
+
+function matrixCellClick(domain, level) {
+  localStorage.setItem('boardFilter', JSON.stringify({domain, level}));
+  switchTab('board');
+}
 
 async function apiCall(path, opts = {}) {
   let res;
@@ -1360,20 +1792,29 @@ function switchTab(tab) {
   stopAutoSave();
   currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', ['board', 'dashboard', 'calendar'][i] === tab);
+    btn.classList.toggle('active', ['matrix', 'board', 'library', 'dashboard', 'calendar', 'journey'][i] === tab);
   });
-  ['boardView', 'editorView', 'dashboardView', 'calendarView'].forEach(id => {
+  ['matrixView', 'boardView', 'editorView', 'libraryView', 'dashboardView', 'calendarView', 'journeyView'].forEach(id => {
     document.getElementById(id).classList.remove('active');
   });
-  if (tab === 'board') {
+  if (tab === 'matrix') {
+    document.getElementById('matrixView').classList.add('active');
+    loadMatrix();
+  } else if (tab === 'board') {
     document.getElementById('boardView').classList.add('active');
     if (boardViewMode === 'kanban') { loadKanban(); } else { loadTopics(); }
+  } else if (tab === 'library') {
+    document.getElementById('libraryView').classList.add('active');
+    loadLibrary();
   } else if (tab === 'dashboard') {
     document.getElementById('dashboardView').classList.add('active');
     loadDashboard();
   } else if (tab === 'calendar') {
     document.getElementById('calendarView').classList.add('active');
     loadCalendar();
+  } else if (tab === 'journey') {
+    document.getElementById('journeyView').classList.add('active');
+    loadJourney();
   }
   window.scrollTo(0, 0);
 }
@@ -1387,6 +1828,13 @@ async function loadTopics(force = false) {
   }
   topics = await apiCall('/topics');
   topicsLoadedAt = Date.now();
+  const boardFilter = localStorage.getItem('boardFilter');
+  if (boardFilter) {
+    localStorage.removeItem('boardFilter');
+    const filter = JSON.parse(boardFilter);
+    if (filter.domain) activeDomain = filter.domain;
+    if (filter.level) activeLevel = filter.level;
+  }
   renderFilters();
   if (boardViewMode === 'kanban') { loadKanban(); } else { renderCards(); }
   renderStats();
@@ -1422,13 +1870,14 @@ function renderFilters() {
   document.getElementById('catFilters').innerHTML = catHtml;
 }
 
-function setDomain(d) { activeDomain = d; renderFilters(); renderCards(); }
-function setCat(c) { activeCat = c; renderFilters(); renderCards(); }
+function setDomain(d) { activeDomain = d; activeLevel = null; renderFilters(); renderCards(); }
+function setCat(c) { activeCat = c; activeLevel = null; renderFilters(); renderCards(); }
 
 function renderCards() {
   let filtered = topics;
   if (activeDomain !== 'all') filtered = filtered.filter(t => t.domain === activeDomain);
   if (activeCat !== 'all') filtered = filtered.filter(t => t.category === activeCat);
+  if (activeLevel) filtered = filtered.filter(t => t.level == activeLevel);
   document.getElementById('cardCount').textContent = filtered.length + ' content-ideeën';
   document.getElementById('cards').innerHTML = filtered.map(t => `
     <div class="card ${t.status === 'written' ? 'card-written' : ''}" onclick="openEditor(${t.id})">
@@ -1463,6 +1912,11 @@ async function openEditor(topicId) {
   } else {
     document.getElementById('contentArea').value = '';
   }
+  renderEditorContext();
+  editorContentType = 'post';
+  renderTypeTabs();
+  loadHooksForType(editorContentType);
+  document.getElementById('openerInput').value = currentTopic.hook || '';
   renderSidebar();
   updateDoneBtn();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1476,6 +1930,11 @@ function openFreeForm() {
   const author = localStorage.getItem('author') || '';
   document.getElementById('authorInput').value = author;
   document.getElementById('contentArea').value = '';
+  renderEditorContext();
+  editorContentType = 'post';
+  renderTypeTabs();
+  loadHooksForType(editorContentType);
+  document.getElementById('openerInput').value = '';
   renderSidebar();
   updateDoneBtn();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -1534,7 +1993,7 @@ async function saveSubmission() {
     if (currentSubmission) {
       await apiCall('/submissions/' + currentSubmission.id, { method: 'PATCH', body: { raw_content: content } });
     } else {
-      const res = await apiCall('/submissions', { method: 'POST', body: { topic_id: currentTopic ? currentTopic.id : null, author, raw_content: content } });
+      const res = await apiCall('/submissions', { method: 'POST', body: { topic_id: currentTopic ? currentTopic.id : null, author, raw_content: content, content_type: editorContentType } });
       currentSubmission = res;
     }
     if (currentTopic && currentTopic.status === 'open') {
@@ -1602,6 +2061,279 @@ document.getElementById('contentArea').addEventListener('blur', () => {
     if (author && content) saveSubmission();
   }
 });
+
+// ============ TYPE TABS + HOOK PICKER ============
+
+const CONTENT_TYPES = ['post','article','blog','video','case-study','poll'];
+const CONTENT_TYPE_LABELS = {post:'Post',article:'Article',blog:'Blog',video:'Video','case-study':'Case Study',poll:'Poll'};
+
+function renderTypeTabs() {
+  document.getElementById('typeTabs').innerHTML = CONTENT_TYPES.map(t =>
+    `<button class="type-tab ${editorContentType === t ? 'active' : ''}" onclick="switchContentType('${t}')">${CONTENT_TYPE_LABELS[t]}</button>`
+  ).join('');
+}
+
+async function switchContentType(type) {
+  if (isDirty) {
+    const author = document.getElementById('authorInput').value.trim();
+    const content = document.getElementById('contentArea').value.trim();
+    if (author && content) await saveSubmission();
+  }
+  editorContentType = type;
+  renderTypeTabs();
+  loadHooksForType(type);
+  if (currentTopic) {
+    const subs = await apiCall(`/submissions?topic_id=${currentTopic.id}&content_type=${type}`);
+    if (subs.length > 0) {
+      currentSubmission = subs[0];
+      document.getElementById('contentArea').value = currentSubmission.raw_content;
+    } else {
+      currentSubmission = null;
+      document.getElementById('contentArea').value = '';
+    }
+    isDirty = false;
+  }
+}
+
+async function loadHooksForType(type) {
+  try { hookTemplates = await apiCall(`/hooks?type=${type}`); } catch(e) { hookTemplates = []; }
+  renderHookDropdown();
+}
+
+function renderHookDropdown() {
+  const dd = document.getElementById('hookDropdown');
+  dd.innerHTML = hookTemplates.map(h =>
+    `<div class="hook-option" onclick="pickHook(this.dataset.text)" data-text="${esc(h.text)}">${esc(h.text)}</div>`
+  ).join('');
+}
+
+function toggleHookPicker() {
+  document.getElementById('hookDropdown').classList.toggle('open');
+}
+
+function pickHook(text) {
+  document.getElementById('openerInput').value = text;
+  document.getElementById('hookDropdown').classList.remove('open');
+  isDirty = true;
+}
+
+function renderEditorContext() {
+  const el = document.getElementById('editorContext');
+  if (!currentTopic) { el.innerHTML = '<span class="domain-label">Vrije tekst</span>'; return; }
+  const t = currentTopic;
+  el.innerHTML = `<span class="domain-label">${esc(t.domain)}</span>
+    ${t.level ? `<span style="color:var(--ink-4)">Level ${t.level}</span>` : ''}
+    <span style="color:var(--ink-4)">#${t.id}</span>
+    <span class="cat-badge cat-${t.category}" style="font-size:10px;padding:2px 8px">${CAT_LABELS[t.category] || t.category}</span>`;
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.opener-field')) {
+    document.getElementById('hookDropdown')?.classList.remove('open');
+  }
+});
+
+// ============ BIBLIOTHEEK ============
+
+let libFilterType = 'all';
+let libFilterStatus = 'all';
+
+async function loadLibrary() {
+  const data = await apiCall('/derivatives/tree');
+  renderLibraryFilters(data);
+  renderLibraryTree(data);
+}
+
+function renderLibraryFilters(data) {
+  const types = new Set();
+  data.forEach(t => t.submissions.forEach(s => s.derivatives.forEach(d => types.add(d.type))));
+  const statuses = ['generated','scheduled','posted','archived'];
+  let html = '<span class="lib-filter-chip ' + (libFilterType === 'all' ? 'active' : '') + '" onclick="setLibFilter(\'type\',\'all\')">Alle types</span>';
+  [...types].sort().forEach(t => {
+    html += `<span class="lib-filter-chip ${libFilterType === t ? 'active' : ''}" onclick="setLibFilter('type','${t}')">${esc(t)}</span>`;
+  });
+  html += '<span style="width:16px"></span>';
+  html += '<span class="lib-filter-chip ' + (libFilterStatus === 'all' ? 'active' : '') + '" onclick="setLibFilter(\'status\',\'all\')">Alle status</span>';
+  statuses.forEach(s => {
+    html += `<span class="lib-filter-chip ${libFilterStatus === s ? 'active' : ''}" onclick="setLibFilter('status','${s}')">${s}</span>`;
+  });
+  document.getElementById('libFilters').innerHTML = html;
+}
+
+function setLibFilter(filterType, value) {
+  if (filterType === 'type') libFilterType = value;
+  if (filterType === 'status') libFilterStatus = value;
+  loadLibrary();
+}
+
+function renderLibraryTree(data) {
+  let html = '';
+  data.forEach(topic => {
+    let totalDers = 0;
+    topic.submissions.forEach(s => {
+      s.derivatives.forEach(d => {
+        if (libFilterType !== 'all' && d.type !== libFilterType) return;
+        if (libFilterStatus !== 'all' && d.status !== libFilterStatus) return;
+        totalDers++;
+      });
+    });
+    html += `<div class="lib-topic-row" onclick="toggleLibTopic(${topic.topic_id})">
+      <span class="lib-topic-title">${esc(topic.title)}</span>
+      <span class="lib-topic-meta">
+        <span class="cat-badge cat-${topic.category}" style="font-size:9px;padding:1px 6px">${esc(topic.category)}</span>
+        <span>${esc(topic.domain)}</span>
+        <span>${totalDers} derivaten</span>
+      </span>
+    </div>`;
+    html += `<div class="lib-expanded" id="libTopic${topic.topic_id}">`;
+    topic.submissions.forEach(s => {
+      html += `<div class="lib-sub-row">Submission door ${esc(s.author)}</div>`;
+      s.derivatives.forEach(d => {
+        if (libFilterType !== 'all' && d.type !== libFilterType) return;
+        if (libFilterStatus !== 'all' && d.status !== libFilterStatus) return;
+        const statusClass = 'lib-status-' + (d.status || 'generated');
+        html += `<div class="lib-der-row">
+          <span class="lib-der-type">${esc(d.type)}</span>
+          <span class="lib-der-title">${esc(d.title)}</span>
+          <span class="lib-status-pill ${statusClass}">${d.status || 'generated'}</span>
+          <div class="lib-perf-inputs">
+            <span class="lib-perf-label">Likes</span>
+            <input class="lib-perf-input" type="number" value="${d.likes ?? ''}" onblur="patchDerivative(${d.id},{likes:+this.value})" min="0" />
+            <span class="lib-perf-label">Views</span>
+            <input class="lib-perf-input" type="number" value="${d.views ?? ''}" onblur="patchDerivative(${d.id},{views:+this.value})" min="0" />
+            <span class="lib-perf-label">Comments</span>
+            <input class="lib-perf-input" type="number" value="${d.der_comments ?? ''}" onblur="patchDerivative(${d.id},{der_comments:+this.value})" min="0" />
+          </div>
+        </div>`;
+      });
+    });
+    html += '</div>';
+  });
+  document.getElementById('libTree').innerHTML = html || '<div style="padding:24px;color:var(--ink-4)">Nog geen afgeleide content</div>';
+}
+
+function toggleLibTopic(id) {
+  const el = document.getElementById('libTopic' + id);
+  if (el) el.classList.toggle('open');
+}
+
+async function patchDerivative(id, data) {
+  try {
+    await apiCall('/derivatives/' + id, { method: 'PATCH', body: data });
+    toast('Opgeslagen');
+  } catch(e) {}
+}
+
+// ============ MSP JOURNEY ============
+
+function getActor() {
+  let actor = localStorage.getItem('actor');
+  if (!actor) {
+    actor = prompt('Kies je naam:', 'Joshua');
+    if (actor) localStorage.setItem('actor', actor);
+  }
+  return actor || 'unknown';
+}
+
+async function loadJourney() {
+  const [topicsData, auditData] = await Promise.all([
+    apiCall('/topics'),
+    apiCall('/audit-log?limit=50')
+  ]);
+  renderJourneyGrid(topicsData);
+  renderAuditFeed(auditData);
+}
+
+function renderJourneyGrid(allTopics) {
+  let html = '<div class="journey-corner">Level / Domain</div>';
+  JOURNEY_DOMAINS.forEach(d => html += `<div class="journey-col-head">${d}</div>`);
+  for (let level = 5; level >= 1; level--) {
+    html += `<div class="journey-row-head"><div class="lvlnum">${level}</div><div class="lvlname">${JOURNEY_LEVELS[level]}</div></div>`;
+    JOURNEY_DOMAINS.forEach(domain => {
+      const cellTopics = allTopics.filter(t => t.domain === domain && t.level === level);
+      html += '<div class="journey-cell">';
+      cellTopics.forEach(t => {
+        html += `<div class="journey-topic-item"><span title="${esc(t.title)}">${esc(t.title).substring(0, 35)}${t.title.length > 35 ? '...' : ''}</span><button class="journey-edit-btn" onclick="openJourneyEdit(${t.id})" title="Bewerken">&#9998;</button></div>`;
+      });
+      if (!cellTopics.length) html += '<div style="color:var(--ink-4);font-size:11px;font-style:italic">leeg</div>';
+      html += '</div>';
+    });
+  }
+  document.getElementById('journeyGrid').innerHTML = html;
+}
+
+function renderAuditFeed(entries) {
+  if (!entries.length) {
+    document.getElementById('auditFeed').innerHTML = '<div style="color:var(--ink-4);padding:12px 0">Nog geen wijzigingen</div>';
+    return;
+  }
+  document.getElementById('auditFeed').innerHTML = entries.map(e => {
+    const before = e.before_json ? JSON.parse(e.before_json) : {};
+    const after = e.after_json ? JSON.parse(e.after_json) : {};
+    let changes = [];
+    ['title','hook','domain','level','priority','category','status','claimed_by'].forEach(f => {
+      if (before[f] !== undefined && after[f] !== undefined && before[f] !== after[f]) {
+        changes.push(`${f}: "${before[f] || '-'}" → "${after[f] || '-'}"`);
+      }
+    });
+    const desc = changes.length ? changes.join(', ') : e.action;
+    const title = after.title || before.title || `#${e.target_id}`;
+    return `<div class="audit-entry">
+      <div class="audit-entry-info"><strong>${esc(e.actor)}</strong> ${e.action === 'topic.undo' ? 'ongedaan gemaakt' : 'wijzigde'} topic "${esc(title).substring(0,40)}": ${esc(desc).substring(0,80)}</div>
+      <span class="audit-entry-time">${new Date(e.created_at + 'Z').toLocaleString('nl-NL', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>
+      ${e.action !== 'topic.undo' ? `<button class="audit-undo-btn" onclick="undoRevision(${e.target_id})">Ongedaan maken</button>` : ''}
+    </div>`;
+  }).join('');
+}
+
+async function openJourneyEdit(topicId) {
+  const topic = await apiCall('/topics/' + topicId);
+  const overlay = document.createElement('div');
+  overlay.className = 'journey-edit-overlay open';
+  overlay.innerHTML = `<div class="journey-edit-popover">
+    <h3 style="margin-bottom:16px">Topic #${topic.id} bewerken</h3>
+    <div class="modal-field"><label>Titel</label><input id="jEditTitle" class="author-input" value="${esc(topic.title)}" /></div>
+    <div class="modal-field"><label>Hook</label><input id="jEditHook" class="author-input" value="${esc(topic.hook || '')}" /></div>
+    <div class="modal-field"><label>Domain</label><select id="jEditDomain" class="author-input">${JOURNEY_DOMAINS.map(d => `<option ${d===topic.domain?'selected':''}>${d}</option>`).join('')}</select></div>
+    <div class="modal-field"><label>Level (1-5)</label><select id="jEditLevel" class="author-input">${[1,2,3,4,5].map(l => `<option value="${l}" ${l==topic.level?'selected':''}>${l} - ${JOURNEY_LEVELS[l]}</option>`).join('')}</select></div>
+    <div class="modal-field"><label>Prioriteit (2-5)</label><select id="jEditPriority" class="author-input">${[2,3,4,5].map(p => `<option value="${p}" ${p==topic.priority?'selected':''}>${p}</option>`).join('')}</select></div>
+    <div class="modal-actions" style="margin-top:16px">
+      <button class="btn-save" onclick="saveJourneyEdit(${topic.id})">Opslaan</button>
+      <button class="btn-done" onclick="this.closest('.journey-edit-overlay').remove()">Annuleren</button>
+    </div>
+  </div>`;
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  document.body.appendChild(overlay);
+}
+
+async function saveJourneyEdit(topicId) {
+  const actor = getActor();
+  const data = {
+    actor,
+    title: document.getElementById('jEditTitle').value.trim(),
+    hook: document.getElementById('jEditHook').value.trim(),
+    domain: document.getElementById('jEditDomain').value,
+    level: parseInt(document.getElementById('jEditLevel').value),
+    priority: parseInt(document.getElementById('jEditPriority').value),
+  };
+  try {
+    await apiCall('/topics/' + topicId, { method: 'PATCH', body: data });
+    document.querySelector('.journey-edit-overlay')?.remove();
+    toast('Topic bijgewerkt');
+    loadJourney();
+  } catch(e) {}
+}
+
+async function undoRevision(topicId) {
+  const revisions = await apiCall(`/revisions?target_type=topic&target_id=${topicId}`);
+  if (!revisions.length) { toast('Geen revisie gevonden'); return; }
+  const latestRev = revisions[0];
+  try {
+    await apiCall(`/revisions/${latestRev.id}/restore`, { method: 'POST' });
+    toast('Ongedaan gemaakt');
+    loadJourney();
+  } catch(e) {}
+}
 
 // ============ DASHBOARD ============
 
@@ -1685,7 +2417,7 @@ async function loadDashboard() {
     let derivHtml = `<div style="margin-bottom:12px"><span class="perf-stat">${totalDerivs}</span> <span class="perf-label">totaal</span></div>`;
     d.derivative_stats.forEach(ds => {
       derivHtml += `<div class="perf-row">
-        <span class="perf-row-title">${esc(ds.format)}</span>
+        <span class="perf-row-title">${esc(ds.type)}</span>
         <span class="perf-row-val">${ds.count}</span>
       </div>`;
     });
@@ -2084,7 +2816,7 @@ async function generateDemoData() {
 }
 
 // ============ INIT ============
-loadTopics();
+switchTab('matrix');
 </script>
 </body>
 </html>

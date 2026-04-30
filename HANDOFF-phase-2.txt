@@ -1,0 +1,49 @@
+Context from previous session: Phase 2 design + plan for content.dxfferent.com is locked. Stack is SQLite + PHP REST + vanilla JS, single index.html + single api.php at ~/ClaudeCode/content-platform/. Live app at content.dxfferent.com used by 5 consultants.
+
+ARTEFACTS YOU INHERIT
+- Source spec (CLAUDE-DATA JSON inside HTML): ~/ClaudeCode/claude-output/2026-04-30-content-platform-phase-2-decisions.html
+- Implementation plan: ~/ClaudeCode/content-platform/PLAN-phase-2.md (5 vertical slices, agent-runnable, with concrete verification commands per slice)
+- Approved Matrix tab design mockup: ~/ClaudeCode/content-platform/docs/design-mockups/matrix-tab.html (the source of truth for Slice 2 markup + CSS — copy verbatim, do not redesign)
+- Repo CLAUDE.md: ~/ClaudeCode/content-platform/CLAUDE.md (rules: single HTML file, single PHP file, no build tools, never edit seed.json)
+- Per-machine output rules in ~/.claude/projects/-Users-maxdekwaasteniet/CLAUDE.md
+
+YOUR JOB
+Execute PLAN-phase-2.md slice-by-slice. Spawn one implementation-agent-4.7 per slice. Verify each slice's gates before moving to the next. Do not skip verification commands — every "expect" line in the plan is a hard gate.
+
+EXECUTION MODEL (per ~/.claude/rules/model-delegation.md)
+- You (Opus 4.6, this session) = orchestrator. Plan, brief agents, verify their output, decide next step.
+- implementation-agent-4.7 = spawned per slice with the slice section pasted into its prompt + the repo CLAUDE.md + the model-delegation, code-quality, and output-quality rules. Tell it to read the mockup file before touching CSS in Slice 2.
+- After each agent returns: read the actual file changes (do not trust the agent's summary), run the slice's verification block from PLAN-phase-2.md, and only then proceed.
+- Use /test skill (Chrome MCP / curl) for browser + API verification. Type checks and unit tests are not enough — feature correctness needs UI smoke testing.
+
+PRE-FLIGHT (do this first, before spawning slice 1)
+1. Backup the live DB: ssh into SiteGround (key ~/.ssh/id_ed25519_siteground_dxfferent, port 18765, user u110-srp2wn2ngthp@ssh.dxfferent.com) and copy ~/www/content.dxfferent.com/public_html/data/content.db to content.db.bak.$(date +%Y%m%d). Verify file size > 0.
+2. Backup local DB: cp data/content.db data/content.db.bak.$(date +%Y%m%d)
+3. Verify SQLite version on the live server (need ≥ 3.25 for ALTER TABLE RENAME COLUMN). SSH and run sqlite3 --version. If < 3.25, stop and report — Slice 1 step 1 will fail.
+4. Confirm the canonical 5 level names from the public Dxfferent MSP Journey matrix at https://dxfferent.com/services/guide-as-a-service/the-msp-journey/. Use WebFetch first; fall back to mcp__claude-in-chrome__navigate + read_page if WebFetch returns 404. Save them in data/journey-levels.json as [{"id":1,"name":"Reactive"}, …, {"id":5,"name":"Success"}]. The mockup uses placeholders (Reactive/Stable/Proactive/Strategic/Success) — confirm or replace before writing them into index.html.
+
+DECISIONS ALREADY LOCKED (DO NOT REOPEN WITH JOSHUA OR MAX)
+- Domain rename: Data Driven→Data driven, Algemeen→Identity, Markt→Positioning, others unchanged.
+- Priority defaults by category: bewijs/educatie=5, markt/contrair=3, eigen/tools=2 (populated at migration, per-topic).
+- Matrix cell intensity grid: hardcoded JS const MATRIX_INTENSITY in index.html (Slice 2 step 5). Strategic call by Max. Do NOT derive from topics.priority.
+- Matrix cell count = topic count for now (Max parked the question of submissions vs derivatives count — leave as topic count, do not redesign the endpoint).
+- Audit log visible to all 5 consultants. Hook templates: 40 reused from seed.json, classified by content_type via one-shot AI pass.
+- LinkedIn API integration deferred to Phase 3.
+- Joshua is NOT in the loop for execution. Defaults from spec apply.
+
+DEPLOYMENT POLICY
+- Hold Slice 1 local until Slice 2 ships with it (schema-only deploy is no value).
+- Slice 2-5 each safely deployable. Coordinate via Telegram heads-up to consultants before each push if visible UI shifts.
+- Final deploy: scp -i ~/.ssh/id_ed25519_siteground_dxfferent -P 18765 api.php index.html data/hook-templates.json data/journey-levels.json u110-srp2wn2ngthp@ssh.dxfferent.com:~/www/content.dxfferent.com/public_html/
+- Run scripts/ai-map-topics.php on the server too so live DB also gets levels.
+- Cache bust: open https://content.dxfferent.com/?v=$(date +%s)
+
+OPEN ITEMS / WATCHLIST
+- Matrix count semantics — Max parked it. Note in your own memory that he may switch this to derivatives count later; the matrix endpoint should be cheap to refactor.
+- Hook→content_type classification (Slice 3 step 1) is heuristic — Max approved a fast pass over a slow Claude call. Spot-check the JSON before committing.
+
+TONE / DUTCH RULES
+- All human-facing copy (tab labels, button text, toasts, audit-log strings) follows ~/.claude/skills/humanizer/SKILL.md and ~/.claude/skills/dutch-msp/SKILL.md. No em dashes, no AI vocabulary, terse Dutch IT register where the existing UI is Dutch.
+
+START HERE
+Read ~/ClaudeCode/content-platform/PLAN-phase-2.md fully, then ~/ClaudeCode/content-platform/docs/design-mockups/matrix-tab.html, then run the pre-flight steps above. After pre-flight: spawn implementation-agent-4.7 for Slice 1 with the Slice 1 section of the plan as its primary instruction and the constraints from CLAUDE.md + the locked decisions above as guardrails.
