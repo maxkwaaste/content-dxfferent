@@ -1090,7 +1090,7 @@
   /* ---------- Matrix ---------- */
   .matrix-titlestrip {
     padding: 32px 32px 24px;
-    max-width: 1440px; margin: 0 auto;
+    max-width: none; margin: 0;
     display: flex; align-items: flex-end; justify-content: space-between;
     gap: 32px; flex-wrap: wrap;
   }
@@ -1122,13 +1122,13 @@
   .matrix-statcard.accent .label, .matrix-statcard.accent .val { color: var(--white); }
 
   .matrix-wrap {
-    max-width: 1440px; margin: 0 auto;
+    max-width: none; margin: 0;
     padding: 8px 32px 16px;
   }
   .matrix-grid {
     display: grid;
     grid-template-columns: 140px repeat(8, 1fr);
-    grid-template-rows: 56px repeat(5, 140px);
+    grid-template-rows: 56px repeat(5, auto);
     gap: 4px;
     width: 100%;
   }
@@ -1164,6 +1164,7 @@
     font-family: var(--font-display); text-transform: uppercase;
   }
   .matrix-cell {
+    aspect-ratio: 1;
     position: relative;
     cursor: pointer;
     overflow: hidden;
@@ -1181,7 +1182,7 @@
   .matrix-cell.i1 { background: var(--i1); }
   .matrix-count {
     font-family: var(--font-display);
-    font-size: 64px;
+    font-size: 40px;
     line-height: 1;
     letter-spacing: -1px;
     color: var(--white);
