@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dxfferent Content Platform - Handleiding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: #030303; color: #e0e0e0; font-family: "DM Sans", system-ui, sans-serif; font-size: 16px; line-height: 1.6; }
+  body { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  h2 { font-size: 22px; font-weight: 700; color: #fff; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #ED4C35; }
+  h3 { font-size: 16px; font-weight: 700; color: #FF6927; margin-top: 28px; margin-bottom: 8px; }
+  p { margin-bottom: 14px; }
+  .subtitle { color: #AFAFAF; font-size: 15px; margin-bottom: 32px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 2px; font-size: 12px; font-weight: 600; }
+  .step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+  .step-num { flex-shrink: 0; width: 36px; height: 36px; background: linear-gradient(81deg, #ED4C35, #FF6927); color: #fff; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; border-radius: 2px; }
+  .step-body { flex: 1; }
+  .step-body strong { color: #fff; }
+  .card { background: #1F1F1F; border: 1px solid #2c2c2c; border-radius: 4px; padding: 20px; margin-bottom: 12px; }
+  .card h3 { margin-top: 0; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  .tab-example { display: inline-block; padding: 8px 16px; background: #1F1F1F; border: 1px solid #2c2c2c; color: #AFAFAF; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-right: 2px; }
+  .tab-example.active { color: #fff; border-bottom: 2px solid #FF6927; }
+  .color-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  .color-dot { width: 14px; height: 14px; border-radius: 2px; flex-shrink: 0; }
+  a { color: #FF6927; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; }
+  .cta { display: inline-block; padding: 14px 32px; background: linear-gradient(81deg, #ED4C35, #FF6927); color: #fff; font-weight: 700; font-size: 15px; border-radius: 2px; text-decoration: none; margin-top: 16px; }
+  .cta:hover { opacity: 0.9; text-decoration: none; }
+  .divider { height: 1px; background: #2c2c2c; margin: 40px 0; }
+</style>
+</head>
+<body>
+
+<h1>Dxfferent Content Platform</h1>
+<p class="subtitle">De interne tool waarmee het Dxfferent-team content maakt op basis van echte MSP-problemen.</p>
+
+<a class="cta" href="https://content.dxfferent.com">Open het platform</a>
+
+<h2>Wat is het?</h2>
+<p>Dit platform helpt consultants van Dxfferent om content te schrijven die raakt. Het werkt simpel: we weten welke problemen, frustraties en vragen MSP-directeuren hebben (uit onze MSP Journey assessments). Die data zit in het platform. Jij kiest een onderwerp, ziet de pijnpunten, en schrijft er content over.</p>
+
+<h2>De 5 tabbladen</h2>
+
+<div class="grid">
+  <div class="card">
+    <h3>Matrix</h3>
+    <p>Het startpunt. Een grid van 8 domeinen x 5 volwassenheidsniveaus. Klik op een cel om de problemen en vragen van dat domein te zien, plus de topics die je kunt schrijven.</p>
+  </div>
+  <div class="card">
+    <h3>Content</h3>
+    <p>Alle content-ideeen en geschreven artikelen. Filter op domein, categorie of status. Schakel naar Kanban-weergave om de voortgang visueel te volgen.</p>
+  </div>
+  <div class="card">
+    <h3>Dashboard</h3>
+    <p>Voortgang van het team. Hoeveel topics zijn geschreven, wie heeft het meest bijgedragen, en welke domeinen/categorieen lopen achter.</p>
+  </div>
+  <div class="card">
+    <h3>Kalender</h3>
+    <p>4-weken overzicht van geplande en geposte content. Sleep topics naar dagen, plan automatisch, en exporteer naar Google Sheets.</p>
+  </div>
+  <div class="card">
+    <h3>MSP Journey</h3>
+    <p>De brondata: alle problemen, frustraties en vragen per domein en subthema. Hier bewerk je de onderliggende data die de rest van de app voedt.</p>
+  </div>
+</div>
+
+<h2>Hoe schrijf je een artikel?</h2>
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-body"><strong>Klik op een cel in de Matrix</strong><br>Kies het domein en niveau dat je interesseert. Bijv. "Technology" op level 2.</div>
+</div>
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-body"><strong>Bekijk de context</strong><br>Je ziet meteen welke problemen, frustraties en vragen MSP-directeuren hebben over dat domein. Dit is je inspiratie.</div>
+</div>
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-body"><strong>Kies een topic of start nieuw</strong><br>Klik "Schrijf" bij een bestaand topic, of "Nieuw schrijven" voor een vrij artikel.</div>
+</div>
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-body"><strong>Kies een hook</strong><br>In de editor zie je suggesties voor je opener (bijv. "Case study: 1 probleem, 1 oplossing, 1 resultaat"). Klik er een aan of typ je eigen.</div>
+</div>
+<div class="step">
+  <div class="step-num">5</div>
+  <div class="step-body"><strong>Schrijf je ruwe content</strong><br>Vul je naam in, schrijf je tekst. Denk niet te lang na over structuur, dat komt later. Auto-save is actief.</div>
+</div>
+<div class="step">
+  <div class="step-num">6</div>
+  <div class="step-body"><strong>Markeer als geschreven</strong><br>Klaar? Klik "Markeer als geschreven" of stuur naar review.</div>
+</div>
+
+<h2>De 6 content-categorieen</h2>
+<p>Elk topic heeft een categorie die bepaalt welk type content je schrijft:</p>
+
+<div class="color-row"><div class="color-dot" style="background:#5a8be8"></div> <strong>Bewijs &amp; Resultaat</strong> - Case studies, analyses, data</div>
+<div class="color-row"><div class="color-dot" style="background:#a888d8"></div> <strong>Educatie</strong> - Uitleg, how-to's, frameworks</div>
+<div class="color-row"><div class="color-dot" style="background:#4fb37e"></div> <strong>Visie</strong> - Markttrends, toekomstvisie, overtuigingen</div>
+<div class="color-row"><div class="color-dot" style="background:#ff8c4a"></div> <strong>Contrair</strong> - Onpopulaire meningen, mythes doorprikken</div>
+<div class="color-row"><div class="color-dot" style="background:#e878a3"></div> <strong>Eigen Verhaal</strong> - Persoonlijke ervaringen, lessen</div>
+<div class="color-row"><div class="color-dot" style="background:#d6b04a"></div> <strong>Tools &amp; Resources</strong> - Vergelijkingen, lijsten, templates</div>
+
+<h2>De MSP Journey data</h2>
+<p>Het platform bevat de volledige MSP Journey L2-L3 data: 8 domeinen, 43 subthema's, bijna 400 problemen/frustraties/vragen. Deze data komt uit onze assessment-gesprekken met MSP-directeuren en is de basis voor alle content.</p>
+<p>De 8 domeinen: <strong>Identity, Organisation, GRC, Positioning, Portfolio, Technology, Blueprint, Data Driven</strong>.</p>
+<p>Elk subthema heeft drie kolommen:</p>
+<ul>
+  <li><strong style="color:#ED4C35">Problemen</strong> - Wat gaat er mis bij de klant?</li>
+  <li><strong style="color:#FF6927">Frustraties</strong> - Wat voelt de directeur hierbij?</li>
+  <li><strong style="color:#5a8be8">Vragen</strong> - Wat wil de directeur weten?</li>
+</ul>
+<p>Je kunt deze data bewerken in het MSP Journey tabblad. Klik op een tekst om te bewerken, gebruik + om items toe te voegen.</p>
+
+<h2>Kanban-statussen</h2>
+<p>Elk topic doorloopt deze statussen:</p>
+<div class="step">
+  <div class="step-num" style="background:#303030">1</div>
+  <div class="step-body"><strong>Idee</strong> - Nog niet opgepakt</div>
+</div>
+<div class="step">
+  <div class="step-num" style="background:#303030">2</div>
+  <div class="step-body"><strong>Schrijven</strong> - Iemand is ermee bezig</div>
+</div>
+<div class="step">
+  <div class="step-num" style="background:#303030">3</div>
+  <div class="step-body"><strong>Review</strong> - Klaar voor feedback</div>
+</div>
+<div class="step">
+  <div class="step-num" style="background:#303030">4</div>
+  <div class="step-body"><strong>Gepland</strong> - Ingepland in de kalender</div>
+</div>
+<div class="step">
+  <div class="step-num" style="background:#303030">5</div>
+  <div class="step-body"><strong>Gepost</strong> - Gepubliceerd</div>
+</div>
+
+<div class="divider"></div>
+
+<p style="color:#646464;font-size:13px">Dxfferent Content Platform - Intern gebruik. Vragen? Ping Joshua of Max.</p>
+
+</body>
+</html>
