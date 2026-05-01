@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Proxuma Contentbibliotheek</title>
+<title>Dxfferent Content</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -1383,6 +1383,119 @@
   }
   .journey-edit-overlay.open { display: block; }
 
+  /* ---------- Journey Page View ---------- */
+  .journey-domain-accordion { margin-bottom: 4px; }
+  .journey-domain-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px; background: var(--surface); border: 1px solid var(--line);
+    cursor: pointer; transition: all var(--t-quick); user-select: none;
+  }
+  .journey-domain-header:hover { border-color: var(--orange); background: #232323; }
+  .journey-domain-header.open { border-color: var(--line-strong); background: var(--surface-2); }
+  .journey-domain-header h2 {
+    font-family: var(--font-display); font-size: 16px; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--white); flex: 1;
+  }
+  .journey-domain-count {
+    font-family: var(--font-display); font-size: 11px; color: var(--ink-4);
+    letter-spacing: .1em;
+  }
+  .journey-domain-arrow { color: var(--ink-4); transition: transform var(--t-quick); font-size: 14px; }
+  .journey-domain-header.open .journey-domain-arrow { transform: rotate(90deg); }
+  .journey-domain-body { display: none; border: 1px solid var(--line); border-top: 0; background: var(--bg); padding: 0 20px 20px; }
+  .journey-domain-body.open { display: block; }
+  .journey-subdomain { margin-top: 20px; }
+  .journey-subdomain-header {
+    font-family: var(--font-display); font-size: 13px; font-weight: 900;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2);
+    padding-bottom: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--line);
+  }
+  .journey-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 768px) { .journey-cols { grid-template-columns: 1fr; } }
+  .journey-col-title {
+    font-family: var(--font-display); font-size: 10px; font-weight: 900;
+    letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px;
+    padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  }
+  .journey-col-title.problemen { color: var(--red); border-color: var(--red); }
+  .journey-col-title.frustraties { color: var(--orange); border-color: var(--orange); }
+  .journey-col-title.vragen { color: var(--bewijs); border-color: var(--bewijs); }
+  .journey-item {
+    padding: 6px 8px; font-size: 13px; color: var(--ink-2); line-height: 1.45;
+    border-radius: var(--r-xs); cursor: text; position: relative;
+    transition: background var(--t-quick); display: flex; align-items: flex-start; gap: 6px;
+  }
+  .journey-item:hover { background: var(--surface); }
+  .journey-item::before { content: "\2022"; color: var(--ink-4); flex-shrink: 0; margin-top: 1px; }
+  .journey-item-text { flex: 1; min-width: 0; }
+  .journey-item-text[contenteditable="true"] { outline: none; border-bottom: 1px solid var(--orange); }
+  .journey-item-del {
+    opacity: 0; background: none; border: none; color: var(--red); cursor: pointer;
+    font-size: 14px; padding: 0 2px; flex-shrink: 0; transition: opacity var(--t-quick);
+  }
+  .journey-item:hover .journey-item-del { opacity: 1; }
+  .journey-add-btn {
+    font-size: 12px; color: var(--ink-4); background: none; border: 1px dashed var(--line);
+    padding: 4px 10px; margin-top: 6px; cursor: pointer; width: 100%;
+    text-align: left; transition: all var(--t-quick); border-radius: var(--r-xs);
+  }
+  .journey-add-btn:hover { border-color: var(--orange); color: var(--white); }
+  .journey-filter-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+
+  /* ---------- Matrix Domain Modal ---------- */
+  .matrix-modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(3,3,3,0.85); z-index: 200;
+    align-items: flex-start; justify-content: center; padding-top: 5vh;
+    overflow-y: auto;
+  }
+  .matrix-modal-overlay.open { display: flex; }
+  .matrix-modal {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+    width: 900px; max-width: 95vw; max-height: 88vh; overflow-y: auto; position: relative;
+    margin-bottom: 5vh;
+  }
+  .matrix-modal::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--gradient); z-index: 1;
+  }
+  .matrix-modal-head {
+    padding: 22px 24px 16px; border-bottom: 1px solid var(--line);
+    background: var(--black-4); display: flex; justify-content: space-between; align-items: center;
+  }
+  .matrix-modal-head h2 {
+    font-family: var(--font-display); font-size: 20px; text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+  .matrix-modal-actions { display: flex; gap: 8px; }
+  .matrix-modal-actions button {
+    font-family: var(--font-display); font-size: 11px; font-weight: 900;
+    letter-spacing: .1em; text-transform: uppercase; padding: 8px 16px;
+    border-radius: var(--r-xs); cursor: pointer; transition: all var(--t-quick);
+  }
+  .matrix-modal-body { padding: 20px 24px; }
+  .matrix-modal-close {
+    position: absolute; top: 16px; right: 16px; background: none; border: none;
+    color: var(--ink-3); font-size: 20px; cursor: pointer; z-index: 2;
+  }
+  .matrix-modal-close:hover { color: var(--white); }
+
+  /* ---------- Hook Suggestions (editor) ---------- */
+  .hook-template-list { margin-bottom: 16px; }
+  .hook-template-label {
+    font-family: var(--font-display); font-size: 10px; font-weight: 900;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-4);
+    margin-bottom: 6px;
+  }
+  .hook-template-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .hook-chip {
+    padding: 6px 12px; font-size: 12px; color: var(--ink-3);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-sm); cursor: pointer; transition: all var(--t-quick);
+    line-height: 1.3;
+  }
+  .hook-chip:hover { border-color: var(--orange); color: var(--white); background: var(--surface-2); }
+
   /* ---------- Print ---------- */
   @media print {
     html, body { background: #fff; color: #000; }
@@ -1393,11 +1506,15 @@
 <body>
 
 <div class="container">
+  <!-- GITHUB LINK -->
+  <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
+    <a href="https://github.com/maxkwaaste/content-dxfferent" target="_blank" style="font-size:11px;color:var(--ink-4);text-decoration:none;font-family:var(--font-display);letter-spacing:.08em;text-transform:uppercase" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--ink-4)'">GitHub &#8599;</a>
+  </div>
+
   <!-- TAB NAVIGATION -->
   <div class="tab-nav">
     <button class="tab-btn active" onclick="switchTab('matrix')">Matrix</button>
-    <button class="tab-btn" onclick="switchTab('board')">Board</button>
-    <button class="tab-btn" onclick="switchTab('library')">Bibliotheek</button>
+    <button class="tab-btn" onclick="switchTab('board')">Content</button>
     <button class="tab-btn" onclick="switchTab('dashboard')">Dashboard</button>
     <button class="tab-btn" onclick="switchTab('calendar')">Kalender</button>
     <button class="tab-btn" onclick="switchTab('journey')">MSP Journey</button>
@@ -1428,15 +1545,18 @@
   <!-- BOARD VIEW -->
   <div class="view" id="boardView">
     <div class="header">
-      <h1>Contentbibliotheek</h1>
-      <div class="header-sub">Content-idee&#235;n op basis van MSP Journey L2-L3 problemen, frustraties en vragen</div>
+      <h1>Content</h1>
+      <div class="header-sub">Alle content-idee&#235;n en geschreven artikelen</div>
     </div>
     <div class="stats" id="stats"></div>
     <div class="filter-row-label">Domein</div>
     <div class="filter-row" id="domainFilters"></div>
     <div style="height: 8px"></div>
-    <div class="filter-row-label">Type</div>
+    <div class="filter-row-label">Categorie</div>
     <div class="filter-row" id="catFilters"></div>
+    <div style="height: 8px"></div>
+    <div class="filter-row-label">Status</div>
+    <div class="filter-row" id="statusFilters"></div>
     <div class="filter-sep"></div>
     <div class="board-view-toggle">
       <button class="toggle-btn active" onclick="setBoardView('list')">Lijst</button>
@@ -1452,15 +1572,13 @@
   <div class="view" id="editorView">
     <button class="back-btn" onclick="closeEditor()">&#8592; Terug naar overzicht</button>
     <div class="editor-context-strip" id="editorContext"></div>
-    <div class="type-tabs" id="typeTabs"></div>
     <div class="editor-layout">
       <div class="editor-main">
         <div class="field-label">Opener</div>
         <div class="opener-field" style="position:relative">
           <input class="opener-input" id="openerInput" type="text" placeholder="Hook of opening zin..." />
-          <button class="hook-picker-btn" onclick="toggleHookPicker()">Gebruik template</button>
-          <div class="hook-dropdown" id="hookDropdown"></div>
         </div>
+        <div class="hook-template-list" id="hookTemplateList"></div>
         <div class="field-label">Jouw naam</div>
         <input class="author-input" id="authorInput" type="text" placeholder="Bijv. Joshua, Tom, ..." />
         <div class="field-label">Inhoud</div>
@@ -1474,16 +1592,6 @@
       </div>
       <div class="editor-sidebar" id="editorSidebar"></div>
     </div>
-  </div>
-
-  <!-- LIBRARY VIEW -->
-  <div class="view" id="libraryView">
-    <div class="header">
-        <h1>Bibliotheek</h1>
-        <div class="header-sub">Bronposts, afgeleide content en performance per topic</div>
-    </div>
-    <div class="lib-filters" id="libFilters"></div>
-    <div class="lib-tree" id="libTree"></div>
   </div>
 
   <!-- DASHBOARD VIEW -->
@@ -1552,15 +1660,25 @@
   <div class="view" id="journeyView">
     <div class="header">
         <h1>MSP Journey</h1>
-        <div class="header-sub">Topics per cel bewerken en wijzigingen volgen</div>
+        <div class="header-sub">Alle problemen, frustraties en vragen per kernelement — L2-L3 (Proactief → Beheerst)</div>
     </div>
-    <div class="journey-grid-wrap">
-        <div class="journey-grid" id="journeyGrid"></div>
+    <div class="journey-filter-row" id="journeyDomainFilter"></div>
+    <div id="journeyAccordion"></div>
+  </div>
+</div>
+
+<!-- MATRIX DOMAIN MODAL -->
+<div class="matrix-modal-overlay" id="matrixDomainModal" onclick="if(event.target===this)closeMatrixModal()">
+  <div class="matrix-modal">
+    <button class="matrix-modal-close" onclick="closeMatrixModal()">&times;</button>
+    <div class="matrix-modal-head">
+      <h2 id="matrixModalTitle">Domain</h2>
+      <div class="matrix-modal-actions">
+        <button onclick="matrixModalToBoard()" style="background:var(--gradient);color:var(--white);border:none">Alle topics</button>
+        <button onclick="matrixModalToJourney()" style="background:transparent;color:var(--ink-3);border:1px solid var(--line);font-size:10px">Bewerk journey data</button>
+      </div>
     </div>
-    <div class="journey-audit">
-        <h3>Wijzigingslog</h3>
-        <div id="auditFeed"></div>
-    </div>
+    <div class="matrix-modal-body" id="matrixModalBody"></div>
   </div>
 </div>
 
@@ -1655,6 +1773,7 @@ const DAY_NAMES = ['', 'ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'];
 let topics = [];
 let activeDomain = 'all';
 let activeCat = 'all';
+let activeStatus = 'all';
 let activeLevel = null;
 let currentTopic = null;
 let currentSubmission = null;
@@ -1670,7 +1789,9 @@ let autoSaveInputHandler = null;
 let boardViewMode = 'list';
 let kanbanTopics = [];
 let editorContentType = 'post';
+let editorFormat = 'bewijs';
 let hookTemplates = [];
+let matrixModalDomain = null;
 
 const JOURNEY_DOMAINS = ['Identity','Organisation','GRC','Positioning','Portfolio','Technology','Blueprint','Data driven'];
 const JOURNEY_LEVELS = {5:'Success',4:'Partner',3:'Managed',2:'Proactive',1:'Reactive'};
@@ -1728,9 +1849,94 @@ async function loadMatrix() {
   statsEl.innerHTML = statsHtml;
 }
 
-function matrixCellClick(domain, level) {
-  localStorage.setItem('boardFilter', JSON.stringify({domain, level}));
+let matrixModalLevel = null;
+
+async function matrixCellClick(domain, level) {
+  matrixModalDomain = domain;
+  matrixModalLevel = level;
+  document.getElementById('matrixModalTitle').textContent = domain;
+  document.getElementById('matrixModalBody').innerHTML = '<div style="padding:24px;color:var(--ink-4)">Laden...</div>';
+  document.getElementById('matrixDomainModal').classList.add('open');
+
+  const [journeyResult, topicsResult] = await Promise.all([
+    apiCall('/journey/domain?domain=' + encodeURIComponent(domain)),
+    apiCall('/topics?domain=' + encodeURIComponent(domain) + '&level=' + level)
+  ]);
+
+  let html = '';
+
+  // Action: start writing
+  html += `<div style="margin-bottom:24px">
+    <button class="free-form-btn" style="margin-bottom:16px" onclick="closeMatrixModal();openFreeForm()">+ Nieuw schrijven</button>`;
+
+  // Topics for this cell
+  if (topicsResult.length) {
+    html += `<div class="journey-subdomain-header" style="margin-bottom:12px">Of schrijf voor een bestaand topic (${topicsResult.length})</div>`;
+    topicsResult.forEach(t => {
+      const statusLabel = t.status === 'written' ? '<span class="status-tag">&#10003; geschreven</span>'
+        : t.status === 'claimed' ? '<span style="font-size:10px;color:#c27803">in bewerking</span>'
+        : t.status === 'review' ? '<span style="font-size:10px;color:var(--tools-ink)">in review</span>'
+        : '';
+      html += `<div class="card" style="margin-bottom:6px;display:flex;align-items:center;gap:12px" onclick="closeMatrixModal();openEditor(${t.id})">
+        <div style="flex:1;min-width:0">
+          <div class="card-top">
+            <div class="card-title">${esc(t.title)}</div>
+            <span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category] || t.category}</span>
+          </div>
+          <div class="card-meta">
+            <span class="hook-tag">${esc(t.hook || '')}</span>
+            ${statusLabel ? '<span class="sep">&middot;</span>' + statusLabel : ''}
+          </div>
+        </div>
+        <button class="btn-save" style="flex-shrink:0;padding:8px 18px;font-size:11px" onclick="event.stopPropagation();closeMatrixModal();openEditor(${t.id})">${t.status === 'written' ? 'Bekijk' : 'Schrijf'}</button>
+      </div>`;
+    });
+    html += `</div>`;
+  } else {
+    html += `<div style="font-size:13px;color:var(--ink-4);margin-bottom:8px">Nog geen topics in deze cel</div>`;
+  }
+  html += `</div>`;
+
+  // Journey context - the briefing
+  html += `<div style="border-top:1px solid var(--line);padding-top:20px">
+    <div class="journey-subdomain-header" style="margin-bottom:4px;color:var(--ink-3)">Waar denkt de klant over na? (${domain})</div>
+    <div style="font-size:12px;color:var(--ink-4);margin-bottom:16px">Gebruik deze problemen, frustraties en vragen als inspiratie voor je content.</div>`;
+
+  journeyResult.subdomains.forEach(sub => {
+    html += `<div class="journey-subdomain">
+      <div class="journey-subdomain-header">${esc(sub.name)}</div>
+      <div class="journey-cols">
+        <div><div class="journey-col-title problemen">Problemen</div>
+          ${sub.problemen.map(p => `<div class="journey-item"><span class="journey-item-text">${esc(p.text)}</span></div>`).join('') || '<div style="color:var(--ink-4);font-size:12px">-</div>'}
+        </div>
+        <div><div class="journey-col-title frustraties">Frustraties</div>
+          ${sub.frustraties.map(f => `<div class="journey-item"><span class="journey-item-text">${esc(f.text)}</span></div>`).join('') || '<div style="color:var(--ink-4);font-size:12px">-</div>'}
+        </div>
+        <div><div class="journey-col-title vragen">Vragen</div>
+          ${sub.vragen.map(v => `<div class="journey-item"><span class="journey-item-text">${esc(v.text)}</span></div>`).join('') || '<div style="color:var(--ink-4);font-size:12px">-</div>'}
+        </div>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  document.getElementById('matrixModalBody').innerHTML = html || '<div style="padding:24px;color:var(--ink-4)">Geen data voor dit domein</div>';
+}
+
+function closeMatrixModal() {
+  document.getElementById('matrixDomainModal').classList.remove('open');
+}
+
+function matrixModalToBoard() {
+  closeMatrixModal();
+  localStorage.setItem('boardFilter', JSON.stringify({domain: matrixModalDomain, level: matrixModalLevel}));
   switchTab('board');
+}
+
+function matrixModalToJourney() {
+  closeMatrixModal();
+  localStorage.setItem('journeyFilter', matrixModalDomain);
+  switchTab('journey');
 }
 
 async function apiCall(path, opts = {}) {
@@ -1793,9 +1999,9 @@ function switchTab(tab) {
   stopAutoSave();
   currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', ['matrix', 'board', 'library', 'dashboard', 'calendar', 'journey'][i] === tab);
+    btn.classList.toggle('active', ['matrix', 'board', 'dashboard', 'calendar', 'journey'][i] === tab);
   });
-  ['matrixView', 'boardView', 'editorView', 'libraryView', 'dashboardView', 'calendarView', 'journeyView'].forEach(id => {
+  ['matrixView', 'boardView', 'editorView', 'dashboardView', 'calendarView', 'journeyView'].forEach(id => {
     document.getElementById(id).classList.remove('active');
   });
   if (tab === 'matrix') {
@@ -1804,9 +2010,6 @@ function switchTab(tab) {
   } else if (tab === 'board') {
     document.getElementById('boardView').classList.add('active');
     if (boardViewMode === 'kanban') { loadKanban(); } else { loadTopics(); }
-  } else if (tab === 'library') {
-    document.getElementById('libraryView').classList.add('active');
-    loadLibrary();
   } else if (tab === 'dashboard') {
     document.getElementById('dashboardView').classList.add('active');
     loadDashboard();
@@ -1869,20 +2072,30 @@ function renderFilters() {
     catHtml += `<span class="pill pill-${key} ${activeCat === key ? 'active' : ''}" data-val="${esc(key)}" onclick="setCat(this.dataset.val)">${label} (${count})</span>`;
   });
   document.getElementById('catFilters').innerHTML = catHtml;
+
+  const STATUS_LABELS = {all:'Alles', open:'Idee', claimed:'Schrijven', review:'Review', written:'Gepland / Gepost'};
+  let statusHtml = '';
+  Object.entries(STATUS_LABELS).forEach(([key, label]) => {
+    const count = key === 'all' ? topics.length : topics.filter(t => t.status === key).length;
+    statusHtml += `<span class="pill ${activeStatus === key ? 'active' : ''}" onclick="setStatus('${key}')">${label} (${count})</span>`;
+  });
+  document.getElementById('statusFilters').innerHTML = statusHtml;
 }
 
 function setDomain(d) { activeDomain = d; activeLevel = null; renderFilters(); renderCards(); }
 function setCat(c) { activeCat = c; activeLevel = null; renderFilters(); renderCards(); }
+function setStatus(s) { activeStatus = s; renderFilters(); renderCards(); }
 
 function renderCards() {
   let filtered = topics;
   if (activeDomain !== 'all') filtered = filtered.filter(t => t.domain === activeDomain);
   if (activeCat !== 'all') filtered = filtered.filter(t => t.category === activeCat);
+  if (activeStatus !== 'all') filtered = filtered.filter(t => t.status === activeStatus);
   if (activeLevel) filtered = filtered.filter(t => t.level == activeLevel);
   document.getElementById('cardCount').textContent = filtered.length + ' content-ideeën';
   document.getElementById('cards').innerHTML = filtered.map(t => `
-    <div class="card ${t.status === 'written' ? 'card-written' : ''}" onclick="openEditor(${t.id})">
-      <div class="card-top">
+    <div class="card ${t.status === 'written' ? 'card-written' : ''}" style="cursor:default">
+      <div class="card-top" style="cursor:pointer" onclick="openEditor(${t.id})">
         <div class="card-title">${esc(t.title)}</div>
         <span class="cat-badge cat-${t.category}">${CAT_LABELS[t.category]}</span>
       </div>
@@ -1893,9 +2106,54 @@ function renderCards() {
         ${t.status === 'written' ? '<span class="sep">&middot;</span><span class="status-tag">&#10003; geschreven' + (t.claimed_by ? ' door ' + esc(t.claimed_by) : '') + '</span>' : ''}
         ${t.status === 'review' ? '<span class="sep">&middot;</span><span style="font-size:10px;color:var(--tools-ink)">in review' + (t.claimed_by ? ' door ' + esc(t.claimed_by) : '') + '</span>' : ''}
         ${t.status === 'claimed' && t.claimed_by ? '<span class="sep">&middot;</span><span style="font-size:10px;color:#c27803">geclaimd door ' + esc(t.claimed_by) + '</span>' : ''}
+        <span class="sep">&middot;</span>
+        <span style="font-size:10px;color:var(--ink-4);cursor:pointer" onclick="event.stopPropagation();toggleCardDetail(${t.id})">&#9660; details</span>
       </div>
+      <div class="card-detail" id="cardDetail${t.id}" style="display:none"></div>
     </div>
   `).join('');
+}
+
+async function toggleCardDetail(topicId) {
+  const el = document.getElementById('cardDetail' + topicId);
+  if (el.style.display !== 'none') { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  if (el.innerHTML) return;
+  el.innerHTML = '<div style="padding:8px 0;font-size:12px;color:var(--ink-4)">Laden...</div>';
+  try {
+    const tree = await apiCall('/derivatives/tree?topic_id=' + topicId);
+    const topic = tree[0];
+    if (!topic || !topic.submissions.length) {
+      el.innerHTML = '<div style="padding:8px 0;font-size:12px;color:var(--ink-4)">Nog geen submissions</div>';
+      return;
+    }
+    let html = '';
+    topic.submissions.forEach(s => {
+      html += `<div style="padding:6px 0;border-top:1px solid var(--line);margin-top:8px">
+        <div style="font-size:12px;color:var(--ink-3)">Submission door <strong style="color:var(--white)">${esc(s.author)}</strong></div>`;
+      if (s.derivatives.length) {
+        s.derivatives.forEach(d => {
+          const perfParts = [];
+          if (d.likes != null) perfParts.push(d.likes + ' likes');
+          if (d.views != null) perfParts.push(d.views + ' views');
+          if (d.der_comments != null) perfParts.push(d.der_comments + ' comments');
+          const statusClass = 'lib-status-' + (d.status || 'generated');
+          html += `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;font-size:12px">
+            <span class="lib-der-type">${esc(d.type)}</span>
+            <span style="flex:1;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.title)}</span>
+            <span class="lib-status-pill ${statusClass}">${d.status || 'generated'}</span>
+            ${perfParts.length ? '<span style="color:var(--ink-4);font-size:11px">' + perfParts.join(' · ') + '</span>' : ''}
+          </div>`;
+        });
+      } else {
+        html += '<div style="padding:4px 0 4px 12px;font-size:12px;color:var(--ink-4)">Geen afgeleide content</div>';
+      }
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  } catch(e) {
+    el.innerHTML = '<div style="padding:8px 0;font-size:12px;color:var(--ink-4)">Kon details niet laden</div>';
+  }
 }
 
 // ============ EDITOR ============
@@ -1914,9 +2172,7 @@ async function openEditor(topicId) {
     document.getElementById('contentArea').value = '';
   }
   renderEditorContext();
-  editorContentType = 'post';
-  renderTypeTabs();
-  loadHooksForType(editorContentType);
+  loadHookSuggestions(currentTopic.category);
   document.getElementById('openerInput').value = currentTopic.hook || '';
   renderSidebar();
   updateDoneBtn();
@@ -1932,9 +2188,7 @@ function openFreeForm() {
   document.getElementById('authorInput').value = author;
   document.getElementById('contentArea').value = '';
   renderEditorContext();
-  editorContentType = 'post';
-  renderTypeTabs();
-  loadHooksForType(editorContentType);
+  loadHookSuggestions('bewijs');
   document.getElementById('openerInput').value = '';
   renderSidebar();
   updateDoneBtn();
@@ -2063,58 +2317,24 @@ document.getElementById('contentArea').addEventListener('blur', () => {
   }
 });
 
-// ============ TYPE TABS + HOOK PICKER ============
+// ============ HOOK SUGGESTIONS ============
 
-const CONTENT_TYPES = ['post','article','blog','video','case-study','poll'];
-const CONTENT_TYPE_LABELS = {post:'Post',article:'Article',blog:'Blog',video:'Video','case-study':'Case Study',poll:'Poll'};
-
-function renderTypeTabs() {
-  document.getElementById('typeTabs').innerHTML = CONTENT_TYPES.map(t =>
-    `<button class="type-tab ${editorContentType === t ? 'active' : ''}" onclick="switchContentType('${t}')">${CONTENT_TYPE_LABELS[t]}</button>`
-  ).join('');
+async function loadHookSuggestions(category) {
+  try { hookTemplates = await apiCall(`/hooks?category=${category || 'bewijs'}`); } catch(e) { hookTemplates = []; }
+  renderHookSuggestions();
 }
 
-async function switchContentType(type) {
-  if (isDirty) {
-    const author = document.getElementById('authorInput').value.trim();
-    const content = document.getElementById('contentArea').value.trim();
-    if (author && content) await saveSubmission();
-  }
-  editorContentType = type;
-  renderTypeTabs();
-  loadHooksForType(type);
-  if (currentTopic) {
-    const subs = await apiCall(`/submissions?topic_id=${currentTopic.id}&content_type=${type}`);
-    if (subs.length > 0) {
-      currentSubmission = subs[0];
-      document.getElementById('contentArea').value = currentSubmission.raw_content;
-    } else {
-      currentSubmission = null;
-      document.getElementById('contentArea').value = '';
-    }
-    isDirty = false;
-  }
+function renderHookSuggestions() {
+  const list = document.getElementById('hookTemplateList');
+  if (!hookTemplates.length) { list.innerHTML = ''; return; }
+  list.innerHTML = `<div class="hook-template-label">Suggesties voor je opener</div>
+    <div class="hook-template-chips">${hookTemplates.map(h =>
+      `<span class="hook-chip" onclick="pickHookTemplate(this.dataset.text)" data-text="${esc(h.text)}">${esc(h.text)}</span>`
+    ).join('')}</div>`;
 }
 
-async function loadHooksForType(type) {
-  try { hookTemplates = await apiCall(`/hooks?type=${type}`); } catch(e) { hookTemplates = []; }
-  renderHookDropdown();
-}
-
-function renderHookDropdown() {
-  const dd = document.getElementById('hookDropdown');
-  dd.innerHTML = hookTemplates.map(h =>
-    `<div class="hook-option" onclick="pickHook(this.dataset.text)" data-text="${esc(h.text)}">${esc(h.text)}</div>`
-  ).join('');
-}
-
-function toggleHookPicker() {
-  document.getElementById('hookDropdown').classList.toggle('open');
-}
-
-function pickHook(text) {
+function pickHookTemplate(text) {
   document.getElementById('openerInput').value = text;
-  document.getElementById('hookDropdown').classList.remove('open');
   isDirty = true;
 }
 
@@ -2127,12 +2347,6 @@ function renderEditorContext() {
     <span style="color:var(--ink-4)">#${t.id}</span>
     <span class="cat-badge cat-${t.category}" style="font-size:10px;padding:2px 8px">${CAT_LABELS[t.category] || t.category}</span>`;
 }
-
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.opener-field')) {
-    document.getElementById('hookDropdown')?.classList.remove('open');
-  }
-});
 
 // ============ BIBLIOTHEEK ============
 
@@ -2227,111 +2441,123 @@ async function patchDerivative(id, data) {
 
 // ============ MSP JOURNEY ============
 
-function getActor() {
-  let actor = localStorage.getItem('actor');
-  if (!actor) {
-    actor = prompt('Kies je naam:', 'Joshua');
-    if (actor) localStorage.setItem('actor', actor);
-  }
-  return actor || 'unknown';
-}
+let journeyData = [];
+let journeyFilterDomain = 'all';
 
 async function loadJourney() {
-  const [topicsData, auditData] = await Promise.all([
-    apiCall('/topics'),
-    apiCall('/audit-log?limit=50')
-  ]);
-  renderJourneyGrid(topicsData);
-  renderAuditFeed(auditData);
-}
-
-function renderJourneyGrid(allTopics) {
-  let html = '<div class="journey-corner">Level / Domain</div>';
-  JOURNEY_DOMAINS.forEach(d => html += `<div class="journey-col-head">${d}</div>`);
-  for (let level = 5; level >= 1; level--) {
-    html += `<div class="journey-row-head"><div class="lvlnum">${level}</div><div class="lvlname">${JOURNEY_LEVELS[level]}</div></div>`;
-    JOURNEY_DOMAINS.forEach(domain => {
-      const cellTopics = allTopics.filter(t => t.domain === domain && t.level === level);
-      html += '<div class="journey-cell">';
-      cellTopics.forEach(t => {
-        html += `<div class="journey-topic-item"><span title="${esc(t.title)}">${esc(t.title).substring(0, 35)}${t.title.length > 35 ? '...' : ''}</span><button class="journey-edit-btn" onclick="openJourneyEdit(${t.id})" title="Bewerken">&#9998;</button></div>`;
-      });
-      if (!cellTopics.length) html += '<div style="color:var(--ink-4);font-size:11px;font-style:italic">leeg</div>';
-      html += '</div>';
-    });
+  journeyData = await apiCall('/journey');
+  const savedFilter = localStorage.getItem('journeyFilter');
+  if (savedFilter) {
+    journeyFilterDomain = savedFilter;
+    localStorage.removeItem('journeyFilter');
   }
-  document.getElementById('journeyGrid').innerHTML = html;
+  renderJourneyFilter();
+  renderJourneyAccordion();
 }
 
-function renderAuditFeed(entries) {
-  if (!entries.length) {
-    document.getElementById('auditFeed').innerHTML = '<div style="color:var(--ink-4);padding:12px 0">Nog geen wijzigingen</div>';
-    return;
-  }
-  document.getElementById('auditFeed').innerHTML = entries.map(e => {
-    const before = e.before_json ? JSON.parse(e.before_json) : {};
-    const after = e.after_json ? JSON.parse(e.after_json) : {};
-    let changes = [];
-    ['title','hook','domain','level','priority','category','status','claimed_by'].forEach(f => {
-      if (before[f] !== undefined && after[f] !== undefined && before[f] !== after[f]) {
-        changes.push(`${f}: "${before[f] || '-'}" → "${after[f] || '-'}"`);
-      }
+function renderJourneyFilter() {
+  let html = `<span class="pill ${journeyFilterDomain === 'all' ? 'active' : ''}" onclick="setJourneyFilter('all')">Alles</span>`;
+  JOURNEY_DOMAINS.forEach(d => {
+    html += `<span class="pill ${journeyFilterDomain === d ? 'active' : ''}" data-val="${esc(d)}" onclick="setJourneyFilter(this.dataset.val)">${esc(d)}</span>`;
+  });
+  document.getElementById('journeyDomainFilter').innerHTML = html;
+}
+
+function setJourneyFilter(d) {
+  journeyFilterDomain = d;
+  renderJourneyFilter();
+  renderJourneyAccordion();
+}
+
+function renderJourneyAccordion() {
+  const filtered = journeyFilterDomain === 'all' ? journeyData : journeyData.filter(d => d.domain === journeyFilterDomain);
+  let html = '';
+  filtered.forEach(domainBlock => {
+    const totalItems = domainBlock.subdomains.reduce((s, sub) => s + sub.items.length, 0);
+    const isOpen = journeyFilterDomain !== 'all';
+    html += `<div class="journey-domain-accordion">
+      <div class="journey-domain-header ${isOpen ? 'open' : ''}" onclick="toggleJourneyDomain(this)">
+        <h2>${esc(domainBlock.domain)}</h2>
+        <span class="journey-domain-count">${domainBlock.subdomains.length} thema's &middot; ${totalItems} items</span>
+        <span class="journey-domain-arrow">&#9654;</span>
+      </div>
+      <div class="journey-domain-body ${isOpen ? 'open' : ''}">`;
+    domainBlock.subdomains.forEach(sub => {
+      const problemen = sub.items.filter(i => i.type === 'probleem');
+      const frustraties = sub.items.filter(i => i.type === 'frustratie');
+      const vragen = sub.items.filter(i => i.type === 'vraag');
+      html += `<div class="journey-subdomain">
+        <div class="journey-subdomain-header">${esc(sub.name)}</div>
+        <div class="journey-cols">
+          <div>
+            <div class="journey-col-title problemen">Problemen</div>
+            ${problemen.map(p => journeyItemHtml(p)).join('')}
+            <button class="journey-add-btn" onclick="addJourneyItem('${esc(domainBlock.domain)}','${esc(sub.name)}','probleem')">+ Toevoegen</button>
+          </div>
+          <div>
+            <div class="journey-col-title frustraties">Frustraties</div>
+            ${frustraties.map(f => journeyItemHtml(f)).join('')}
+            <button class="journey-add-btn" onclick="addJourneyItem('${esc(domainBlock.domain)}','${esc(sub.name)}','frustratie')">+ Toevoegen</button>
+          </div>
+          <div>
+            <div class="journey-col-title vragen">Vragen</div>
+            ${vragen.map(v => journeyItemHtml(v)).join('')}
+            <button class="journey-add-btn" onclick="addJourneyItem('${esc(domainBlock.domain)}','${esc(sub.name)}','vraag')">+ Toevoegen</button>
+          </div>
+        </div>
+      </div>`;
     });
-    const desc = changes.length ? changes.join(', ') : e.action;
-    const title = after.title || before.title || `#${e.target_id}`;
-    return `<div class="audit-entry">
-      <div class="audit-entry-info"><strong>${esc(e.actor)}</strong> ${e.action === 'topic.undo' ? 'ongedaan gemaakt' : 'wijzigde'} topic "${esc(title).substring(0,40)}": ${esc(desc).substring(0,80)}</div>
-      <span class="audit-entry-time">${new Date(e.created_at + 'Z').toLocaleString('nl-NL', {day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}</span>
-      ${e.action !== 'topic.undo' ? `<button class="audit-undo-btn" onclick="undoRevision(${e.target_id})">Ongedaan maken</button>` : ''}
-    </div>`;
-  }).join('');
+    html += `</div></div>`;
+  });
+  document.getElementById('journeyAccordion').innerHTML = html || '<div style="padding:24px;color:var(--ink-4)">Geen data</div>';
 }
 
-async function openJourneyEdit(topicId) {
-  const topic = await apiCall('/topics/' + topicId);
-  const overlay = document.createElement('div');
-  overlay.className = 'journey-edit-overlay open';
-  overlay.innerHTML = `<div class="journey-edit-popover">
-    <h3 style="margin-bottom:16px">Topic #${topic.id} bewerken</h3>
-    <div class="modal-field"><label>Titel</label><input id="jEditTitle" class="author-input" value="${esc(topic.title)}" /></div>
-    <div class="modal-field"><label>Hook</label><input id="jEditHook" class="author-input" value="${esc(topic.hook || '')}" /></div>
-    <div class="modal-field"><label>Domain</label><select id="jEditDomain" class="author-input">${JOURNEY_DOMAINS.map(d => `<option ${d===topic.domain?'selected':''}>${d}</option>`).join('')}</select></div>
-    <div class="modal-field"><label>Level (1-5)</label><select id="jEditLevel" class="author-input">${[1,2,3,4,5].map(l => `<option value="${l}" ${l==topic.level?'selected':''}>${l} - ${JOURNEY_LEVELS[l]}</option>`).join('')}</select></div>
-    <div class="modal-field"><label>Prioriteit (2-5)</label><select id="jEditPriority" class="author-input">${[2,3,4,5].map(p => `<option value="${p}" ${p==topic.priority?'selected':''}>${p}</option>`).join('')}</select></div>
-    <div class="modal-actions" style="margin-top:16px">
-      <button class="btn-save" onclick="saveJourneyEdit(${topic.id})">Opslaan</button>
-      <button class="btn-done" onclick="this.closest('.journey-edit-overlay').remove()">Annuleren</button>
-    </div>
+function journeyItemHtml(item) {
+  return `<div class="journey-item">
+    <span class="journey-item-text" contenteditable="false" onclick="startJourneyEdit(this)" onblur="saveJourneyItem(${item.id}, this)" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}">${esc(item.text)}</span>
+    <button class="journey-item-del" onclick="deleteJourneyItem(${item.id})" title="Verwijderen">&times;</button>
   </div>`;
-  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-  document.body.appendChild(overlay);
 }
 
-async function saveJourneyEdit(topicId) {
-  const actor = getActor();
-  const data = {
-    actor,
-    title: document.getElementById('jEditTitle').value.trim(),
-    hook: document.getElementById('jEditHook').value.trim(),
-    domain: document.getElementById('jEditDomain').value,
-    level: parseInt(document.getElementById('jEditLevel').value),
-    priority: parseInt(document.getElementById('jEditPriority').value),
-  };
+function toggleJourneyDomain(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+
+function startJourneyEdit(el) {
+  el.contentEditable = 'true';
+  el.focus();
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+}
+
+async function saveJourneyItem(id, el) {
+  el.contentEditable = 'false';
+  const newText = el.textContent.trim();
+  if (!newText) return;
   try {
-    await apiCall('/topics/' + topicId, { method: 'PATCH', body: data });
-    document.querySelector('.journey-edit-overlay')?.remove();
-    toast('Topic bijgewerkt');
+    await apiCall('/journey/' + id, { method: 'PATCH', body: { text: newText } });
+  } catch(e) { loadJourney(); }
+}
+
+async function deleteJourneyItem(id) {
+  try {
+    await apiCall('/journey/' + id, { method: 'DELETE' });
+    toast('Verwijderd');
     loadJourney();
   } catch(e) {}
 }
 
-async function undoRevision(topicId) {
-  const revisions = await apiCall(`/revisions?target_type=topic&target_id=${topicId}`);
-  if (!revisions.length) { toast('Geen revisie gevonden'); return; }
-  const latestRev = revisions[0];
+async function addJourneyItem(domain, subdomain, type) {
+  const text = prompt(type === 'vraag' ? 'Nieuwe vraag:' : type === 'frustratie' ? 'Nieuwe frustratie:' : 'Nieuw probleem:');
+  if (!text || !text.trim()) return;
   try {
-    await apiCall(`/revisions/${latestRev.id}/restore`, { method: 'POST' });
-    toast('Ongedaan gemaakt');
+    await apiCall('/journey', { method: 'POST', body: { domain, subdomain, type, text: text.trim() } });
+    toast('Toegevoegd');
     loadJourney();
   } catch(e) {}
 }
@@ -2442,52 +2668,54 @@ async function loadCalendar() {
 }
 
 function calNavWeek(dir) {
-  calWeekStart.setDate(calWeekStart.getDate() + dir * 7);
+  calWeekStart.setDate(calWeekStart.getDate() + dir * 28);
   loadCalendar();
 }
 
 function renderCalendar() {
   const today = fmtDate(new Date());
-  const weekEnd = new Date(calWeekStart);
-  weekEnd.setDate(weekEnd.getDate() + 4);
-
   const monthNames = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+
+  const fourWeekEnd = new Date(calWeekStart);
+  fourWeekEnd.setDate(fourWeekEnd.getDate() + 25);
   const startMonth = monthNames[calWeekStart.getMonth()];
-  const endMonth = monthNames[weekEnd.getMonth()];
-  const label = calWeekStart.getDate() + (startMonth !== endMonth ? ' ' + startMonth : '') + ' - ' + weekEnd.getDate() + ' ' + endMonth + ' ' + weekEnd.getFullYear();
+  const endMonth = monthNames[fourWeekEnd.getMonth()];
+  const label = calWeekStart.getDate() + (startMonth !== endMonth ? ' ' + startMonth : '') + ' - ' + fourWeekEnd.getDate() + ' ' + endMonth + ' ' + fourWeekEnd.getFullYear();
   document.getElementById('calWeekLabel').textContent = label;
 
   let html = '';
-  for (let i = 0; i < 5; i++) {
-    const d = new Date(calWeekStart);
-    d.setDate(d.getDate() + i);
-    const dateStr = fmtDate(d);
-    const isToday = dateStr === today;
-    const isPast = dateStr < today;
-    const dayEntries = calEntries.filter(e => e.scheduled_date === dateStr);
+  for (let week = 0; week < 4; week++) {
+    for (let day = 0; day < 5; day++) {
+      const d = new Date(calWeekStart);
+      d.setDate(d.getDate() + (week * 7) + day);
+      const dateStr = fmtDate(d);
+      const isToday = dateStr === today;
+      const isPast = dateStr < today;
+      const dayEntries = calEntries.filter(e => e.scheduled_date === dateStr);
 
-    html += `<div class="cal-day ${isToday ? 'today' : ''} ${isPast ? 'past' : ''}">
-      <div class="cal-day-header">
-        <div><span class="cal-day-name">${DAY_NAMES[(d.getDay() || 7)]}</span> <span class="cal-day-date">${d.getDate()} ${monthNames[d.getMonth()]}</span></div>
-        <button class="cal-add-btn" onclick="openCalModal('${dateStr}')">+</button>
-      </div>`;
+      html += `<div class="cal-day ${isToday ? 'today' : ''} ${isPast ? 'past' : ''}">
+        <div class="cal-day-header">
+          <div><span class="cal-day-name">${DAY_NAMES[(d.getDay() || 7)]}</span> <span class="cal-day-date">${d.getDate()} ${monthNames[d.getMonth()]}</span></div>
+          <button class="cal-add-btn" onclick="openCalModal('${dateStr}')">+</button>
+        </div>`;
 
-    dayEntries.forEach(e => {
-      const metricsHtml = (e.status === 'posted' && e.impressions != null)
-        ? `<div class="cal-entry-metrics">${e.impressions} impr &middot; ${e.clicks} clicks &middot; ${e.engagement_rate}% eng</div>`
-        : '';
-      html += `<div class="cal-entry ${e.status === 'posted' ? 'cal-status-posted' : ''}" onclick="openCalModal(null, ${e.id})">
-        <div class="cal-entry-title">${esc(e.title)}</div>
-        <div class="cal-entry-meta">
-          <span class="cal-platform ${e.platform}">${e.platform === 'linkedin' ? 'LI' : 'DXF'}</span>
-          <span class="cal-account">${esc(e.account)}</span>
-          <span class="cal-type">${esc(e.content_type)}</span>
-        </div>
-        ${metricsHtml}
-      </div>`;
-    });
+      dayEntries.forEach(e => {
+        const metricsHtml = (e.status === 'posted' && e.impressions != null)
+          ? `<div class="cal-entry-metrics">${e.impressions} impr &middot; ${e.clicks} clicks &middot; ${e.engagement_rate}% eng</div>`
+          : '';
+        html += `<div class="cal-entry ${e.status === 'posted' ? 'cal-status-posted' : ''}" onclick="openCalModal(null, ${e.id})">
+          <div class="cal-entry-title">${esc(e.title)}</div>
+          <div class="cal-entry-meta">
+            <span class="cal-platform ${e.platform}">${e.platform === 'linkedin' ? 'LI' : 'DXF'}</span>
+            <span class="cal-account">${esc(e.account)}</span>
+            <span class="cal-type">${esc(e.content_type)}</span>
+          </div>
+          ${metricsHtml}
+        </div>`;
+      });
 
-    html += `</div>`;
+      html += `</div>`;
+    }
   }
   document.getElementById('calGrid').innerHTML = html;
 }

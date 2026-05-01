@@ -296,12 +296,53 @@ $db->exec('CREATE TABLE IF NOT EXISTS revisions (
 )');
 $db->exec('CREATE INDEX IF NOT EXISTS idx_revisions_target ON revisions(target_type, target_id, created_at DESC)');
 
+$db->exec('CREATE TABLE IF NOT EXISTS journey_items (
+    id INTEGER PRIMARY KEY,
+    domain TEXT NOT NULL,
+    subdomain TEXT NOT NULL,
+    type TEXT NOT NULL,
+    text TEXT NOT NULL,
+    sort_order INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+)');
+$db->exec('CREATE INDEX IF NOT EXISTS idx_journey_domain ON journey_items(domain, subdomain)');
+
+// Seed journey_items from JSON if table is empty
+$journeyCount = (int)$db->query('SELECT COUNT(*) FROM journey_items')->fetchColumn();
+if ($journeyCount === 0) {
+    $journeyFile = __DIR__ . '/data/journey-data.json';
+    if (file_exists($journeyFile)) {
+        $journeyData = json_decode(file_get_contents($journeyFile), true);
+        $jStmt = $db->prepare('INSERT INTO journey_items (domain, subdomain, type, text, sort_order) VALUES (?, ?, ?, ?, ?)');
+        foreach ($journeyData as $domainBlock) {
+            $domainName = $domainBlock['domain'];
+            if ($domainName === 'Data Driven') $domainName = 'Data driven';
+            foreach ($domainBlock['subdomains'] as $sub) {
+                $order = 0;
+                foreach (['problemen','frustraties','vragen'] as $type) {
+                    if (!empty($sub[$type])) {
+                        foreach ($sub[$type] as $text) {
+                            $jStmt->execute([$domainName, $sub['name'], $type === 'problemen' ? 'probleem' : ($type === 'frustraties' ? 'frustratie' : 'vraag'), $text, $order++]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 // Domain rename migration
 $needsDomainRename = (int)$db->query("SELECT COUNT(*) FROM topics WHERE domain IN ('Data Driven','Algemeen','Markt')")->fetchColumn() > 0;
 if ($needsDomainRename) {
     $db->exec("UPDATE topics SET domain = 'Data driven' WHERE domain = 'Data Driven'");
     $db->exec("UPDATE topics SET domain = 'Identity'     WHERE domain = 'Algemeen'");
     $db->exec("UPDATE topics SET domain = 'Positioning'  WHERE domain = 'Markt'");
+}
+
+// Default levels for topics without level (PDF is L2-L3)
+$needsLevel = (int)$db->query("SELECT COUNT(*) FROM topics WHERE level IS NULL")->fetchColumn() > 0;
+if ($needsLevel) {
+    $db->exec("UPDATE topics SET level = 2 + (id % 2) WHERE level IS NULL");
 }
 
 // Category to priority defaults
@@ -966,6 +1007,10 @@ switch ($resource) {
                 $type = $_GET['type'];
                 $hooks = array_values(array_filter($hooks, fn($h) => in_array($type, $h['applicable_types'] ?? [])));
             }
+            if (!empty($_GET['category'])) {
+                $cat = $_GET['category'];
+                $hooks = array_values(array_filter($hooks, fn($h) => in_array($cat, $h['source_categories'] ?? [])));
+            }
             respond($hooks);
         } else {
             respondError('Method not allowed', 405);
@@ -1046,6 +1091,79 @@ switch ($resource) {
             $stmt = $db->prepare($sql);
             $stmt->execute($params);
             respond($stmt->fetchAll());
+        } else {
+            respondError('Method not allowed', 405);
+        }
+        break;
+
+    case 'journey':
+        $jId = $parts[1] ?? null;
+        if ($method === 'GET' && $jId === null) {
+            $rows = $db->query('SELECT * FROM journey_items ORDER BY domain, subdomain, type, sort_order, id')->fetchAll();
+            $grouped = [];
+            foreach ($rows as $r) {
+                $d = $r['domain'];
+                $s = $r['subdomain'];
+                if (!isset($grouped[$d])) $grouped[$d] = ['domain' => $d, 'subdomains' => []];
+                if (!isset($grouped[$d]['subdomains'][$s])) $grouped[$d]['subdomains'][$s] = ['name' => $s, 'items' => []];
+                $grouped[$d]['subdomains'][$s]['items'][] = [
+                    'id' => (int)$r['id'],
+                    'type' => $r['type'],
+                    'text' => $r['text'],
+                    'sort_order' => (int)$r['sort_order'],
+                ];
+            }
+            $result = [];
+            foreach (JOURNEY_DOMAINS as $dom) {
+                if (isset($grouped[$dom])) {
+                    $entry = $grouped[$dom];
+                    $entry['subdomains'] = array_values($entry['subdomains']);
+                    $result[] = $entry;
+                }
+            }
+            respond($result);
+
+        } elseif ($method === 'GET' && $jId === 'domain') {
+            $domain = $_GET['domain'] ?? null;
+            if (!$domain) respondError('domain parameter required');
+            $stmt = $db->prepare('SELECT * FROM journey_items WHERE domain = ? ORDER BY subdomain, type, sort_order, id');
+            $stmt->execute([$domain]);
+            $rows = $stmt->fetchAll();
+            $grouped = [];
+            foreach ($rows as $r) {
+                $s = $r['subdomain'];
+                if (!isset($grouped[$s])) $grouped[$s] = ['name' => $s, 'problemen' => [], 'frustraties' => [], 'vragen' => []];
+                $typeKey = $r['type'] === 'probleem' ? 'problemen' : ($r['type'] === 'frustratie' ? 'frustraties' : 'vragen');
+                $grouped[$s][$typeKey][] = ['id' => (int)$r['id'], 'text' => $r['text']];
+            }
+            respond(['domain' => $domain, 'subdomains' => array_values($grouped)]);
+
+        } elseif ($method === 'POST' && $jId === null) {
+            if (empty($input['domain']) || empty($input['subdomain']) || empty($input['type']) || empty($input['text'])) {
+                respondError('domain, subdomain, type, text required');
+            }
+            $allowedTypes = ['probleem','frustratie','vraag'];
+            if (!in_array($input['type'], $allowedTypes)) respondError('type must be: ' . implode(', ', $allowedTypes));
+            $maxOrder = $db->prepare('SELECT COALESCE(MAX(sort_order), -1) + 1 FROM journey_items WHERE domain = ? AND subdomain = ? AND type = ?');
+            $maxOrder->execute([$input['domain'], $input['subdomain'], $input['type']]);
+            $nextOrder = (int)$maxOrder->fetchColumn();
+            $stmt = $db->prepare('INSERT INTO journey_items (domain, subdomain, type, text, sort_order) VALUES (?, ?, ?, ?, ?)');
+            $stmt->execute([$input['domain'], $input['subdomain'], $input['type'], $input['text'], $nextOrder]);
+            $newId = $db->lastInsertId();
+            $stmt = $db->prepare('SELECT * FROM journey_items WHERE id = ?');
+            $stmt->execute([$newId]);
+            respond($stmt->fetch(), 201);
+
+        } elseif ($method === 'PATCH' && $jId !== null) {
+            $item = patchRecord($db, 'journey_items', $jId, $input, ['text', 'sort_order', 'domain', 'subdomain', 'type']);
+            respond($item);
+
+        } elseif ($method === 'DELETE' && $jId !== null) {
+            $stmt = $db->prepare('DELETE FROM journey_items WHERE id = ?');
+            $stmt->execute([$jId]);
+            if ($stmt->rowCount() === 0) respondError('Item not found', 404);
+            respond(['deleted' => true]);
+
         } else {
             respondError('Method not allowed', 405);
         }

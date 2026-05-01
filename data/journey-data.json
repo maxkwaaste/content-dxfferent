@@ -1,0 +1,825 @@
+[
+  {
+    "domain": "Identity",
+    "subdomains": [
+      {
+        "name": "Missie",
+        "problemen": [
+          "Missie is opgeschreven maar niet gebruikt in besluitvorming",
+          "Iedereen zegt 'wij doen IT-beheer' — inwisselbaar met elke andere MSP",
+          "Richting verschilt per persoon",
+          "Generiek jargon zoals 'ontzorgen'",
+          "Missie leeft alleen bij MT"
+        ],
+        "frustraties": [
+          "Missie is een poster aan de muur en verder niets",
+          "Geen filter bij klantacceptatie",
+          "Medewerkers kunnen niet uitleggen waarom het bedrijf bestaat",
+          "Elke MSP zegt hetzelfde"
+        ],
+        "vragen": [
+          "Waarom bestaat ons bedrijf eigenlijk?",
+          "Wat maakt ons anders dan de MSP drie straten verderop?",
+          "Hoe gebruiken we de missie bij dagelijkse beslissingen?",
+          "Hoe schrijven we een missie die echt van ons is?"
+        ]
+      },
+      {
+        "name": "Visie",
+        "problemen": [
+          "Visie bestaat op papier maar niet breed gecommuniceerd",
+          "Medewerkers weten niet wat de visie betekent voor hun werk",
+          "Abstracte ambities die niet vertaald worden naar keuzes"
+        ],
+        "frustraties": [
+          "Visie hangt aan de muur maar op maandag werkt iedereen gewoon verder",
+          "Geen gedeeld beeld van waar het bedrijf naartoe gaat",
+          "Geen input van medewerkers bij formuleren visie"
+        ],
+        "vragen": [
+          "Hoe maken we onze visie tastbaar voor het hele team?",
+          "Hoe weten we of we nog op koers zitten?",
+          "Hoe vertalen we visie naar concrete doelen per kwartaal?"
+        ]
+      },
+      {
+        "name": "Strategie",
+        "problemen": [
+          "Basisplan aanwezig maar zonder regelmatige evaluatie",
+          "Vertaalslag van visie naar actie mislukt",
+          "Werk is projectgedreven zonder langetermijnrichting",
+          "Geen bewust 'nee' kunnen zeggen"
+        ],
+        "frustraties": [
+          "Elke trend en klantverzoek trekt de organisatie een andere kant op",
+          "Strategie als eenmalige presentatie, geen levend document",
+          "Dagelijkse operatie wint altijd van strategische plannen"
+        ],
+        "vragen": [
+          "Hoe kiezen we onze waardediscipline?",
+          "Hoe vertalen we strategie naar teamdoelen per kwartaal?",
+          "Hoe weten we of een investering bij onze visie past?"
+        ]
+      },
+      {
+        "name": "Cultuur",
+        "problemen": [
+          "Cultuur is positief maar niet bewust gestuurd of gemeten",
+          "Fouten worden afgestraft in plaats van als leermomenten gebruikt",
+          "Geen psychologische veiligheid",
+          "Cultuurverandering strandt door gebrek aan feedbackloops"
+        ],
+        "frustraties": [
+          "Leiderschap leeft de gewenste cultuur niet voor",
+          "Teamactiviteiten aanwezig maar geen structurele cultuurontwikkeling",
+          "Cultuurverandering blijft hangen bij het MT"
+        ],
+        "vragen": [
+          "Hoe weten we wat onze huidige cultuur echt is?",
+          "Hoe maken we cultuur meetbaar?",
+          "Hoe zorgen we dat cultuurverandering niet alleen bij het MT blijft?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Organisation",
+    "subdomains": [
+      {
+        "name": "Strategisch Plan",
+        "problemen": [
+          "Basisplan bestaat maar wordt zelden geraadpleegd",
+          "Geen vertaling van visie naar meetbare doelen",
+          "KPI's niet beschikbaar of niet gevolgd",
+          "Dagelijkse operatie slokt alle tijd op"
+        ],
+        "frustraties": [
+          "Strategische doelen blijven vaag en onbereikt",
+          "Urgentie van vandaag wint altijd van plannen voor morgen",
+          "Directeur wil groeien maar heeft geen helder kompas",
+          "Prioriteiten wisselen constant"
+        ],
+        "vragen": [
+          "Hoe zorg ik dat ons plan geen document in een la wordt?",
+          "Welke KPI's moet ik bijhouden zonder extra overhead?",
+          "Hoe creeer ik tijd voor strategie naast de dagelijkse operatie?"
+        ]
+      },
+      {
+        "name": "Organisatiestructuur",
+        "problemen": [
+          "Basisstructuur bestaat maar rollen overlappen en verantwoordelijkheden zijn onduidelijk",
+          "Structuur van 15 FTE werkt niet meer bij 40 FTE",
+          "Kennissilos en versnipperde klantfocus"
+        ],
+        "frustraties": [
+          "Niemand weet wie welke beslissing mag nemen",
+          "Kennis gaat verloren bij vertrek van medewerkers",
+          "Directeur is overal bij betrokken"
+        ],
+        "vragen": [
+          "Welke structuur past bij mijn fase en ambitie?",
+          "Hoe definieer ik teams en rollen zonder flexibiliteit te verliezen?",
+          "Hoe zorg ik dat beslissingen lager in de organisatie worden genomen?"
+        ]
+      },
+      {
+        "name": "Employee Journey",
+        "problemen": [
+          "Onboarding aanwezig maar verdere ontwikkeling niet gestructureerd",
+          "Investering in werving maar niet in behoud",
+          "Geen exitgesprekken als databron"
+        ],
+        "frustraties": [
+          "Engineer vertrekt na 14 maanden — kennis en klantrelatie weg",
+          "3 maanden zoeken, 3 maanden inwerken, ondertussen overuren",
+          "Tevredenheid meten maar niet reageren"
+        ],
+        "vragen": [
+          "Waarom vertrekken medewerkers echt?",
+          "Hoe bouwen we een gestructureerd inwerkprogramma?",
+          "Hoe maken we groeipaden zichtbaar?"
+        ]
+      },
+      {
+        "name": "Communicatie",
+        "problemen": [
+          "Communicatie inconsistent en afhankelijk van individuen",
+          "Informatie bereikt niet altijd de juiste personen",
+          "Geen vaste overlegstructuur"
+        ],
+        "frustraties": [
+          "20 uur per week in vergaderingen terwijl helft overbodig is",
+          "Signalen van werkvloer bereiken management niet",
+          "Actiepunten worden niet opgevolgd"
+        ],
+        "vragen": [
+          "Hoe zorg ik dat iedereen dezelfde info heeft zonder eindeloos te vergaderen?",
+          "Hoe maak ik van ad-hoc communicatie een werkend systeem?",
+          "Wie communiceert wat naar welke klant op welk niveau?"
+        ]
+      },
+      {
+        "name": "Medewerkerstevredenheid",
+        "problemen": [
+          "Informeel gevoel bij tevredenheid, geen structurele meting",
+          "Verloop wordt niet geanalyseerd",
+          "Geen feedbacksysteem of pulse surveys"
+        ],
+        "frustraties": [
+          "Medewerkers vertrekken en je weet niet waarom",
+          "Recruitmentkosten lopen op terwijl oorzaak onbekend blijft",
+          "Geen systeem om signalen vroeg op te vangen"
+        ],
+        "vragen": [
+          "Hoe weet ik of mijn medewerkers tevreden zijn voordat ze opstappen?",
+          "Hoe meet ik tevredenheid zonder bureaucratisch project?",
+          "Wat zijn de quick wins die ik morgen kan doorvoeren?"
+        ]
+      },
+      {
+        "name": "Taken & Verantwoordelijkheden",
+        "problemen": [
+          "Taken globaal verdeeld maar overlap en hiaten regelmatig",
+          "Geen vastgelegde functieprofielen of RACI",
+          "Niemand verantwoordelijk voor complete gaps"
+        ],
+        "frustraties": [
+          "'Ik dacht dat jij dat zou oppakken' — herhaalt zich steeds",
+          "Leidinggevenden moeten constant schakelen bij onduidelijkheid",
+          "Recruitment moeilijker omdat functieprofielen niet helder zijn"
+        ],
+        "vragen": [
+          "Wie is verantwoordelijk voor wat zonder bureaucratisch document?",
+          "Hoe maak ik groeipaden zichtbaar?",
+          "Waar begin ik: met welke functies pak ik dit als eerste aan?"
+        ]
+      },
+      {
+        "name": "Personeelsplanning",
+        "problemen": [
+          "Werving reactief — pas als tekorten al zichtbaar zijn",
+          "Geen koppeling tussen klantgroei en benodigde capaciteit",
+          "Personeelsbeslissingen worden op gevoel genomen"
+        ],
+        "frustraties": [
+          "Altijd te laat werven, altijd brandjes blussen",
+          "Nieuwe klant binnenhalen maar FTE-impact is onduidelijk",
+          "Subjectieve discussies over 'hebben we iemand nodig'"
+        ],
+        "vragen": [
+          "Hoeveel users/devices kan een engineer aan voordat kwaliteit daalt?",
+          "Wanneer moet ik werven — hoe definieer ik dat objectief?",
+          "Hoe vertaal ik een nieuwe klant direct naar een personeelsbehoefte?"
+        ]
+      },
+      {
+        "name": "Beloning",
+        "problemen": [
+          "Geen gestructureerd beloningsbeleid of salarisschalen",
+          "Beloning niet gekoppeld aan functie, groei of prestaties",
+          "Geen benchmarking op de markt"
+        ],
+        "frustraties": [
+          "Medewerkers vergelijken salarissen — leidt tot onrust",
+          "Directeur weet niet of hij marktconform betaalt",
+          "Beloning voelt willekeurig en niet uitlegbaar"
+        ],
+        "vragen": [
+          "Betaal ik marktconform?",
+          "Hoe maak ik beloning transparant zonder conflicten?",
+          "Hoe bouw ik een bonusstructuur die eerlijk en motiverend is?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "GRC",
+    "subdomains": [
+      {
+        "name": "Strategie & Beleid",
+        "problemen": [
+          "Beleidsdocumenten bestaan maar niet compleet of actueel",
+          "Geen multi-norm mapping — apart beleid voor elke norm",
+          "AI-beleid ontbreekt volledig",
+          "PDCA-cyclus is niet operationeel"
+        ],
+        "frustraties": [
+          "Template met logo erop = 'ons beleid' — auditor prikt er doorheen",
+          "Beleid wordt geschreven maar niet nageleefd",
+          "Regelgeving stapelt op (NIS2, DORA, AI Act) — weet niet waar te beginnen"
+        ],
+        "vragen": [
+          "Welke normen zijn op ons van toepassing?",
+          "Hoe schrijven we beleid dat aanvoelt als van ons?",
+          "Welke AI-tools mogen medewerkers gebruiken en hoe borgen we dat?"
+        ]
+      },
+      {
+        "name": "Organisatie & Personeel",
+        "problemen": [
+          "GRC-rollen bewust groeiend maar niet formeel benoemd",
+          "Directeur is ook Security Officer — niet gedocumenteerd",
+          "Training en bewustwording niet geborgd in HRM-cyclus"
+        ],
+        "frustraties": [
+          "Bij incident om 23:00 weet niemand wie verantwoordelijk is",
+          "Security wordt voorgeschreven maar niet voorgeleefd",
+          "Medewerkers kunnen kernpunten beleid niet benoemen bij audit"
+        ],
+        "vragen": [
+          "Wie is bij ons verantwoordelijk voor GRC?",
+          "Hoe integreren we bewustwording structureel in onze organisatie?",
+          "Wat verwacht de auditor bij rollen en verantwoordelijkheden?"
+        ]
+      },
+      {
+        "name": "Leveranciers",
+        "problemen": [
+          "Leveranciers ad-hoc beoordeeld zonder vast proces",
+          "Geen DPA-dekking op 100% bij verwerkers",
+          "Concentratierisico wordt niet gemonitord"
+        ],
+        "frustraties": [
+          "Hele dienstverlening op handvol leveranciers zonder risicoanalyse",
+          "Geen exitstrategieen of resilience-clausules in contracten",
+          "DORA Chapter V — slechtst scorend onderdeel (47,5% compliance)"
+        ],
+        "vragen": [
+          "Welke leveranciers verwerken persoonsgegevens en hebben we een DPA?",
+          "Hoe voorkomen we vendor lock-in?",
+          "Hoe gaan we om met sub-verwerkers?"
+        ]
+      },
+      {
+        "name": "Data & Privacy",
+        "problemen": [
+          "AVG-bewustzijn maar geen formeel programma",
+          "Bewaartermijnen niet vastgelegd of geborgd",
+          "Geen formeel datalekproces"
+        ],
+        "frustraties": [
+          "Verwerkingsregister is eerste dat auditor bekijkt en makkelijkste om af te keuren",
+          "Data bewaren 'voor de zekerheid' zonder te weten welke termijnen gelden",
+          "72-uurstermijn begint bij ontdekking — dat weten medewerkers niet"
+        ],
+        "vragen": [
+          "Hoe zetten we een verwerkingsregister op dat de auditor accepteert?",
+          "Welke bewaartermijnen gelden voor welke typen data?",
+          "Hoe zorgen we dat DPA's op 100% dekking zitten?"
+        ]
+      },
+      {
+        "name": "Incidentbeheer",
+        "problemen": [
+          "Incidenten reactief opgepakt zonder vast proces",
+          "Engineers weten niet wanneer iets een potentieel datalek is",
+          "CVD-beleid ontbreekt op de website"
+        ],
+        "frustraties": [
+          "Medewerkers weten niet wat te doen bij phishingmail of verdachte inlogpogingen",
+          "Incidenten zonder oorzaakanalyse — zelfde fouten herhalen zich",
+          "Symptomen bestrijden in plaats van patronen sturen"
+        ],
+        "vragen": [
+          "Hoe trainen we medewerkers om datalekken te herkennen en melden?",
+          "Hoe richten we een gestructureerd incidentproces in Autotask in?",
+          "Hoe borgen we de 72-uurstermijn voor datalekmeldingen?"
+        ]
+      },
+      {
+        "name": "Operationele Controle",
+        "problemen": [
+          "Handmatige controles zonder standaard rapportage",
+          "Aantoonbaarheid ontbreekt — geen bewijs dat processen worden uitgevoerd",
+          "DR-oefeningen vinden niet plaats"
+        ],
+        "frustraties": [
+          "'We doen dit' is niet voldoende — auditor wil bewijs",
+          "Geen historisch bewijs van operationele controles",
+          "DORA Chapter IV compliance staat op 3,1%"
+        ],
+        "vragen": [
+          "Hoe tonen we aan dat we doen wat we zeggen dat we doen?",
+          "Hoe richten we interne audits in?",
+          "Hoe testen we continuiteit op een aantoonbare manier?"
+        ]
+      },
+      {
+        "name": "Risicobeheer",
+        "problemen": [
+          "Risico's besproken maar niet vastgelegd",
+          "Geen risicobehandelplan, geen eigenaar per risico",
+          "AI Act-risico's volledig onbekend terrein"
+        ],
+        "frustraties": [
+          "Risico's besproken in wandelgangen maar nooit vastgelegd",
+          "Geen trigger om risicoanalyse bij te werken",
+          "Maatregelen genomen maar niet aantoonbaar geimplementeerd"
+        ],
+        "vragen": [
+          "Hoe zetten we een risicoanalyse op die voldoet aan ISO 27001 en NIS2?",
+          "Wie is eigenaar van welk risico?",
+          "Hoe gaan we om met risico's rondom AI-gebruik?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Positioning",
+    "subdomains": [
+      {
+        "name": "Marktpositie",
+        "problemen": [
+          "Positionering als 'IT-partner voor het MKB' — net als alle anderen",
+          "Klanten kiezen daardoor op prijs",
+          "Geen bewuste keuze gemaakt voor wie je er wel of niet bent"
+        ],
+        "frustraties": [
+          "'We verliezen offertes op prijs terwijl we toch echt beter zijn'",
+          "'Iedereen zegt hetzelfde. Hoe val ik op zonder goedkoper te worden?'",
+          "Kiezen voelt als klanten afwijzen — dat durven we niet"
+        ],
+        "vragen": [
+          "Hoe weet ik wat mijn echte concurrentievoordeel is?",
+          "Hoe test ik of mijn positionering werkt zonder klanten te verliezen?",
+          "Wanneer is een positionering 'goed genoeg' om mee te starten?"
+        ]
+      },
+      {
+        "name": "Marketingstrategie",
+        "problemen": [
+          "Incidentele marketingacties zonder overkoepelend plan",
+          "Alle groei komt via mond-tot-mond en persoonlijk netwerk",
+          "Geen meetbaarheid per kanaal"
+        ],
+        "frustraties": [
+          "'80% van ons marketingbudget levert aantoonbaar niets op'",
+          "'We groeien via via maar ik weet niet hoe ik dat schaalbaar maak'",
+          "'We plaatsen af en toe iets op LinkedIn maar niemand reageert'"
+        ],
+        "vragen": [
+          "Welke marketingkanalen werken echt voor een MSP?",
+          "Hoe bouw ik consistentie op zonder er fulltime mee bezig te zijn?",
+          "Moet ik een marketingmedewerker aannemen of uitbesteden?"
+        ]
+      },
+      {
+        "name": "Klant",
+        "problemen": [
+          "Klantcontact is reactief — alleen bij problemen of verlengingen",
+          "Geen ICP gedefinieerd",
+          "Helft van nieuwe klanten blijkt achteraf niet rendabel"
+        ],
+        "frustraties": [
+          "'We horen pas dat het niet goed gaat als ze opzeggen'",
+          "'Sommige klanten kosten ons meer dan ze opleveren maar we durven ze niet te verlaten'",
+          "'Onze beste klanten krijgen niet de aandacht die ze verdienen'"
+        ],
+        "vragen": [
+          "Hoe definieer ik een ideaal klantprofiel op basis van data?",
+          "Hoe meten we klanttevredenheid op een schaalbare manier?",
+          "Wanneer is het verantwoord om een klant door te verwijzen?"
+        ]
+      },
+      {
+        "name": "Verkoopstrategie",
+        "problemen": [
+          "Sales is persoonsafhankelijk zonder gestandaardiseerd proces",
+          "Geen CRM, geen pipeline-inzicht, geen conversiedata",
+          "Model schaalt niet en is kwetsbaar"
+        ],
+        "frustraties": [
+          "'Als ik wegval, valt de sales stil'",
+          "'We winnen deals maar weten niet waarom'",
+          "'Mijn team kan niet verkopen zoals ik dat doe'"
+        ],
+        "vragen": [
+          "Hoe maak ik sales minder afhankelijk van mezelf als directeur?",
+          "Hoe bouw ik een salesproces dat mijn team ook kan uitvoeren?",
+          "Hoe zorg ik voor voorspelbare omzetgroei?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Portfolio",
+    "subdomains": [
+      {
+        "name": "PDC (Product Diensten Catalogus)",
+        "problemen": [
+          "Dienstbeschrijvingen incompleet of verspreid",
+          "Geen single source of truth",
+          "Geen scheiding extern en intern"
+        ],
+        "frustraties": [
+          "'Maar dat was toch inbegrepen?' — eindeloze scope-discussies",
+          "Sales belooft iets dat operations niet kent",
+          "Nieuwe medewerkers doen weken over om te begrijpen wat het bedrijf doet"
+        ],
+        "vragen": [
+          "Welke secties moet een dienstbeschrijving minimaal hebben?",
+          "Beginnen we met top 5 diensten of met alles tegelijk?",
+          "Wie wordt eigenaar van elke dienst?"
+        ]
+      },
+      {
+        "name": "Menukaart & Standaardisatie",
+        "problemen": [
+          "Eindeloos maatwerk, onvoorspelbare marges",
+          "12 firewall-varianten, 8 backup-oplossingen, 5 endpoint tools",
+          "Geen koppeling menukaart aan PSA-contractstructuur"
+        ],
+        "frustraties": [
+          "'Ik weet zelf niet meer precies wat we verkopen'",
+          "Elke deal voelt als nieuw project in plaats van reproduceerbaar product",
+          "Engineers moeten generalist zijn in alles wat bestaat"
+        ],
+        "vragen": [
+          "Hoe bouwen we de menukaart op zonder dat hij te complex wordt?",
+          "Welk pricing model kiezen we: per user, per device, hybride?",
+          "Hoe migreren we bestaande klanten zonder ze te verliezen?"
+        ]
+      },
+      {
+        "name": "Prijsamenstelling",
+        "problemen": [
+          "Kostprijs per dienst onbekend — geprijsd op gevoel",
+          "Overhead vergeten in kostprijs",
+          "Geen jaarlijkse indexering"
+        ],
+        "frustraties": [
+          "'Hoeveel kost het ons om dienst X te leveren?' — geen antwoord binnen 5 seconden",
+          "Marge lekt weg zonder dat duidelijk is waar",
+          "Onderhandelen zonder te weten waar de ondergrens ligt"
+        ],
+        "vragen": [
+          "Wat kost het ons echt om dienst X te leveren?",
+          "Welke klanten zijn winstgevend, welke niet?",
+          "Hoe communiceren we een prijsverhoging zonder klanten te verliezen?"
+        ]
+      },
+      {
+        "name": "AI als Dienst",
+        "problemen": [
+          "AI wordt intern gebruikt maar niet verkocht voor omzetgroei",
+          "Geen scope-definitie, pricing-model of sales-motion voor AI",
+          "Geen pilot-aanpak met 3-5 klanten"
+        ],
+        "frustraties": [
+          "'We zijn intern bezig met AI maar verdienen er niets aan'",
+          "Concurrenten beginnen AI-diensten te commercialiseren",
+          "AI-projecten blijven hangen in experiment-fase"
+        ],
+        "vragen": [
+          "Welke interne AI-capabilities lenen zich voor verkoop?",
+          "Hoe productiseren we onze AI?",
+          "Hoe voorkomen we dat we technologie verkopen in plaats van resultaat?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Technology",
+    "subdomains": [
+      {
+        "name": "PSA (Autotask)",
+        "problemen": [
+          "Autotask voor 30-40% ingericht — servicedesk en facturatie draaien, rest niet",
+          "Workarounds zijn de norm — mensen werken om het systeem heen",
+          "Geen consistente categorisering, dashboards niet ingericht per rol"
+        ],
+        "frustraties": [
+          "Rapportages zijn nietszeggend door slechte datakwaliteit",
+          "Half-ingerichte PSA kost meer dan het oplevert",
+          "PSA zou zenuwcentrum moeten zijn maar werkt slechts gedeeltelijk"
+        ],
+        "vragen": [
+          "In welke volgorde rollen we de modules uit?",
+          "Welke velden moeten verplicht worden om datakwaliteit te garanderen?",
+          "Hoe richten we PSA in zodat data automatisch geschikt is voor analyse?"
+        ]
+      },
+      {
+        "name": "Automatisering",
+        "problemen": [
+          "Lappendeken van scripts zonder samenhang",
+          "Scripts verspreid op laptops zonder centrale repository",
+          "Geen gekozen primair workflow-platform — wildgroei aan tools"
+        ],
+        "frustraties": [
+          "Personeel uitbreiden voelt als enige optie om te schalen",
+          "Elke nieuwe klant = twee weken handmatig werk over drie teams",
+          "Script dat ooit werkte breekt nu en niemand weet meer waarom"
+        ],
+        "vragen": [
+          "Welk workflow-platform past het beste bij ons?",
+          "Moeten we eerst interne processen of klantdienstverlening automatiseren?",
+          "Wat is de juiste volgorde: documenteren, optimaliseren, dan pas automatiseren?"
+        ]
+      },
+      {
+        "name": "Contracten & Billing",
+        "problemen": [
+          "Contractaantallen handmatig bijgehouden via spreadsheets",
+          "Aantallen op factuur kloppen niet met daadwerkelijk gebruik",
+          "Geen koppeling tussen bronsystemen en facturatiesysteem"
+        ],
+        "frustraties": [
+          "5-10% niet correct doorbelast — bij 2M EUR is dat 100-200k per jaar",
+          "2-3 werkdagen per maand kwijt aan handmatige controle",
+          "Maandelijkse spreadsheet die niemand vertrouwt maar iedereen blijft doen"
+        ],
+        "vragen": [
+          "Hoeveel omzet lopen we mis door incorrecte contractaantallen?",
+          "Welk bronsysteem is leidend per type item?",
+          "Hoe voorkomen we mismatches tussen bronsysteem en PSA?"
+        ]
+      },
+      {
+        "name": "RMM",
+        "problemen": [
+          "RMM deels uitgerold — blinde vlekken in monitoring",
+          "Alert fatigue — te veel alerts, groot deel is noise",
+          "Geen geautomatiseerde patchmanagement-policies"
+        ],
+        "frustraties": [
+          "Engineers negeren alerts omdat er te veel zijn",
+          "Klant belt over probleem dat monitoring had moeten detecteren",
+          "Onmogelijk hogere tarieven te rechtvaardigen zonder bewezen proactiviteit"
+        ],
+        "vragen": [
+          "Welke alerts hebben het afgelopen kwartaal tot actie geleid?",
+          "Welke 10 alerts kunnen we automatisch laten remediaren?",
+          "Hoe bouwen we een testomgeving voor patches en scripts?"
+        ]
+      },
+      {
+        "name": "AI (intern gebruik)",
+        "problemen": [
+          "Team experimenteert ad hoc met AI zonder gedeeld plan",
+          "Geen prompt-bibliotheek of best practices",
+          "Geen richtlijnen voor verantwoord AI-gebruik"
+        ],
+        "frustraties": [
+          "Gevoel achter te lopen terwijl concurrenten AI als verkoopargument gebruiken",
+          "Engineers gebruiken AI individueel maar winst blijft op individueel niveau",
+          "Repetitieve taken blijven handmatig terwijl het anders zou kunnen"
+        ],
+        "vragen": [
+          "Welke processen lenen zich het beste voor AI?",
+          "Hoe voorkomen we dat klantdata in publieke modellen verdwijnt?",
+          "Hoe bouwen we een gedeelde prompt-bibliotheek?"
+        ]
+      },
+      {
+        "name": "Klantportaal",
+        "problemen": [
+          "Portaal beschikbaar maar nauwelijks gebruikt door klanten",
+          "Geen FAQ of kennisbank",
+          "Geen meting van portaaladoptie per klant"
+        ],
+        "frustraties": [
+          "30-40% van alle tickets zijn vragen die de klant zelf had kunnen beantwoorden",
+          "Klanten verwachten digitale selfservice maar krijgen e-mail en telefoon",
+          "Portaal staat naast de telefoon maar servicedesk neemt toch op"
+        ],
+        "vragen": [
+          "Hoe maken we het portaal de default voor klanten?",
+          "Welke 10 vragen kunnen we als FAQ publiceren voor directe ticketreductie?",
+          "Hoe trainen we de servicedesk om consequent naar portaal te verwijzen?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Blueprint",
+    "subdomains": [
+      {
+        "name": "Processen",
+        "problemen": [
+          "Processen bestaan impliciet maar niet vastgelegd of consistent",
+          "Geen proceseigenaarschap toegewezen",
+          "Dienstverlening leunt op geheugen van individuen"
+        ],
+        "frustraties": [
+          "'Hoe wordt een nieuwe klant onboard?' — 3 medewerkers, 3 antwoorden",
+          "Dezelfde fouten worden steeds opnieuw gemaakt",
+          "Groei zonder procesverbetering leidt tot hogere kosten, geen hogere marges"
+        ],
+        "vragen": [
+          "Welke 10 processen zijn echt kritiek voor kwaliteit en efficientie?",
+          "Hoe leg ik een proces vast zonder 30-pagina document dat niemand leest?",
+          "Hoe meet ik first-time-right zonder bureaucratisch monster?"
+        ]
+      },
+      {
+        "name": "Documentatie",
+        "problemen": [
+          "Kritieke processen niet gedocumenteerd — kennis in hoofden van individuen",
+          "Geen documentatiestandaard of review-cyclus",
+          "Platform gekocht (IT Glue) maar niet gevuld"
+        ],
+        "frustraties": [
+          "'Waar vind ik de configuratie van klant Y?' — niemand weet het, behalve Mark die op vakantie is",
+          "Als sleutelmedewerker vertrekt gaat kennis mee de deur uit",
+          "Engineers zien documentatie als 'administratieve last'"
+        ],
+        "vragen": [
+          "Welke top-10 procedures documenteren we eerst?",
+          "Hoe krijgen we het team zover dat ze daadwerkelijk bijdragen?",
+          "Hoe voorkomen we dat documentatie weer veroudert binnen drie maanden?"
+        ]
+      },
+      {
+        "name": "Naamgeving",
+        "problemen": [
+          "Geen master definitielijst van MSP-terminologie",
+          "Termen verschillen per systeem",
+          "Geen naamconventies voor tickets, projecten, mappen"
+        ],
+        "frustraties": [
+          "Drie namen voor hetzelfde concept — teams praten langs elkaar heen",
+          "Rapportages kloppen niet omdat tags freetext zijn ingevuld",
+          "Klantcommunicatie oogt onprofessioneel door wisselende terminologie"
+        ],
+        "vragen": [
+          "Waar begin ik — welke termen leveren het meeste verwarring op?",
+          "Doen we het in het Nederlands of Engels?",
+          "Hoe synchroniseer ik naamgeving tussen PSA, documentatie en facturatie?"
+        ]
+      },
+      {
+        "name": "Contractenset",
+        "problemen": [
+          "Basiscontracten aanwezig maar incompleet of niet afgestemd op dienstenaanbod",
+          "Geen duidelijke documenthierarchie of conflictregels",
+          "Geen periodieke review — contracten lopen jarenlang door"
+        ],
+        "frustraties": [
+          "Scope-discussies omdat dienstbeschrijvingen niet expliciet zijn over wat er niet bij hoort",
+          "DAP is bij ondertekening al verouderd",
+          "'Bij hoeveel klanten klopt de contractenset eigenlijk nog?'"
+        ],
+        "vragen": [
+          "Welke documenten horen er in een complete contractenset?",
+          "Hoe migreer ik bestaande klanten naar de gestandaardiseerde set?",
+          "Hoe houd ik het DAP levend na ondertekening?"
+        ]
+      },
+      {
+        "name": "Templates",
+        "problemen": [
+          "Enkele templates in gebruik maar niet gestandaardiseerd",
+          "Geen huisstijl-conforme set — branding verschilt per medewerker",
+          "Geen centrale templatebeheer-locatie met versiebeheer"
+        ],
+        "frustraties": [
+          "Elke engineer vindt het wiel opnieuw uit",
+          "Klanten krijgen documenten in verschillende stijlen",
+          "Iemand stuurt offerte met oude logo's of verkeerde tarieven"
+        ],
+        "vragen": [
+          "Welke 5-10 templates leveren direct het meeste rendement op?",
+          "Hoe integreer ik templates in onze PSA?",
+          "Hoe voorkom ik dat verouderde templates blijven rondzwerven?"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Data Driven",
+    "subdomains": [
+      {
+        "name": "Data Gedreven (overkoepelend)",
+        "problemen": [
+          "Beslissingen op gevoel — data wordt erbij gepakt als bevestiging, niet startpunt",
+          "Geen KPI-framework dat strategische doelen vertaalt naar meetbare KPIs per laag",
+          "Cultuur is het grootste obstakel, niet technologie"
+        ],
+        "frustraties": [
+          "'We zeggen dat we data-driven werken maar het sterkste verhaal wint de discussie'",
+          "MT-overleg gaat over meningen in plaats van feiten",
+          "Factor 30 verschil in EBITDA tussen OML 1-2 en OML 4-5 voelt onbereikbaar"
+        ],
+        "vragen": [
+          "Welke 5 KPIs moeten centraal staan in onze sturing?",
+          "Hoe krijg ik mijn MT zo ver dat elk voorstel minimaal een datapunt bevat?",
+          "Welke KPIs gebruiken Best-in-Class MSPs?"
+        ]
+      },
+      {
+        "name": "Analyse",
+        "problemen": [
+          "Vastzitten in de rapportage-fase — Excel-exports, paar grafieken, geen analyse",
+          "Geen vaste rapportage-cadans",
+          "Effective Hourly Rate per contract wordt niet berekend"
+        ],
+        "frustraties": [
+          "'We hebben 10.000 tickets in een tabel maar geen inzicht'",
+          "Niet weten welke 5-10% van klanten structureel geld kost",
+          "Dashboards gebouwd die niemand opent"
+        ],
+        "vragen": [
+          "Welke drie dashboards moeten we als eerste bouwen?",
+          "Hoe gaan we van descriptief naar diagnostisch?",
+          "Welk BI-tool past bij onze stack en maturity?"
+        ]
+      },
+      {
+        "name": "Data Mining",
+        "problemen": [
+          "Vijf systemen, vijf datasilo's, nul overzicht — PSA, RMM, boekhouding, CRM, HR praten niet met elkaar",
+          "Geen centraal dataplatform of data warehouse",
+          "Geen monitoring op data-pipelines"
+        ],
+        "frustraties": [
+          "'Elke maand dezelfde handmatige exercitie om managementcijfers samen te stellen'",
+          "Data is er wel maar niet bruikbaar",
+          "Tijd kwijt aan debuggen van extractie-flows"
+        ],
+        "vragen": [
+          "Welke bronsystemen koppelen we als eerste?",
+          "Hoe bouwen we een centraal database-platform?",
+          "Kunnen we N8N of Claude Code gebruiken voor snelle prototyping?"
+        ]
+      },
+      {
+        "name": "Datakwaliteit",
+        "problemen": [
+          "Garbage in, garbage out — ticketcategorieen kloppen niet, dubbele records",
+          "Geen invoer-validatie in PSA en RMM",
+          "Geen Master Data Management"
+        ],
+        "frustraties": [
+          "'Onze dashboards zien er professioneel uit maar niemand vertrouwt ze'",
+          "Tijd kwijt aan data repareren in plaats van data gebruiken",
+          "Elke nieuwe rapportage wordt gebouwd op drijfzand"
+        ],
+        "vragen": [
+          "Wat zijn onze top-5 datakwaliteitsproblemen met meeste impact?",
+          "Welke validatieregels moeten we configureren in PSA?",
+          "Hoe beginnen we met Shift-Left Data Quality?"
+        ]
+      },
+      {
+        "name": "Governance",
+        "problemen": [
+          "Geen benoemde data-eigenaren per domein",
+          "Geen dataclassificatie-model",
+          "Vertrokken medewerkers hebben mogelijk nog toegang tot klantdata"
+        ],
+        "frustraties": [
+          "'We weten dat het niet op orde is maar komen er niet aan toe'",
+          "Onzekerheid bij elke vertrekkende medewerker — heeft die nog toegang?",
+          "Governance voelt als bureaucratische last in plaats van dagelijkse praktijk"
+        ],
+        "vragen": [
+          "Wie is eigenaar van welke data?",
+          "Hoe lang moeten we welke data bewaren?",
+          "Waar beginnen we — bij welke data zit het hoogste risico?"
+        ]
+      }
+    ]
+  }
+]
